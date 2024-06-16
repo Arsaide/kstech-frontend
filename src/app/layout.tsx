@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.scss";
-
-const inter = Inter({ subsets: ["latin"] });
+import {gilroy} from "@/utils/fonts/customFonts";
 
 export const metadata: Metadata = {
   title: "KS Tech",
@@ -16,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <body className={gilroy.className}>{children}</body>
     </html>
   );
 }
