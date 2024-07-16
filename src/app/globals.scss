@@ -54,7 +54,7 @@ dd {
 }
 
 body {
-  color: var(--white);
+  color: var(--black);
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
@@ -100,16 +100,16 @@ select {
 .main {
   flex: 1 1 auto;
 }
-
-[class*="container"] {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 20px;
-  flex-direction: column;
-}
-
-@media (max-width: 767.98px) {
-  [class*="container"] {
-    padding: 0 12px;
-  }
-}
+//
+//[class*="container"] {
+//  max-width: var(--max-width);
+//  margin: 0 auto;
+//  padding: 0 20px;
+//  flex-direction: column;
+//}
+//
+//@media (max-width: 767.98px) {
+//  [class*="container"] {
+//    padding: 0 12px;
+//  }
+//}
