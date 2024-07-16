@@ -1,0 +1,134 @@
+.header {
+    background-color: var(--black);
+}
+
+.headerCnt {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-direction: column;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    padding: 15px 0;
+    position: relative;
+}
+
+.logoCnt {
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        opacity: .8;
+    }
+}
+
+.logo {}
+
+.navList {
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 5vw, 64px);
+}
+
+.listItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fz-text14);
+    font-weight: 500;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        opacity: .7;
+    }
+
+    a {
+        color: var(--white);
+    }
+}
+
+.contacts {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        opacity: .7;
+    }
+
+    a {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--black-05);
+    }
+}
+
+.optionPanel {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    padding: 15px 0;
+}
+
+.categories {
+    position: relative;
+}
+
+.categoriesList {
+    position: absolute;
+    top: 59px;
+    left: 0;
+    background-color: #3E77AA;
+    width: 100%;
+}
+
+.categoriesBtn, .cartBtn {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: var(--fz-text16);
+    background-color: var(--black-08);
+    color: var(--white);
+    width: max-content;
+    height: 100%;
+    padding: 0 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity .2s ease-in-out;
+
+    &:hover {
+        opacity: .8;
+    }
+}
+
+.search {
+    display: flex;
+    position: relative;
+
+    input {
+        background-color: var(--white);
+        width: 100%;
+        border-radius: 4px;
+        padding: 10px 20px 10px 35px;
+    }
+}
+
+.searchIconCnt {
+    position: absolute;
+    z-index: 100;
+    top: 13px;
+    left: 10px;
+}
+
+.cart {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.cartBtn {
+
+}

@@ -3,6 +3,7 @@ import './globals.scss';
 import { gilroy } from '@/utils/fonts/customFonts';
 import React from 'react';
 import ReactQueryClientProvider from '@/providers/react-query-client-provider/ReactQueryClientProvider';
+import Header from '@/components/layout/ui/nav/header/Header';
 
 export const metadata: Metadata = {
     title: 'KS Tech',
@@ -17,7 +18,12 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={gilroy.className}>
-                <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+                <ReactQueryClientProvider>
+                    <div className={'wrapper'}>
+                        <Header />
+                        {children}
+                    </div>
+                </ReactQueryClientProvider>
             </body>
         </html>
     );
