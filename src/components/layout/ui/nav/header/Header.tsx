@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss';
 import Link from 'next/link';
-import Logo from '@/utils/icons/Logo';
 import { navMenu } from '@/components/layout/ui/nav/header/index';
 import Categories from '@/components/layout/ui/nav/header/sub-components/categories/Categories';
 
