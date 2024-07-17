@@ -3,9 +3,9 @@
 }
 
 .categoriesList {
-  position: absolute;
-  top: 59px;
-  left: 0;
+  //position: absolute;
+  //top: 59px;
+  //left: 0;
   background-color: var(--black-005);
   width: 100%;
   border-bottom-left-radius: 4px;
@@ -63,9 +63,11 @@
 .listCnt {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 12px;
   padding: 10px 24px;
   cursor: pointer;
+  position: relative;
 }
 
 .imgIcon {
@@ -85,6 +87,12 @@
 
 .loader {
   animation: spin 1s linear infinite;
+}
+
+.subcategoriesLoader {
+  position: absolute;
+  right: 5px;
+  top: 13px;
 }
 
 @keyframes spin {
