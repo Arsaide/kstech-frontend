@@ -4,11 +4,15 @@ import { CategoryResponseModel } from '@/api/models/CategoriesModels';
 import { AxiosResponse } from 'axios';
 
 interface CategoryStoreTypes {
+    categoryId: string | null;
+    setCategoryId: (categoryId: string | null) => void;
     categories: CategoryResponseModel[] | null;
     getCategories: () => Promise<AxiosResponse<CategoryResponseModel[]>>;
 }
 
 const useCategoryStore = create<CategoryStoreTypes>(set => ({
+    categoryId: null,
+    setCategoryId: id => set({ categoryId: id }),
     categories: null,
 
     getCategories: async () => {

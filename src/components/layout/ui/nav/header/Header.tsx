@@ -1,10 +1,14 @@
+'use client';
 import React from 'react';
-import styles from './Header.module.scss';
 import Link from 'next/link';
 import { navMenu } from '@/components/layout/ui/nav/header/index';
 import Categories from '@/components/layout/ui/nav/header/sub-components/categories/Categories';
+import useCategoryStore from '@/api/store/CategoriesStore';
+import styles from './Header.module.scss';
 
 const Header = () => {
+    const { categoryId } = useCategoryStore();
+
     return (
         <header className={styles.header}>
             <div className={styles.headerCnt}>
@@ -54,6 +58,15 @@ const Header = () => {
                         </button>
                     </div>
                 </div>
+                {categoryId && (
+                    <div className={styles.subcategories}>
+                        <ul className={styles.subcategoriesCnt}>
+                            <li className={styles.sucategoryItem}>
+                                {categoryId}
+                            </li>
+                        </ul>
+                    </div>
+                )}
             </div>
         </header>
     );
