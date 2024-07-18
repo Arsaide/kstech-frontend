@@ -101,7 +101,6 @@ const Header = () => {
                                         <li key={item.id} className={categoriesStyle.listItem}>
                                             <button
                                                 className={categoriesStyle.listCnt}
-                                                // onClick={() => setCategoryId(item.id)}
                                                 onClick={() => handleCategoryClick(item.id)}
                                             >
                                                 <div className={categoriesStyle.imgIcon}>

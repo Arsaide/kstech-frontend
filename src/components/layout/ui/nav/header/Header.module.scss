@@ -23,7 +23,10 @@
     position: absolute;
     display: grid;
     grid-template-columns: 1fr 4fr;
-    //padding: 15px 0;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 20px;
 }
 
 .logoCnt {
@@ -109,7 +112,23 @@
 }
 
 .cartBtn {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: var(--fz-text16);
+    background-color: var(--black-08);
+    color: var(--white);
+    width: max-content;
+    height: 100%;
+    padding: 0 clamp(25px, 2.5vw, 40px);
+    margin-left: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity .2s ease-in-out;
 
+    &:hover {
+        opacity: .8;
+    }
 }
 
 .subcategories {
@@ -120,6 +139,7 @@
 
 .subcategoriesCnt {
     display: flex;
+    flex-wrap: wrap;
     padding: 5px 10px;
 }
 
