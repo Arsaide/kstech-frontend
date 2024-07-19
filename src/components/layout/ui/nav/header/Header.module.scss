@@ -38,8 +38,6 @@
     }
 }
 
-.logo {}
-
 .navList {
     display: flex;
     justify-content: center;
@@ -172,5 +170,40 @@
 
     &:active {
         transform: scale(0.98);
+    }
+}
+
+@media(max-width: 899px) {
+    .headerCnt {
+        padding: 0 10px;
+    }
+
+    .navList {
+        justify-content: space-between;
+        gap: normal;
+    }
+
+    .logo {
+        width: 110px;
+    }
+
+    .optionPanel {
+        padding: 10px 0;
+    }
+
+    .search {
+        input {
+            padding: 5px 10px 5px 30px;
+            font-size: var(--fz-text14);
+        }
+    }
+
+    .searchIconCnt {
+        top: 6px;
+        left: 7px;
+    }
+
+    .header {
+        display: none;
     }
 }

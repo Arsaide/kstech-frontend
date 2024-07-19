@@ -107,6 +107,13 @@ select {
 .main {
   flex: 1 1 auto;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@media(max-width: 899px) {
+}
 //
 //[class*="container"] {
 //  max-width: var(--max-width);
