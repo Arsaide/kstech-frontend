@@ -34,7 +34,7 @@ const Categories: FC<CategoriesProps> = ({ isCategoriesLoading }) => {
                         />
                     )}
                 </div>
-                Каталог
+                {/*Каталог товарів*/}
             </button>
         </div>
     );

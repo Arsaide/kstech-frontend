@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { navMenu } from '@/components/layout/ui/nav/header/index';
 import Categories from '@/components/layout/ui/nav/header/sub-components/categories/Categories';
@@ -9,7 +9,16 @@ import adaptiveStyles from './AdaptiveHeader.module.scss';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import categoriesStyle from './sub-components/categories/Categories.module.scss';
 import classNames from 'classnames';
-import { LoaderCircle, Menu, PhoneCall, Search, ShoppingCart, X, FileStack } from 'lucide-react';
+import {
+    LoaderCircle,
+    Menu,
+    PhoneCall,
+    Search,
+    ShoppingCart,
+    X,
+    FileStack,
+    SendHorizontal,
+} from 'lucide-react';
 import { ColorsEnum } from '@/utils/enums/ColorEnums';
 import { Controller, useForm } from 'react-hook-form';
 import useProductsStore from '@/api/store/ProductStore';
@@ -53,7 +62,7 @@ const Header = () => {
     });
 
     const { mutate, isPending } = useMutation({
-        mutationKey: ['search'],
+        mutationKey: ['search', searchProductInput],
         mutationFn: (query: string) => searchProducts(query),
     });
 
@@ -80,8 +89,8 @@ const Header = () => {
         };
     }, [isOpenCategories]);
 
-    const onSubmit = (data: FieldValue) => {
-        mutate(data.search);
+    const onSubmit = () => {
+        mutate(searchProductInput);
     };
 
     return (
@@ -117,16 +126,34 @@ const Header = () => {
                         <Controller
                             name={'search'}
                             control={control}
-                            rules={{ required: true }}
                             render={({ field }) => (
                                 <input
                                     {...field}
                                     name={'search'}
                                     type={'text'}
                                     placeholder={'Пошук'}
+                                    value={searchProductInput}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                        setSearchProductInput(e.target.value);
+                                    }}
                                 />
                             )}
                         />
+                        <button
+                            className={styles.submit}
+                            type={'submit'}
+                            disabled={searchProductInput.length == 0 || isPending}
+                        >
+                            {isPending ? (
+                                <LoaderCircle
+                                    className={styles.loader}
+                                    size={24}
+                                    color={ColorsEnum.BLACK}
+                                />
+                            ) : (
+                                <SendHorizontal color={ColorsEnum.BLACK} />
+                            )}
+                        </button>
                     </form>
                     <div className={styles.cart}>
                         <button className={styles.cartBtn}>
@@ -218,16 +245,34 @@ const Header = () => {
                             <Controller
                                 name={'search'}
                                 control={control}
-                                rules={{ required: true }}
                                 render={({ field }) => (
                                     <input
                                         {...field}
                                         name={'search'}
                                         type={'text'}
                                         placeholder={'Пошук'}
+                                        value={searchProductInput}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                            setSearchProductInput(e.target.value);
+                                        }}
                                     />
                                 )}
                             />
+                            <button
+                                className={adaptiveStyles.submit}
+                                type={'submit'}
+                                disabled={searchProductInput.length == 0 || isPending}
+                            >
+                                {isPending ? (
+                                    <LoaderCircle
+                                        className={styles.loader}
+                                        size={24}
+                                        color={ColorsEnum.BLACK}
+                                    />
+                                ) : (
+                                    <SendHorizontal color={ColorsEnum.BLACK} />
+                                )}
+                            </button>
                         </form>
                         <button
                             className={adaptiveStyles.closeSearch}
@@ -246,9 +291,9 @@ const Header = () => {
                                 }}
                             >
                                 {!isOpenCategories ? (
-                                    <Menu color={'#fff'} size={24} />
+                                    <Menu color={ColorsEnum.WHITE} size={24} />
                                 ) : (
-                                    <X color={'#fff'} size={24} />
+                                    <X color={ColorsEnum.WHITE} size={24} />
                                 )}
                             </button>
                             <button
@@ -258,7 +303,7 @@ const Header = () => {
                                     setIsOpenCategories(false);
                                 }}
                             >
-                                <Search color={ColorsEnum.BLACK05} size={24} />
+                                <Search color={ColorsEnum.WHITE} size={24} />
                             </button>
                         </div>
                         <div className={adaptiveStyles.logoCnt}>
@@ -268,10 +313,10 @@ const Header = () => {
                         </div>
                         <div className={adaptiveStyles.optionRight}>
                             <Link className={adaptiveStyles.phoneIcon} href={'tel:+380500235030'}>
-                                <PhoneCall color={'#fff'} size={24} />
+                                <PhoneCall color={ColorsEnum.WHITE} size={24} />
                             </Link>
                             <Link className={adaptiveStyles.cartIcon} href={'/cart'}>
-                                <ShoppingCart color={'#fff'} size={24} />
+                                <ShoppingCart color={ColorsEnum.WHITE} size={24} />
                             </Link>
                         </div>
                     </>

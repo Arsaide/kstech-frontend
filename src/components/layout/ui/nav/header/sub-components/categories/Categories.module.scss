@@ -27,6 +27,18 @@
   &:hover {
     opacity: .8;
   }
+
+  &::after {
+    content: 'Каталог товарів'
+  }
+}
+
+@media(max-width: 1129px) {
+  .categoriesBtn {
+    &::after {
+      content: 'Каталог'
+    }
+  }
 }
 
 .categoriesIconCnt {
@@ -83,14 +95,14 @@
   text-align: left;
 }
 
-.loader {
-  animation: spin 1s linear infinite;
-}
-
 .subcategoriesLoader {
   position: absolute;
   right: 5px;
   top: 13px;
+}
+
+.loader {
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {

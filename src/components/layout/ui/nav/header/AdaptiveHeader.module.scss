@@ -21,6 +21,15 @@
   padding: 8px;
 }
 
+.searchIcon {
+  opacity: .7;
+  transition: opacity .2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .menuIcon {
   position: relative;
   z-index: 100;
@@ -154,6 +163,20 @@
   border-radius: 100%;
   margin-left: 5px;
 }
+
+.submit {
+  position: absolute;
+  z-index: 15;
+  right: 10px;
+  top: 8px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: .6;
+    cursor: default;
+  }
+}
+
 
 @keyframes spin {
   from {

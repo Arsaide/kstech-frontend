@@ -98,9 +98,35 @@
 
 .searchIconCnt {
     position: absolute;
-    z-index: 100;
+    z-index: 15;
     top: 13px;
     left: 10px;
+}
+
+.submit {
+    position: absolute;
+    z-index: 15;
+    right: 10px;
+    top: 9px;
+    cursor: pointer;
+
+    &:disabled {
+        opacity: .4;
+        cursor: default;
+    }
+}
+
+.loader {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .cart {
