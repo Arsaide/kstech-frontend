@@ -174,8 +174,20 @@
 }
 
 @media(max-width: 899px) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 15;
+    }
+
     .headerCnt {
-        padding: 0 10px;
+        padding: 8px 12px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        height: 56px;
     }
 
     .navList {
@@ -189,6 +201,7 @@
 
     .optionPanel {
         padding: 10px 0;
+        display: none;
     }
 
     .search {
@@ -198,12 +211,16 @@
         }
     }
 
+    .menu {
+        display: none;
+    }
+
     .searchIconCnt {
         top: 6px;
         left: 7px;
     }
 
-    .header {
+    .nav {
         display: none;
     }
 }

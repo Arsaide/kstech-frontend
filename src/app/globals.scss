@@ -113,6 +113,9 @@ select {
 }
 
 @media(max-width: 899px) {
+  .wrapper {
+    padding-top: 55px;
+  }
 }
 //
 //[class*="container"] {

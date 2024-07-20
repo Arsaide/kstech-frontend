@@ -5,17 +5,25 @@ import { navMenu } from '@/components/layout/ui/nav/header/index';
 import Categories from '@/components/layout/ui/nav/header/sub-components/categories/Categories';
 import useCategoryStore from '@/api/store/CategoriesStore';
 import styles from './Header.module.scss';
+import adaptiveStyles from './AdaptiveHeader.module.scss';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import categoriesStyle from './sub-components/categories/Categories.module.scss';
 import classNames from 'classnames';
-import { LoaderCircle } from 'lucide-react';
+import { LoaderCircle, Menu, PhoneCall, Search, ShoppingCart, X, FileStack } from 'lucide-react';
 import { ColorsEnum } from '@/utils/enums/ColorEnums';
 
 const Header = () => {
     const queryClient = useQueryClient();
-    const { getCategories, categoryId, getOneCategory, isOpenCategories, setCategoryId } =
-        useCategoryStore();
+    const {
+        getCategories,
+        categoryId,
+        getOneCategory,
+        isOpenCategories,
+        setIsOpenCategories,
+        setCategoryId,
+    } = useCategoryStore();
     const [loadingCategoryId, setLoadingCategoryId] = useState<string | null>(null);
+    const [isVisibleSearchInput, setIsVisibleSearchInput] = useState<boolean>(false);
 
     const { data: categoriesData, isLoading: isCategoriesLoading } = useQuery({
         queryKey: ['categories'],
@@ -46,6 +54,17 @@ const Header = () => {
         }
         setCategoryId(id);
     };
+
+    useEffect(() => {
+        if (isOpenCategories) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+        return () => {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [isOpenCategories]);
 
     return (
         <header className={styles.header} onClick={e => e.stopPropagation()}>
@@ -154,6 +173,122 @@ const Header = () => {
                         </div>
                     ) : null}
                 </div>
+
+                {/*ADAPTIVE  ADAPTIVE  ADAPTIVE  ADAPTIVE  ADAPTIVE  ADAPTIVE  */}
+                {isVisibleSearchInput ? (
+                    <>
+                        <div className={adaptiveStyles.search}>
+                            <div className={adaptiveStyles.searchIconCnt}>
+                                <img
+                                    className={adaptiveStyles.searchIcon}
+                                    src={'/icons/search-icon.svg'}
+                                    alt={'Іконка пошуку'}
+                                />
+                            </div>
+                            <input type={'text'} placeholder={'Пошук'} />
+                        </div>
+                        <button
+                            className={adaptiveStyles.closeSearch}
+                            onClick={() => setIsVisibleSearchInput(false)}
+                        >
+                            <X color={ColorsEnum.BLACK} size={24} />
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <div className={adaptiveStyles.optionLeft}>
+                            <button
+                                className={adaptiveStyles.menuIcon}
+                                onClick={() => {
+                                    setIsOpenCategories(!isOpenCategories);
+                                }}
+                            >
+                                {!isOpenCategories ? (
+                                    <Menu color={'#fff'} size={24} />
+                                ) : (
+                                    <X color={'#fff'} size={24} />
+                                )}
+                            </button>
+                            <button
+                                className={adaptiveStyles.searchIcon}
+                                onClick={() => {
+                                    setIsVisibleSearchInput(true);
+                                    setIsOpenCategories(false);
+                                }}
+                            >
+                                <Search color={ColorsEnum.BLACK05} size={24} />
+                            </button>
+                        </div>
+                        <div className={adaptiveStyles.logoCnt}>
+                            <Link href={'/'}>
+                                <img className={adaptiveStyles.logo} src={'/logo.svg'} alt="Logo" />
+                            </Link>
+                        </div>
+                        <div className={adaptiveStyles.optionRight}>
+                            <Link className={adaptiveStyles.phoneIcon} href={'tel:+380500235030'}>
+                                <PhoneCall color={'#fff'} size={24} />
+                            </Link>
+                            <Link className={adaptiveStyles.cartIcon} href={'/cart'}>
+                                <ShoppingCart color={'#fff'} size={24} />
+                            </Link>
+                        </div>
+                    </>
+                )}
+            </div>
+            <div
+                className={classNames(adaptiveStyles.menu, {
+                    [adaptiveStyles.openMenu]: isOpenCategories,
+                })}
+            >
+                <h3 className={adaptiveStyles.listTitle}>Меню</h3>
+                <ul className={adaptiveStyles.menuList}>
+                    {navMenu.map((item, index) => (
+                        <li key={index} className={adaptiveStyles.listItem}>
+                            <Link
+                                className={adaptiveStyles.listName}
+                                href={item.link}
+                                prefetch={true}
+                            >
+                                {item.name}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+                <h3 className={adaptiveStyles.listTitle}>
+                    <FileStack size={18} />
+                    Каталог товарів
+                </h3>
+                <ul className={adaptiveStyles.list}>
+                    {isCategoriesLoading ? (
+                        <div className={adaptiveStyles.loaderName}>
+                            <div className={adaptiveStyles.categoryLoader}>
+                                <LoaderCircle
+                                    className={adaptiveStyles.loader}
+                                    size={19.67}
+                                    color={ColorsEnum.WHITE}
+                                />
+                            </div>
+                            Завантаження каталогу...
+                        </div>
+                    ) : null}
+                    {categoriesData?.length &&
+                        categoriesData?.map(item => (
+                            <li key={item.id} className={adaptiveStyles.listItem}>
+                                <Link
+                                    href={`/category?=${item.id}`}
+                                    className={adaptiveStyles.listCnt}
+                                >
+                                    <div className={adaptiveStyles.imgIcon}>
+                                        <img
+                                            src={item.iconImg}
+                                            alt={`Іконка категорії ${item.category}`}
+                                        />
+                                    </div>
+                                    <div className={adaptiveStyles.name}>{item.category}</div>
+                                </Link>
+                            </li>
+                        ))}
+                </ul>
             </div>
         </header>
     );
