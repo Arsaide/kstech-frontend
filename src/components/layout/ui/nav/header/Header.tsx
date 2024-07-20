@@ -6,11 +6,17 @@ import Categories from '@/components/layout/ui/nav/header/sub-components/categor
 import useCategoryStore from '@/api/store/CategoriesStore';
 import styles from './Header.module.scss';
 import adaptiveStyles from './AdaptiveHeader.module.scss';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import categoriesStyle from './sub-components/categories/Categories.module.scss';
 import classNames from 'classnames';
 import { LoaderCircle, Menu, PhoneCall, Search, ShoppingCart, X, FileStack } from 'lucide-react';
 import { ColorsEnum } from '@/utils/enums/ColorEnums';
+import { Controller, useForm } from 'react-hook-form';
+import useProductsStore from '@/api/store/ProductStore';
+
+interface FieldValue {
+    search: string;
+}
 
 const Header = () => {
     const queryClient = useQueryClient();
@@ -22,8 +28,11 @@ const Header = () => {
         setIsOpenCategories,
         setCategoryId,
     } = useCategoryStore();
+    const { searchProducts } = useProductsStore();
     const [loadingCategoryId, setLoadingCategoryId] = useState<string | null>(null);
     const [isVisibleSearchInput, setIsVisibleSearchInput] = useState<boolean>(false);
+    const [searchProductInput, setSearchProductInput] = useState<string>('');
+    const { handleSubmit, control } = useForm<FieldValue>();
 
     const { data: categoriesData, isLoading: isCategoriesLoading } = useQuery({
         queryKey: ['categories'],
@@ -41,6 +50,11 @@ const Header = () => {
         queryFn: () => getOneCategory(categoryId),
         select: data => data.data.subcategory,
         enabled: categoryId != null,
+    });
+
+    const { mutate, isPending } = useMutation({
+        mutationKey: ['search'],
+        mutationFn: (query: string) => searchProducts(query),
     });
 
     useEffect(() => {
@@ -66,6 +80,10 @@ const Header = () => {
         };
     }, [isOpenCategories]);
 
+    const onSubmit = (data: FieldValue) => {
+        mutate(data.search);
+    };
+
     return (
         <header className={styles.header} onClick={e => e.stopPropagation()}>
             <div className={styles.headerCnt}>
@@ -88,7 +106,7 @@ const Header = () => {
                 </nav>
                 <div className={styles.optionPanel}>
                     <Categories isCategoriesLoading={isCategoriesLoading} />
-                    <div className={styles.search}>
+                    <form className={styles.search} onSubmit={handleSubmit(onSubmit)}>
                         <div className={styles.searchIconCnt}>
                             <img
                                 className={styles.searchIcon}
@@ -96,8 +114,20 @@ const Header = () => {
                                 alt={'Іконка пошуку'}
                             />
                         </div>
-                        <input type={'text'} placeholder={'Пошук'} />
-                    </div>
+                        <Controller
+                            name={'search'}
+                            control={control}
+                            rules={{ required: true }}
+                            render={({ field }) => (
+                                <input
+                                    {...field}
+                                    name={'search'}
+                                    type={'text'}
+                                    placeholder={'Пошук'}
+                                />
+                            )}
+                        />
+                    </form>
                     <div className={styles.cart}>
                         <button className={styles.cartBtn}>
                             <div className={styles.cartIconCnt}>
@@ -177,7 +207,7 @@ const Header = () => {
                 {/*ADAPTIVE  ADAPTIVE  ADAPTIVE  ADAPTIVE  ADAPTIVE  ADAPTIVE  */}
                 {isVisibleSearchInput ? (
                     <>
-                        <div className={adaptiveStyles.search}>
+                        <form className={adaptiveStyles.search} onSubmit={handleSubmit(onSubmit)}>
                             <div className={adaptiveStyles.searchIconCnt}>
                                 <img
                                     className={adaptiveStyles.searchIcon}
@@ -185,8 +215,20 @@ const Header = () => {
                                     alt={'Іконка пошуку'}
                                 />
                             </div>
-                            <input type={'text'} placeholder={'Пошук'} />
-                        </div>
+                            <Controller
+                                name={'search'}
+                                control={control}
+                                rules={{ required: true }}
+                                render={({ field }) => (
+                                    <input
+                                        {...field}
+                                        name={'search'}
+                                        type={'text'}
+                                        placeholder={'Пошук'}
+                                    />
+                                )}
+                            />
+                        </form>
                         <button
                             className={adaptiveStyles.closeSearch}
                             onClick={() => setIsVisibleSearchInput(false)}
