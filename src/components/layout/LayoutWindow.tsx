@@ -1,9 +1,8 @@
 'use client';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import Header from '@/components/layout/ui/nav/header/Header';
 import useCategoryStore from '@/api/store/CategoriesStore';
-import AdaptiveHeader from '@/components/layout/ui/nav/adaptive-header/AdaptiveHeader';
 
 interface LayoutWindowProps {
     children: React.ReactNode;
@@ -19,7 +18,6 @@ const LayoutWindow: FC<LayoutWindowProps> = ({ children }) => {
                 onClick={() => setIsOpenCategories(false)}
             >
                 <Header />
-                <AdaptiveHeader />
                 {children}
             </div>
         </>
