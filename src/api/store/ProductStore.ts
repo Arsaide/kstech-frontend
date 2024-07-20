@@ -4,18 +4,14 @@ import { AllProductResponseModel } from '@/api/models/ProductsModels';
 import { AxiosResponse } from 'axios';
 
 interface ProductStoreTypes {
-    products: AllProductResponseModel | null;
-    getProducts: (page: number) => Promise<void>;
+    getProducts: (page: number) => Promise<AxiosResponse<AllProductResponseModel>>;
     searchProducts: (query: string) => Promise<AxiosResponse<AllProductResponseModel>>;
 }
 
 const useProductsStore = create<ProductStoreTypes>(set => ({
-    products: null,
-
     getProducts: async (page: number) => {
         try {
-            const response = await ProductService.getProductsList(page);
-            set({ products: response.data });
+            return await ProductService.getProductsList(page);
         } catch (error: any) {
             throw error;
         }
@@ -24,8 +20,7 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
     searchProducts: async (query: string) => {
         try {
             const page = parseInt(<string>localStorage.getItem('page')) || 1;
-            const response = await ProductService.searchProducts(page, query);
-            return response;
+            return await ProductService.searchProducts(page, query);
         } catch (error: any) {
             throw error;
         }

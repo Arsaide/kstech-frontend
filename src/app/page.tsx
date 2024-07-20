@@ -1,10 +1,10 @@
 import styles from './page.module.scss';
-import ProductsList from '@/components/pages/productsList';
+import MainPage from '@/components/pages/main-page/MainPage';
 
 export default function Home() {
     return (
         <main className={styles.main}>
-            <ProductsList />
+            <MainPage />
         </main>
     );
 }
