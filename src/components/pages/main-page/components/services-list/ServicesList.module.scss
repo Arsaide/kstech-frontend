@@ -1,0 +1,47 @@
+.services {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.cnt {
+  margin-top: 16px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(338px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: var(--max-width);
+  justify-items: center;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 338px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid var(--black-02);
+  cursor: pointer;
+  transition: background-color .2s ease-out 0s;
+
+  &:hover {
+    background-color: var(--black-02);
+  }
+}
+
+.img {
+  width: 100%;
+  height: 143px;
+}
+
+.name {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
