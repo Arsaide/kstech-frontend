@@ -1,0 +1,41 @@
+.produtcsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+.listItem {
+  max-width: 220px;
+  height: 300px;
+  transition: background-color .2s ease-out 0s;
+  background-color: var(--black-02);
+
+  &:hover {
+    background-color: var(--black-02);
+  }
+}
+
+
+@media(max-width: 968px) {
+  .produtcsList {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .listItem {
+    max-width: 180px;
+    height: 180px;
+  }
+}
+
+@media(max-width: 611px) {
+  .produtcsList {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .listItem {
+    max-width: 170px;
+    height: 160px;
+  }
+}
