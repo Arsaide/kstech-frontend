@@ -1,9 +1,6 @@
 import { create } from 'zustand';
 import CategoriesService from '@/api/services/CategoriesService';
-import {
-    CategoryResponseModel,
-    GetOneCategoryResponseModel,
-} from '@/api/models/CategoriesModels';
+import { CategoryResponseModel, GetOneCategoryResponseModel } from '@/api/models/CategoriesModels';
 import { AxiosResponse } from 'axios';
 import { SetStateAction } from 'react';
 
@@ -14,9 +11,7 @@ interface CategoryStoreTypes {
     setIsOpenCategories: (isOpenCategories: SetStateAction<boolean>) => void;
     categories: CategoryResponseModel[] | null;
     getCategories: () => Promise<AxiosResponse<CategoryResponseModel[]>>;
-    getOneCategory: (
-        id: string | null,
-    ) => Promise<AxiosResponse<GetOneCategoryResponseModel>>;
+    getOneCategory: (id: string | null) => Promise<AxiosResponse<GetOneCategoryResponseModel>>;
 }
 
 const useCategoryStore = create<CategoryStoreTypes>(set => ({
