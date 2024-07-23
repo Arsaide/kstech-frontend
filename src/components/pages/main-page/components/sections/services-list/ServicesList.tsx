@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ServicesList.module.scss';
-import { services } from '@/components/pages/main-page/components/services-list/services';
+import { services } from '@/components/pages/main-page/components/sections/services-list/services';
 
 const ServicesList = () => {
     return (

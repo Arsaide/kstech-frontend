@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './CatalogList.module.scss';
 import Link from 'next/link';
-import CatalogListSkeleton from '@/components/pages/main-page/components/catalog-list/catalog-list-skeleton/CatalogListSkeleton';
+import CatalogListSkeleton from '@/components/pages/main-page/components/sections/catalog-list/catalog-list-skeleton/CatalogListSkeleton';
 import { useGetCategories } from '@/hooks/queries/use-get-categories/useGetCategories';
 
 const CatalogList = () => {
