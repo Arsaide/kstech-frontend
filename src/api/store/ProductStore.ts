@@ -6,6 +6,10 @@ import { AxiosResponse } from 'axios';
 interface ProductStoreTypes {
     getProducts: (page: number) => Promise<AxiosResponse<AllProductResponseModel>>;
     searchProducts: (query: string) => Promise<AxiosResponse<AllProductResponseModel>>;
+    getProductByCategory: (
+        categoryId: string | null,
+        page: number,
+    ) => Promise<AxiosResponse<AllProductResponseModel>>;
 }
 
 const useProductsStore = create<ProductStoreTypes>(set => ({
@@ -21,6 +25,14 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
         try {
             const page = parseInt(<string>localStorage.getItem('page')) || 1;
             return await ProductService.searchProducts(page, query);
+        } catch (error: any) {
+            throw error;
+        }
+    },
+
+    getProductByCategory: async (categoryId: string | null, page: number) => {
+        try {
+            return await ProductService.getProductByCategory(categoryId, page);
         } catch (error: any) {
             throw error;
         }
