@@ -100,8 +100,25 @@ select {
   transition: background-color .1s ease-out;
 
   &.open {
-    background-color: rgba(51, 51, 51, .5);
   }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(51, 51, 51, .5);
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .1s ease-out;
+}
+
+.wrapper.open .overlay {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .main {
@@ -110,11 +127,15 @@ select {
 
 .no-scroll {
   overflow: hidden;
+  margin-right: 15px;
 }
 
 @media(max-width: 899px) {
   .wrapper {
     padding-top: 55px;
+  }
+  .no-scroll {
+    margin: 0;
   }
 }
 //

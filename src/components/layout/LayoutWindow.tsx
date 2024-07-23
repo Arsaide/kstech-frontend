@@ -17,6 +17,7 @@ const LayoutWindow: FC<LayoutWindowProps> = ({ children }) => {
                 className={classNames('wrapper', { ['open']: isOpenCategories })}
                 onClick={() => setIsOpenCategories(false)}
             >
+                {isOpenCategories && <div className={'overlay'} />}
                 <Header />
                 {children}
             </div>
