@@ -86,11 +86,12 @@
 
 @media(max-width: 611px) {
   .produtcsList {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    display: flex;
+    overflow-x: scroll;
   }
 
   .listItem {
-    max-width: 170px;
+    min-width: 170px;
   }
 
   .link {

@@ -45,3 +45,30 @@
   font-size: 16px;
   font-weight: 600;
 }
+
+@media(max-width: 731px) {
+  .listItem {
+    min-width: 338px;
+    max-width: 100%;
+  }
+
+  .img {
+    display: flex;
+    height: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media(max-width: 611px) {
+  .list {
+    display: flex;
+    overflow-x: scroll;
+  }
+
+  .listItem {
+    min-width: 338px;
+  }
+}
