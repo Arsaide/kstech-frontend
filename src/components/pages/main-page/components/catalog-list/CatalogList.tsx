@@ -1,25 +1,18 @@
 'use client';
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import useCategoryStore from '@/api/store/CategoriesStore';
 import styles from './CatalogList.module.scss';
 import Link from 'next/link';
 import CatalogListSkeleton from '@/components/pages/main-page/components/catalog-list/catalog-list-skeleton/CatalogListSkeleton';
+import { useGetCategories } from '@/hooks/queries/use-get-categories/useGetCategories';
 
 const CatalogList = () => {
-    const { getCategories } = useCategoryStore();
-
-    const { isLoading, isError, error, data } = useQuery({
-        queryKey: ['categories'],
-        queryFn: () => getCategories(),
-        select: data => data.data,
-    });
+    const { data, isLoading, isError } = useGetCategories();
 
     return (
         <section className={styles.cnt}>
             <h3 className={styles.title}>Каталог</h3>
             <div className={styles.productsListContainer}>
-                {isLoading ? (
+                {isLoading || isError ? (
                     <CatalogListSkeleton />
                 ) : (
                     <ul className={styles.produtcsList}>
