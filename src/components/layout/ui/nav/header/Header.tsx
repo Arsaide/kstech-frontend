@@ -40,6 +40,7 @@ const Header = () => {
     const { searchProducts } = useProductsStore();
     const [loadingCategoryId, setLoadingCategoryId] = useState<string | null>(null);
     const [isVisibleSearchInput, setIsVisibleSearchInput] = useState<boolean>(false);
+    const [isVisibleSubcategories, setIsVisibleSubcategories] = useState<boolean>(false);
     const [searchProductInput, setSearchProductInput] = useState<string>('');
     const { handleSubmit, control } = useForm<FieldValue>();
 
@@ -75,6 +76,7 @@ const Header = () => {
         if (!cachedData) {
             setLoadingCategoryId(id);
         }
+        setIsVisibleSubcategories(true);
         setCategoryId(id);
     };
 
@@ -168,7 +170,11 @@ const Header = () => {
                         </button>
                     </div>
                 </div>
-                <div className={styles.menu}>
+                <div
+                    className={classNames(styles.menu, {
+                        [styles.subcategoriesOpen]: isVisibleSubcategories,
+                    })}
+                >
                     {isOpenCategories && (
                         <div className={categoriesStyle.categoriesList}>
                             <ul className={categoriesStyle.list}>
@@ -219,7 +225,7 @@ const Header = () => {
                                 ))}
                             </ul>
                         </div>
-                    ) : subcategoriesData?.length == 0 ? (
+                    ) : isOpenCategories && subcategoriesData && subcategoriesData?.length == 0 ? (
                         <div
                             className={classNames(
                                 styles.subcategories,
