@@ -8,9 +8,10 @@ import Link from 'next/link';
 interface ProductsListProps {
     categoryName: string;
     productsArr: AllProductResponseModel | undefined;
+    link: string;
 }
 
-const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsArr }) => {
+const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsArr, link }) => {
     if (productsArr?.products.length == 0) {
         return null;
     }
@@ -19,7 +20,7 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
         <div className={styles.category}>
             <div className={styles.info}>
                 <h6 className={styles.infoName}>{categoryName}</h6>
-                <Link className={styles.infoLink} href={''}>
+                <Link className={styles.infoLink} href={link}>
                     Показати всі
                 </Link>
             </div>
@@ -53,7 +54,7 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
                     ))}
             </ul>
             <div className={styles.btnCnt}>
-                <Link className={styles.btn} href={'/products-by-category'}>
+                <Link className={styles.btn} href={link}>
                     Показати більше
                 </Link>
             </div>

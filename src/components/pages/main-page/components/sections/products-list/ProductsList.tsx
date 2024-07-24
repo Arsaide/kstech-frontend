@@ -68,18 +68,21 @@ const ProductsList = () => {
                         <ProductsListByCategory
                             categoryName={'Популярні товари'}
                             productsArr={popularProducts}
+                            link={'popular-products'}
                         />
                     )}
                     {selectedCategory[0]?.category && (
                         <ProductsListByCategory
                             categoryName={selectedCategory[0].category}
                             productsArr={products1}
+                            link={''}
                         />
                     )}
                     {selectedCategory[1]?.category && (
                         <ProductsListByCategory
                             categoryName={selectedCategory[1]?.category}
                             productsArr={products2}
+                            link={''}
                         />
                     )}
                 </div>
