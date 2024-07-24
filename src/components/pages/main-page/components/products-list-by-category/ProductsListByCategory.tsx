@@ -11,6 +11,10 @@ interface ProductsListProps {
 }
 
 const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsArr }) => {
+    if (productsArr?.products.length == 0) {
+        return null;
+    }
+
     return (
         <div className={styles.category}>
             <div className={styles.info}>

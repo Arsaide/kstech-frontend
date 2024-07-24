@@ -22,4 +22,8 @@ export default class ProductService {
     ): Promise<AxiosResponse<AllProductResponseModel>> {
         return $api.get<AllProductResponseModel>(`/products/search?page=${page}&query=${query}`);
     }
+
+    static async getPopularProducts(page: number): Promise<AxiosResponse<AllProductResponseModel>> {
+        return $api.get<AllProductResponseModel>(`/products/getforpromotions?page=${page}`);
+    }
 }

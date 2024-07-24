@@ -6,16 +6,24 @@ import { discountPriceCalc } from '@/utils/discountPriceCalc';
 import { priceConvert } from '@/utils/priceConvert';
 import ProductsListByCategory from '@/components/pages/main-page/components/products-list-by-category/ProductsListByCategory';
 import ProductsListByCategorySkeleton from '@/components/pages/main-page/components/products-list-by-category-skeleton/ProductsListByCategorySkeleton';
+import { useGetPopularProducts } from '@/hooks/queries/use-get-popular-products/useGetPopularProducts';
 
 const ProductsList = () => {
+    const [selectedCategory, setSelectedCategory] = useState<{ id: string; category: string }[]>(
+        [],
+    );
+
     const {
         data: categories,
         isLoading: categoriesLoading,
         isError: categoriesError,
     } = useGetCategories();
-    const [selectedCategory, setSelectedCategory] = useState<{ id: string; category: string }[]>(
-        [],
-    );
+
+    const {
+        data: popularProducts,
+        isLoading: popularProductsLoading,
+        isError: popularProductsError,
+    } = useGetPopularProducts({ page: 1 });
 
     const randomCategories = useMemo(() => {
         if (categories && categories.length > 0) {
@@ -47,13 +55,21 @@ const ProductsList = () => {
 
     return (
         <section className={styles.productsList}>
-            {(productsLoading1 && productsLoading2) || (productsError2 && productsError1) ? (
+            {(productsLoading1 && productsLoading2 && popularProductsLoading) ||
+            (productsError2 && productsError1 && popularProductsError) ? (
                 <div className={styles.cnt}>
+                    <ProductsListByCategorySkeleton />
                     <ProductsListByCategorySkeleton />
                     <ProductsListByCategorySkeleton />
                 </div>
             ) : (
                 <div className={styles.cnt}>
+                    {popularProducts?.products && (
+                        <ProductsListByCategory
+                            categoryName={'Популярні товари'}
+                            productsArr={popularProducts}
+                        />
+                    )}
                     {selectedCategory[0]?.category && (
                         <ProductsListByCategory
                             categoryName={selectedCategory[0].category}
