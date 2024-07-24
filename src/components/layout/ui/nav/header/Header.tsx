@@ -1,7 +1,7 @@
 'use client';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { navMenu } from '@/components/layout/ui/nav/header/index';
+import { navMenu } from '@/components/layout/ui/nav';
 import Categories from '@/components/layout/ui/nav/header/sub-components/categories/Categories';
 import useCategoryStore from '@/api/store/CategoriesStore';
 import styles from './Header.module.scss';

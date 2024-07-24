@@ -1,0 +1,28 @@
+.accordion {
+  position: relative;
+  display: none;
+}
+
+.link {
+  color: var(--black-02);
+  font-size: 16px;
+  font-weight: 500;
+  transition: color .2s ease-out 0s;
+
+  &:hover {
+    color: var(--black-005);
+  }
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--white);
+  position: absolute;
+}
+
+@media(max-width: 634px) {
+  .accordion {
+    display: block;
+  }
+}

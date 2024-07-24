@@ -1,0 +1,159 @@
+.footer {
+  background-color: var(--black);
+  padding: 64px 0;
+  position: relative;
+}
+
+.cnt {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.logo {
+
+}
+
+.info {
+
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.listItem, .link {
+  color: var(--black-05);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.link {
+  transition: color .2s ease-out 0s;
+  &:hover {
+    color: var(--black-005);
+  }
+}
+
+.work {
+
+}
+
+.contacts {
+}
+
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.contactLink {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity .2s ease-out 0s;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.socNetworksList {
+  display: flex;
+  gap: 24px;
+}
+
+.socNetworksItem {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .2s ease-out 0s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .7 ;
+  }
+}
+
+.icon {
+
+}
+
+.logoCntResp {
+  display: none;
+}
+
+.copyright {
+  color: var(--black-02);
+  text-align: center;
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  font-size: 14px;
+
+  a {
+    color: var(--black-02);
+    font-size: 15px;
+    text-decoration: underline;
+    font-style: italic;
+    transition: color .2s ease-out 0s;
+
+    &:hover {
+      color: var(--white);
+    }
+  }
+}
+
+@media(max-width: 850px) {
+  .cnt {
+    gap: 60px;
+  }
+}
+
+@media(max-width: 634px) {
+  .footer {
+    padding: 40px 0;
+  }
+
+  .cnt {
+    flex-direction: column;
+    justify-content: normal;
+  }
+
+  .logoCnt, .contacts, .work, .info {
+    display: none;
+  }
+
+  .logoCntResp {
+    display: block;
+  }
+
+  .logoResp {
+    width: 170px;
+  }
+
+  .copyright {
+    font-size: 16px;
+
+    a {
+      font-size: 17px;
+    }
+  }
+}

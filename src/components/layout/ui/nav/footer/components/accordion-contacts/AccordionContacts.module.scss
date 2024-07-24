@@ -1,0 +1,68 @@
+.contacts {
+}
+
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.contactLink {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity .2s ease-out 0s;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.socNetworksList {
+  display: flex;
+  gap: 24px;
+}
+
+.socNetworksItem {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .2s ease-out 0s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .7 ;
+  }
+}
+
+.accordion {
+  position: relative;
+  display: none;
+}
+
+.link {
+  color: var(--black-05);
+  font-size: 16px;
+  font-weight: 500;
+  transition: color .2s ease-out 0s;
+
+  &:hover {
+    color: var(--black-005);
+  }
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--white);
+  position: absolute;
+}
+
+@media(max-width: 634px) {
+  .accordion {
+    display: block;
+  }
+}
