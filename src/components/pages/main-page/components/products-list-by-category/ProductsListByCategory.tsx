@@ -4,6 +4,7 @@ import { discountPriceCalc } from '@/utils/discountPriceCalc';
 import { AllProductResponseModel } from '@/api/models/ProductsModels';
 import styles from './ProductsListByCategory.module.scss';
 import Link from 'next/link';
+import ProductCard from '@/components/layout/ui/product-card/ProductCard';
 
 interface ProductsListProps {
     categoryName: string;
@@ -26,32 +27,19 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
             </div>
             <ul className={styles.list}>
                 {productsArr &&
-                    productsArr?.products.slice(0, 5).map(product => (
-                        <li key={product.id} className={styles.listItem}>
-                            <Link href={''} className={styles.link}>
-                                <div className={styles.imgCnt}>
-                                    <img
-                                        className={styles.img}
-                                        src={product.imgArr[0]}
-                                        alt={`Зображення товару ${product.name} категорії ${categoryName}`}
-                                    />
-                                </div>
-                                <div className={styles.name}>{product.name}</div>
-                                <div className={styles.divider} />
-                                <div className={styles.priceCnt}>
-                                    <div className={styles.discount}>
-                                        {priceConvert(
-                                            discountPriceCalc(product.price, product.discount),
-                                        )}{' '}
-                                        грн
-                                    </div>
-                                    <div className={styles.price}>
-                                        {priceConvert(product.price)} грн
-                                    </div>
-                                </div>
-                            </Link>
-                        </li>
-                    ))}
+                    productsArr?.products
+                        .slice(0, 5)
+                        .map(product => (
+                            <ProductCard
+                                key={product.id}
+                                name={product.name}
+                                img={product.imgArr[0]}
+                                categoryName={categoryName}
+                                price={product.price}
+                                discount={product.discount}
+                                link={''}
+                            />
+                        ))}
             </ul>
             <div className={styles.btnCnt}>
                 <Link className={styles.btn} href={link}>

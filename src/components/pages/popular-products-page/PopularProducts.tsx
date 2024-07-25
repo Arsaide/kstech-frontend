@@ -3,7 +3,8 @@ import React from 'react';
 import useProductsStore from '@/api/store/ProductStore';
 import { useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import styles from '@/components/pages/main-page/components/sections/products-grid/ProductGrid.module.scss';
+import styles from './PopularProducts.module.scss';
+import ProductCard from '@/components/layout/ui/product-card/ProductCard';
 
 const PopularProducts = () => {
     const { getPopularProducts } = useProductsStore();
@@ -12,7 +13,7 @@ const PopularProducts = () => {
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
     const { isLoading, isError, error, data } = useQuery({
-        queryKey: ['products', currentPage],
+        queryKey: ['popular-products', currentPage],
         queryFn: () => getPopularProducts(currentPage),
         select: data => data.data,
     });
@@ -28,16 +29,14 @@ const PopularProducts = () => {
             <div className={styles.listCnt}>
                 <ul className={styles.produtcsList}>
                     {data?.products.map(product => (
-                        <li className={styles.listItem} key={product.id}>
-                            <div className={styles.imgCnt}>
-                                <img
-                                    className={styles.img}
-                                    src={product.imgArr[0]}
-                                    alt={`Товар ${product.name}`}
-                                />
-                            </div>
-                            <h5 className={styles.name}>{product.name}</h5>
-                        </li>
+                        <ProductCard
+                            key={product.id}
+                            name={product.name}
+                            img={product.imgArr[0]}
+                            price={product.price}
+                            discount={product.discount}
+                            link={''}
+                        />
                     ))}
                 </ul>
             </div>
