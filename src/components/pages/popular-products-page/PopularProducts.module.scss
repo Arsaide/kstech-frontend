@@ -3,51 +3,21 @@
   margin: 0 auto;
   padding: 0 20px;
   z-index: 1;
+  width: 100%;
 }
 
 .listCnt {
   display: flex;
-  justify-content: center;
 }
 
-.produtcsList {
+.produtsList {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  width: max-content;
 }
 
-.listItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  padding: clamp(10px, 5vw, 20px);
-  max-width: 220px;
-  max-height: 300px;
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid var(--black-02);
-  cursor: pointer;
-  transition: background-color .2s ease-out 0s;
-
-  &:hover {
-    background-color: var(--black-005);
+@media(max-width: 469px) {
+  .produtsList {
+    gap: 8px;
   }
-}
-
-.imgCnt {
-  width: 180px;
-  height: 205px;
-}
-
-.img {
-  object-fit: contain;
-  width: 180px;
-  height: 205px;
-}
-
-.name {
-
 }

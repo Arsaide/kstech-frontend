@@ -5,6 +5,7 @@ import { AllProductResponseModel } from '@/api/models/ProductsModels';
 import styles from './ProductsListByCategory.module.scss';
 import Link from 'next/link';
 import ProductCard from '@/components/layout/ui/product-card/ProductCard';
+import ProductByCategoryCard from '@/components/pages/main-page/components/products-list-by-category/product-by-category-card/ProductByCategoryCard';
 
 interface ProductsListProps {
     categoryName: string;
@@ -30,7 +31,7 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
                     productsArr?.products
                         .slice(0, 5)
                         .map(product => (
-                            <ProductCard
+                            <ProductByCategoryCard
                                 key={product.id}
                                 name={product.name}
                                 img={product.imgArr[0]}

@@ -3,8 +3,8 @@ import React from 'react';
 import useProductsStore from '@/api/store/ProductStore';
 import { useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import styles from './PopularProducts.module.scss';
 import ProductCard from '@/components/layout/ui/product-card/ProductCard';
+import styles from './PopularProducts.module.scss';
 
 const PopularProducts = () => {
     const { getPopularProducts } = useProductsStore();
@@ -27,7 +27,7 @@ const PopularProducts = () => {
     return (
         <section className={styles.cnt}>
             <div className={styles.listCnt}>
-                <ul className={styles.produtcsList}>
+                <ul className={styles.produtsList}>
                     {data?.products.map(product => (
                         <ProductCard
                             key={product.id}

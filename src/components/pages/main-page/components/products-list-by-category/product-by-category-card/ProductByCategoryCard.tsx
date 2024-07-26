@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import { priceConvert } from '@/utils/priceConvert';
 import { discountPriceCalc } from '@/utils/discountPriceCalc';
-import styles from './ProductCard.module.scss';
+import styles from './ProductByCategoryCard.module.scss';
 
-interface ProductCardProps {
+interface ProductByCategoryCardProps {
     img: string;
     name: string;
     categoryName?: string;
@@ -13,7 +13,14 @@ interface ProductCardProps {
     link: string;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ img, name, categoryName, price, discount, link }) => {
+const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
+    img,
+    name,
+    categoryName,
+    price,
+    discount,
+    link,
+}) => {
     return (
         <li className={styles.listItem}>
             <Link href={link} className={styles.link}>
@@ -37,4 +44,4 @@ const ProductCard: FC<ProductCardProps> = ({ img, name, categoryName, price, dis
     );
 };
 
-export default ProductCard;
+export default ProductByCategoryCard;
