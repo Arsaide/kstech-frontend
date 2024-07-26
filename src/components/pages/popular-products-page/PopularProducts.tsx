@@ -27,7 +27,7 @@ const PopularProducts = () => {
     return (
         <section className={styles.cnt}>
             <div className={styles.listCnt}>
-                <ul className={styles.produtsList}>
+                <ul className={styles.productsList}>
                     {data?.products.map(product => (
                         <ProductCard
                             key={product.id}

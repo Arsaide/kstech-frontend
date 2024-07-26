@@ -1,11 +1,5 @@
 .listItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
   flex: 1 1 calc(267px - 16px);
-  padding: clamp(10px, 1.5vw, 20px);
   box-sizing: border-box;
   border: 1px solid var(--black-02);
   cursor: pointer;
@@ -17,8 +11,13 @@
 }
 
 .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+  padding: clamp(10px, 1.5vw, 20px);
 }
 
 .imgCnt {

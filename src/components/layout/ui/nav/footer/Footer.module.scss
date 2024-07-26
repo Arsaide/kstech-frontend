@@ -15,6 +15,12 @@
   flex-wrap: wrap;
 }
 
+@media(max-width: 860px) {
+  .cnt {
+    padding: 0 10px;
+  }
+}
+
 .logo {
 
 }

@@ -5,6 +5,12 @@
   z-index: 1;
 }
 
+@media(max-width: 860px) {
+  .cnt {
+    padding: 0 10px;
+  }
+}
+
 .title {
   font-size: 28px;
   font-weight: 700;

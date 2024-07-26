@@ -5,6 +5,12 @@
   z-index: 1;
 }
 
+@media(max-width: 860px) {
+  .services {
+    padding: 0 10px;
+  }
+}
+
 .cnt {
   margin-top: 16px;
 }
