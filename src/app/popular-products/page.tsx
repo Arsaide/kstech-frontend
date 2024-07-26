@@ -1,5 +1,12 @@
 import React from 'react';
-import PopularProducts from '@/components/pages/popular-products-page/PopularProducts';
+import dynamic from 'next/dynamic';
+
+const PopularProducts = dynamic(
+    () => import('@/components/pages/popular-products-page/PopularProducts'),
+    {
+        ssr: false,
+    },
+);
 
 const PopularProductsPage = () => {
     return (
