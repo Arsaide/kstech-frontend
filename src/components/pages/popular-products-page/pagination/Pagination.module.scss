@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn {
+  width: 30px;
+  height: 30px;
+  outline: 1px solid var(--black-08);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity .2s ease-out 0s;
+
+  &:not(:disabled):hover {
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    outline: 1px solid var(--black-05);
+    color: var(--black-05);
+    cursor: default;
+  }
+}
