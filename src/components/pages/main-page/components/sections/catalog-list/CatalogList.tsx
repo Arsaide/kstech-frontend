@@ -10,13 +10,18 @@ const CatalogList = () => {
 
     return (
         <section className={styles.cnt}>
-            <h3 className={styles.title}>Каталог</h3>
+            <div className={styles.content}>
+                <h3 className={styles.title}>Каталог</h3>
+                <Link className={styles.infoLink} href={'/catalog'}>
+                    Показати всі
+                </Link>
+            </div>
             <div className={styles.productsListContainer}>
                 {isLoading || isError ? (
                     <CatalogListSkeleton />
                 ) : (
                     <ul className={styles.produtcsList}>
-                        {data?.map(category => (
+                        {data?.slice(0, 24).map(category => (
                             <li className={styles.listItem} key={category.id}>
                                 <Link
                                     className={styles.link}

@@ -11,10 +11,31 @@
   }
 }
 
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title {
   font-size: 28px;
   font-weight: 700;
   margin: clamp(10px, 2vw, 32px) 0;
+}
+
+.infoLink {
+  color: var(--blue);
+  font-size: clamp(15px, 2vw, 18px);
+  font-weight: 500;
+  transition: opacity .2s ease-out 0s, transform .2s ease-out 0s;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .productsListContainer {
