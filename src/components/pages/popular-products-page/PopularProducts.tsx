@@ -6,6 +6,7 @@ import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-quer
 import ProductCard from '@/components/layout/ui/product-card/ProductCard';
 import styles from './PopularProducts.module.scss';
 import Pagination from '@/components/pages/popular-products-page/pagination/Pagination';
+import Breadcrumbs from '@/components/layout/ui/nav/breadcrubms/Breadcrumbs';
 
 const PopularProducts = () => {
     const { getPopularProducts } = useProductsStore();
@@ -27,8 +28,11 @@ const PopularProducts = () => {
         window.history.pushState(null, '', `${pathname}?${params.toString()}`);
     };
 
+    const breadcrumbsItems = [{ label: 'Популярні товари' }];
+
     return (
         <section className={styles.cnt}>
+            <Breadcrumbs items={breadcrumbsItems} />
             <div className={styles.listCnt}>
                 <ul className={styles.productsList}>
                     {data?.products.map(product => (
