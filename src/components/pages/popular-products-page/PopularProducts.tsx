@@ -1,14 +1,16 @@
 'use client';
 import React from 'react';
 import useProductsStore from '@/api/store/ProductStore';
-import { useSearchParams } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
 import ProductCard from '@/components/layout/ui/product-card/ProductCard';
 import styles from './PopularProducts.module.scss';
+import Pagination from '@/components/pages/popular-products-page/pagination/Pagination';
 
 const PopularProducts = () => {
     const { getPopularProducts } = useProductsStore();
     const searchParams = useSearchParams();
+    const pathname = usePathname();
 
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
@@ -16,12 +18,13 @@ const PopularProducts = () => {
         queryKey: ['popular-products', currentPage],
         queryFn: () => getPopularProducts(currentPage),
         select: data => data.data,
+        placeholderData: keepPreviousData,
     });
 
     const handlePageChange = (newPage: number) => {
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(searchParams.toString());
         params.set('page', newPage.toString());
-        window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+        window.history.pushState(null, '', `${pathname}?${params.toString()}`);
     };
 
     return (
@@ -40,17 +43,11 @@ const PopularProducts = () => {
                     ))}
                 </ul>
             </div>
-            <div>
-                {Array.from({ length: data?.totalPages || 1 }, (_, i) => (
-                    <button
-                        key={i + 1}
-                        onClick={() => handlePageChange(i + 1)}
-                        disabled={currentPage === i + 1}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
-            </div>
+            <Pagination
+                totalPages={data?.totalPages}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+            />
         </section>
     );
 };
