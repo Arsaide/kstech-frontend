@@ -1,10 +1,7 @@
 import React, { FC } from 'react';
-import { priceConvert } from '@/utils/priceConvert';
-import { discountPriceCalc } from '@/utils/discountPriceCalc';
 import { AllProductResponseModel } from '@/api/models/ProductsModels';
 import styles from './ProductsListByCategory.module.scss';
 import Link from 'next/link';
-import ProductCard from '@/components/layout/ui/product-card/ProductCard';
 import ProductByCategoryCard from '@/components/pages/main-page/components/products-list-by-category/product-by-category-card/ProductByCategoryCard';
 
 interface ProductsListProps {

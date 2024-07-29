@@ -1,11 +1,12 @@
 import React, { ReactNode } from 'react';
 import styles from './Catalog.module.scss';
+import classNames from 'classnames';
 
 const CatalogLayout = ({ children }: { children: ReactNode }) => {
     return (
-        <section className={styles.catalog}>
+        <main className={classNames(styles.catalog, 'main')}>
             <div className={styles.cnt}>{children}</div>
-        </section>
+        </main>
     );
 };
 

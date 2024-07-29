@@ -26,7 +26,7 @@ const CatalogList = () => {
                                 <Link
                                     className={styles.link}
                                     href={{
-                                        pathname: `/category`,
+                                        pathname: `/catalog/subcatalog`,
                                         query: { category: category.id },
                                     }}
                                 >
