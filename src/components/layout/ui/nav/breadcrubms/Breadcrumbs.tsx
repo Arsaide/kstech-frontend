@@ -6,7 +6,7 @@ import { House, ChevronRight } from 'lucide-react';
 import { ColorsEnum } from '@/utils/enums/ColorEnums';
 
 interface BreadcrumbsItem {
-    label: string;
+    label: string | undefined;
     href?: string;
 }
 
@@ -42,7 +42,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ items }) => {
                         </li>
                         {index !== items.length - 1 && (
                             <li className={styles.breadcrumbSeparator}>
-                                <ChevronRight />
+                                <ChevronRight color={ColorsEnum.BLACK05} size={18} />
                             </li>
                         )}
                     </React.Fragment>

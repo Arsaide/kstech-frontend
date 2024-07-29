@@ -23,7 +23,7 @@ const Catalog = () => {
                             <Link
                                 className={styles.link}
                                 href={{
-                                    pathname: `/catalog`,
+                                    pathname: `/catalog/subcatalog`,
                                     query: { category: category.id },
                                 }}
                             >

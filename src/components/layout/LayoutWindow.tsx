@@ -13,17 +13,15 @@ const LayoutWindow: FC<LayoutWindowProps> = ({ children }) => {
     const { isOpenCategories, setIsOpenCategories } = useCategoryStore();
 
     return (
-        <>
-            <div
-                className={classNames('wrapper', { ['open']: isOpenCategories })}
-                onClick={() => setIsOpenCategories(false)}
-            >
-                {isOpenCategories && <div className={'overlay'} />}
-                <Header />
-                {children}
-                <Footer />
-            </div>
-        </>
+        <div
+            className={classNames('wrapper', { ['open']: isOpenCategories })}
+            onClick={() => setIsOpenCategories(false)}
+        >
+            {isOpenCategories && <div className={'overlay'} />}
+            <Header />
+            {children}
+            <Footer />
+        </div>
     );
 };
 
