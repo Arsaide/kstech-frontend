@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
 import styles from './Footer.module.scss';
-import { contactsList, navMenu, socialNetworksList, workArr } from '@/components/layout/ui/nav';
 import Link from 'next/link';
 import AccordionInfo from '@/components/layout/nav/footer/components/accordion-info/AccordionInfo';
 import AccordionContacts from '@/components/layout/nav/footer/components/accordion-contacts/AccordionContacts';
+import { contactsList, navMenu, socialNetworksList, workArr } from '@/components/layout/nav';
 
 const Footer = () => {
     return (

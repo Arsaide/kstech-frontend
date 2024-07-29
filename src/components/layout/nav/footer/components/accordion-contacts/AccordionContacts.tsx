@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import styled from '@emotion/styled';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import styles from './AccordionContacts.module.scss';
-import { contactsList, socialNetworksList } from '@/components/layout/ui/nav';
+import { contactsList, socialNetworksList } from '@/components/layout/nav';
 
 const AccordionContacts = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);

@@ -1,7 +1,6 @@
 'use client';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { navMenu } from '@/components/layout/ui/nav';
 import Categories from '@/components/layout/nav/header/components/categories/Categories';
 import useCategoryStore from '@/api/store/CategoriesStore';
 import styles from './Header.module.scss';
@@ -22,6 +21,7 @@ import {
 import { ColorsEnum } from '@/utils/enums/ColorEnums';
 import { Controller, useForm } from 'react-hook-form';
 import useProductsStore from '@/api/store/ProductStore';
+import { navMenu } from '@/components/layout/nav';
 
 interface FieldValue {
     search: string;
