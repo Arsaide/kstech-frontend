@@ -1,15 +1,12 @@
 .produtcsList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
   width: 100%;
-  max-width: var(--max-width);
-  justify-items: center;
 }
 
 .listItem {
-  max-width: 220px;
-  width: 100%;
+  flex: 1 1 calc(220px - 16px);
   height: 300px;
   transition: background-color .2s ease-out 0s;
   background-color: var(--black-02);
@@ -54,20 +51,11 @@
   .produtcsList {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
-
-  .listItem {
-    min-width: 170px;
-    height: 200px;
-  }
 }
 
-@media(max-width: 611px) {
+@media(max-width: 592px) {
   .produtcsList {
-    display: flex;
-    overflow-x: scroll;
-  }
-
-  .listItem {
-    width: 170px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
   }
 }
