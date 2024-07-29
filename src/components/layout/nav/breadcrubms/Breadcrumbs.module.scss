@@ -10,6 +10,7 @@
   align-items: center;
   font-size: 14px;
   font-weight: 500;
+  color: var(--black);
 }
 
 .breadcrumbSeparator {
@@ -20,9 +21,19 @@
 .breadcrumbItems a {
   display: flex;
   align-items: center;
-  transition: opacity .2s ease-out 0s;
+  transition: color .2s ease-out 0s;
+  color: var(--black-05);
 }
 
 .breadcrumbItems a:hover {
-  opacity: .8;
+  color: var(--black);
+}
+
+.home {
+  color: var(--black-05);
+  transition: color .2s ease-out 0s;
+
+  &:hover {
+    color: var(--black);
+  }
 }

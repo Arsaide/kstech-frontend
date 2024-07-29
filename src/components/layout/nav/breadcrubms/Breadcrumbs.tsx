@@ -20,7 +20,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ items }) => {
             <ul className={styles.breadcrumbs}>
                 <li className={styles.breadcrumbItems}>
                     <Link href={'/'}>
-                        <House color={ColorsEnum.BLACK05} size={18} />
+                        <House className={styles.home} size={18} />
                     </Link>
                 </li>
                 <li className={styles.breadcrumbSeparator}>
