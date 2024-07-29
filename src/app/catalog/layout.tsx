@@ -1,13 +1,9 @@
 import React, { ReactNode } from 'react';
-import styles from './Catalog.module.scss';
+import styles from './CatalogLayout.module.scss';
 import classNames from 'classnames';
 
 const CatalogLayout = ({ children }: { children: ReactNode }) => {
-    return (
-        <main className={classNames(styles.catalog, 'main')}>
-            <div className={styles.cnt}>{children}</div>
-        </main>
-    );
+    return <main className={classNames(styles.cnt, 'main')}>{children}</main>;
 };
 
 export default CatalogLayout;

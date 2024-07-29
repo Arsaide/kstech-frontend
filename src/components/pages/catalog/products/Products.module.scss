@@ -1,0 +1,38 @@
+.listCnt {
+  display: flex;
+  width: 100%;
+}
+
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(267px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+@media(max-width: 950px) {
+  .productsList {
+    grid-template-columns: repeat(auto-fill, minmax(207px, 1fr));
+  }
+}
+
+@media(max-width: 856px) {
+  .productsList {
+    grid-template-columns: repeat(auto-fill, minmax(187px, 1fr));
+    gap: 8px;
+  }
+}
+
+@media(max-width: 469px) {
+  .productsList {
+    grid-template-columns: repeat(auto-fill, minmax(187px, 1fr));
+    gap: 8px;
+  }
+}
+
+@media(max-width: 421px) {
+  .productsList {
+    grid-template-columns: repeat(auto-fill, minmax(157px, 1fr));
+    gap: 8px;
+  }
+}

@@ -29,8 +29,8 @@ const Subcatalog = () => {
                             <Link
                                 className={styles.link}
                                 href={{
-                                    pathname: `/catalog/products`,
-                                    query: { category: subcategory.id },
+                                    pathname: `/catalog/subcatalog/products`,
+                                    query: { id: subcategory.id },
                                 }}
                             >
                                 <div className={styles.imgCnt}>
