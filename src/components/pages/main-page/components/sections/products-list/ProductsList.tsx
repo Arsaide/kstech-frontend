@@ -53,42 +53,48 @@ const ProductsList = () => {
         isError: productsError2,
     } = useGetProductsByCategory({ categoryId: selectedCategory[1]?.id, page: 1 });
 
+    const isLoading =
+        categoriesLoading || popularProductsLoading || productsLoading1 || productsLoading2;
+
+    if (isLoading) {
+        return (
+            <section className={styles.productsList}>
+                <div className={styles.cnt}>
+                    <ProductsListByCategorySkeleton />
+                    <ProductsListByCategorySkeleton />
+                    <ProductsListByCategorySkeleton />
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className={styles.productsList}>
-            {(productsLoading1 && productsLoading2 && popularProductsLoading) ||
-            (productsError2 && productsError1 && popularProductsError) ? (
-                <div className={styles.cnt}>
-                    <ProductsListByCategorySkeleton />
-                    <ProductsListByCategorySkeleton />
-                    <ProductsListByCategorySkeleton />
-                </div>
-            ) : (
-                <div className={styles.cnt}>
-                    {popularProducts?.products && (
-                        <ProductsListByCategory
-                            categoryName={'Популярні товари'}
-                            productsArr={popularProducts}
-                            link={'/popular-products'}
-                        />
-                    )}
-                    {selectedCategory[0]?.category && (
-                        <ProductsListByCategory
-                            categoryName={selectedCategory[0].category}
-                            productsArr={products1}
-                            link={'/catalog/category-products'}
-                            id={selectedCategory[0]?.id}
-                        />
-                    )}
-                    {selectedCategory[1]?.category && (
-                        <ProductsListByCategory
-                            categoryName={selectedCategory[1]?.category}
-                            productsArr={products2}
-                            link={'/catalog/category-products'}
-                            id={selectedCategory[1]?.id}
-                        />
-                    )}
-                </div>
-            )}
+            <div className={styles.cnt}>
+                {popularProducts?.products && (
+                    <ProductsListByCategory
+                        categoryName={'Популярні товари'}
+                        productsArr={popularProducts}
+                        link={'/popular-products'}
+                    />
+                )}
+                {selectedCategory[0]?.category && (
+                    <ProductsListByCategory
+                        categoryName={selectedCategory[0].category}
+                        productsArr={products1}
+                        link={'/catalog/category-products'}
+                        id={selectedCategory[0]?.id}
+                    />
+                )}
+                {selectedCategory[1]?.category && (
+                    <ProductsListByCategory
+                        categoryName={selectedCategory[1].category}
+                        productsArr={products2}
+                        link={'/catalog/category-products'}
+                        id={selectedCategory[1]?.id}
+                    />
+                )}
+            </div>
         </section>
     );
 };
