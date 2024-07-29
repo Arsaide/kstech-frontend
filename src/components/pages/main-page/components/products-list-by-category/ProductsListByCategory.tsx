@@ -8,9 +8,11 @@ interface ProductsListProps {
     categoryName: string;
     productsArr: AllProductResponseModel | undefined;
     link: string;
+    id?: string;
+    query?: string;
 }
 
-const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsArr, link }) => {
+const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsArr, link, id }) => {
     if (productsArr?.products.length == 0) {
         return null;
     }
@@ -19,7 +21,13 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
         <div className={styles.category}>
             <div className={styles.info}>
                 <h6 className={styles.infoName}>{categoryName}</h6>
-                <Link className={styles.infoLink} href={link}>
+                <Link
+                    className={styles.infoLink}
+                    href={{
+                        pathname: link,
+                        query: { id: id },
+                    }}
+                >
                     Показати всі
                 </Link>
             </div>
@@ -40,7 +48,13 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
                         ))}
             </ul>
             <div className={styles.btnCnt}>
-                <Link className={styles.btn} href={link}>
+                <Link
+                    className={styles.btn}
+                    href={{
+                        pathname: link,
+                        query: { id: id },
+                    }}
+                >
                     Показати більше
                 </Link>
             </div>
