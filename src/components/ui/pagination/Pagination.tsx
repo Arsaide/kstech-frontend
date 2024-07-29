@@ -18,19 +18,16 @@ const Pagination: FC<PaginationProps> = ({ totalPages = 1, currentPage, onPageCh
         let startPage = Math.max(1, currentPage - halfRange);
         let endPage = Math.min(totalPages, currentPage + halfRange);
 
-        // Adjust range if too close to the start
         if (currentPage - halfRange < 1) {
             endPage = Math.min(totalPages, endPage + (1 - (currentPage - halfRange)));
             startPage = 1;
         }
 
-        // Adjust range if too close to the end
         if (currentPage + halfRange > totalPages) {
             startPage = Math.max(1, startPage - (currentPage + halfRange - totalPages));
             endPage = totalPages;
         }
 
-        // Collect page numbers within the calculated range
         for (let i = startPage; i <= endPage; i++) {
             pages.push(i);
         }

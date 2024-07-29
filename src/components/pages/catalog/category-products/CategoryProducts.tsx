@@ -7,6 +7,8 @@ import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
 import styles from '@/components/pages/catalog/products/Products.module.scss';
 import ProductCard from '@/components/ui/product-card/ProductCard';
 import Pagination from '@/components/ui/pagination/Pagination';
+import ProductsSkeleton from '@/components/pages/catalog/components/products-skeleton/ProductsSkeleton';
+import { TriangleAlert } from 'lucide-react';
 
 const CategoryProducts = () => {
     const { getProductByCategory } = useProductsStore();
@@ -36,28 +38,40 @@ const CategoryProducts = () => {
         },
     ];
 
+    if (isLoading) return <ProductsSkeleton />;
+    if (isError) return <ProductsSkeleton />;
+
     return (
         <>
             <Breadcrumbs items={breadcrumbsItems} />
-            <div className={styles.listCnt}>
-                <ul className={styles.productsList}>
-                    {data?.products.map(product => (
-                        <ProductCard
-                            key={product.id}
-                            name={product.name}
-                            img={product.imgArr[0]}
-                            price={product.price}
-                            discount={product.discount}
-                            link={''}
-                        />
-                    ))}
-                </ul>
-            </div>
-            <Pagination
-                totalPages={data?.totalPages}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-            />
+            {data?.products.length != 0 ? (
+                <>
+                    <div className={styles.listCnt}>
+                        <ul className={styles.productsList}>
+                            {data?.products.map(product => (
+                                <ProductCard
+                                    key={product.id}
+                                    name={product.name}
+                                    img={product.imgArr[0]}
+                                    price={product.price}
+                                    discount={product.discount}
+                                    link={''}
+                                />
+                            ))}
+                        </ul>
+                    </div>
+                    <Pagination
+                        totalPages={data?.totalPages}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                    />
+                </>
+            ) : (
+                <p className={styles.warning}>
+                    <TriangleAlert />
+                    Товарів не знайдено!
+                </p>
+            )}
         </>
     );
 };
