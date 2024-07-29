@@ -16,7 +16,7 @@ const Products = () => {
     const id = searchParams.get('id');
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
-    const { isLoading, isError, error, data } = useQuery({
+    const { isLoading, isSuccess, isError, error, data } = useQuery({
         queryKey: ['get-products-by-subcategory', currentPage, id],
         queryFn: () => getProductBySubcategory(id, currentPage),
         select: data => data.data,
@@ -31,8 +31,11 @@ const Products = () => {
 
     const breadcrumbsItems = [
         { label: 'Каталог', href: '/catalog' },
-        { label: 'Категория', href: '/catalog' },
-        { label: 'Подкатегория', href: '/catalog' },
+        {
+            label: data?.Category.category,
+            href: `/catalog/subcatalog?category=${data?.Category.id}`,
+        },
+        { label: data?.Subcategory.subcategory },
     ];
 
     return (

@@ -1,6 +1,18 @@
 export interface AllProductResponseModel {
     products: OneProductTypes[];
     totalPages: number;
+    Category: CategoryTypes;
+    Subcategory: SubcategoryTypes;
+}
+
+interface CategoryTypes {
+    category: string;
+    id: string;
+}
+
+interface SubcategoryTypes {
+    subcategory: string;
+    id: string;
 }
 
 export interface OneProductResponseModel {

@@ -218,9 +218,17 @@ const Header = () => {
                         <div className={styles.subcategories}>
                             <ul className={styles.subcategoriesCnt}>
                                 {subcategoriesData?.map(item => (
-                                    <li key={item.id} className={styles.subcategoryItem}>
-                                        <img src={item.iconImg} alt={item.subcategory} />
-                                        {item.subcategory}
+                                    <li key={item.id}>
+                                        <Link
+                                            href={{
+                                                pathname: `/catalog/subcatalog/products`,
+                                                query: { id: item.id },
+                                            }}
+                                            className={styles.subcategoryItem}
+                                        >
+                                            <img src={item.iconImg} alt={item.subcategory} />
+                                            {item.subcategory}
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>

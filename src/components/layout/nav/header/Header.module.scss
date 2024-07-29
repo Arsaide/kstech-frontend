@@ -186,6 +186,7 @@
     padding: 20px;
     text-align: center;
     transition: background-color .2s ease-out 0s, box-shadow .2s ease-out 0s, transform .2s ease-out 0s;
+    color: var(--black);
 
     img {
         object-fit: contain;

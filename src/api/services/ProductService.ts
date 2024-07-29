@@ -21,7 +21,7 @@ export default class ProductService {
         page: number,
     ): Promise<AxiosResponse<AllProductResponseModel>> {
         return $api.get<AllProductResponseModel>(
-            `/products/getforsubcategory?category=${categoryId}&page=${page}`,
+            `/products/getforsubcategory?subcategory=${categoryId}&page=${page}`,
         );
     }
 
