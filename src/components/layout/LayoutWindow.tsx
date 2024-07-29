@@ -1,9 +1,9 @@
 'use client';
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import Header from '@/components/layout/ui/nav/header/Header';
+import Header from '@/components/layout/nav/header/Header';
 import useCategoryStore from '@/api/store/CategoriesStore';
-import Footer from '@/components/layout/ui/nav/footer/Footer';
+import Footer from '@/components/layout/nav/footer/Footer';
 
 interface LayoutWindowProps {
     children: React.ReactNode;

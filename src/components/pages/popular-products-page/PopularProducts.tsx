@@ -3,10 +3,10 @@ import React from 'react';
 import useProductsStore from '@/api/store/ProductStore';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
-import ProductCard from '@/components/layout/ui/product-card/ProductCard';
+import ProductCard from '@/components/ui/product-card/ProductCard';
 import styles from './PopularProducts.module.scss';
-import Pagination from '@/components/pages/popular-products-page/pagination/Pagination';
-import Breadcrumbs from '@/components/layout/ui/nav/breadcrubms/Breadcrumbs';
+import Pagination from '@/components/ui/pagination/Pagination';
+import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
 
 const PopularProducts = () => {
     const { getPopularProducts } = useProductsStore();

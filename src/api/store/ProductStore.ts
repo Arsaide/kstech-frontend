@@ -10,6 +10,10 @@ interface ProductStoreTypes {
         categoryId: string | null,
         page: number,
     ) => Promise<AxiosResponse<AllProductResponseModel>>;
+    getProductBySubcategory: (
+        categoryId: string | null,
+        page: number,
+    ) => Promise<AxiosResponse<AllProductResponseModel>>;
     getPopularProducts: (page: number) => Promise<AxiosResponse<AllProductResponseModel>>;
 }
 
@@ -34,6 +38,14 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
     getProductByCategory: async (categoryId: string | null, page: number) => {
         try {
             return await ProductService.getProductByCategory(categoryId, page);
+        } catch (error: any) {
+            throw error;
+        }
+    },
+
+    getProductBySubcategory: async (categoryId: string | null, page: number) => {
+        try {
+            return await ProductService.getProductBySubcategory(categoryId, page);
         } catch (error: any) {
             throw error;
         }

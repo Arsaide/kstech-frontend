@@ -16,6 +16,15 @@ export default class ProductService {
         );
     }
 
+    static async getProductBySubcategory(
+        categoryId: string | null,
+        page: number,
+    ): Promise<AxiosResponse<AllProductResponseModel>> {
+        return $api.get<AllProductResponseModel>(
+            `/products/getforsubcategory?category=${categoryId}&page=${page}`,
+        );
+    }
+
     static async searchProducts(
         page: number,
         query: string,

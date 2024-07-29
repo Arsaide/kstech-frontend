@@ -2,12 +2,12 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { navMenu } from '@/components/layout/ui/nav';
-import Categories from '@/components/layout/ui/nav/header/sub-components/categories/Categories';
+import Categories from '@/components/layout/nav/header/components/categories/Categories';
 import useCategoryStore from '@/api/store/CategoriesStore';
 import styles from './Header.module.scss';
 import adaptiveStyles from './AdaptiveHeader.module.scss';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import categoriesStyle from './sub-components/categories/Categories.module.scss';
+import categoriesStyle from '@/components/layout/nav/header/components/categories/Categories.module.scss';
 import classNames from 'classnames';
 import {
     LoaderCircle,
