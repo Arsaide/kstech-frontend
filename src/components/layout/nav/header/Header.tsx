@@ -376,7 +376,10 @@ const Header = () => {
                         categoriesData?.map(item => (
                             <li key={item.id} className={adaptiveStyles.listItem}>
                                 <Link
-                                    href={`/category?=${item.id}`}
+                                    href={{
+                                        pathname: `/catalog/subcatalog/products`,
+                                        query: { id: item.id },
+                                    }}
                                     className={adaptiveStyles.listCnt}
                                 >
                                     <div className={adaptiveStyles.imgIcon}>

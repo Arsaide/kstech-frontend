@@ -53,14 +53,9 @@
   }
 }
 
-@media(max-width: 873px) {
+@media(max-width: 592px) {
   .produtcsList {
-    display: flex;
-    overflow-x: scroll;
-  }
-
-  .listItem {
-    min-width: 168px;
-    height: 201px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
   }
 }

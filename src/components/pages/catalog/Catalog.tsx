@@ -2,9 +2,9 @@
 import React from 'react';
 import { useGetCategories } from '@/hooks/queries/use-get-categories/useGetCategories';
 import styles from './Catalog.module.scss';
-import CatalogListSkeleton from '@/components/pages/main-page/components/sections/catalog-list/catalog-list-skeleton/CatalogListSkeleton';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
+import CatalogSkeleton from '@/components/pages/catalog/components/catalog-skeleton/CatalogSkeleton';
 
 const Catalog = () => {
     const { data, isLoading, isError } = useGetCategories();
@@ -15,7 +15,7 @@ const Catalog = () => {
         <div className={styles.listCnt}>
             <Breadcrumbs items={breadcrumbsItems} />
             {isLoading || isError ? (
-                <CatalogListSkeleton />
+                <CatalogSkeleton />
             ) : (
                 <ul className={styles.list}>
                     {data?.slice(0, 24).map(category => (

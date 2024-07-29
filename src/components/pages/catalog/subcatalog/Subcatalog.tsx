@@ -6,6 +6,7 @@ import styles from '@/components/pages/catalog/Catalog.module.scss';
 import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
 import CatalogListSkeleton from '@/components/pages/main-page/components/sections/catalog-list/catalog-list-skeleton/CatalogListSkeleton';
 import Link from 'next/link';
+import CatalogSkeleton from '@/components/pages/catalog/components/catalog-skeleton/CatalogSkeleton';
 
 const Subcatalog = () => {
     const searchParams = useSearchParams();
@@ -21,7 +22,7 @@ const Subcatalog = () => {
         <div className={styles.listCnt}>
             <Breadcrumbs items={breadcrumbsItems} />
             {isLoading || isError ? (
-                <CatalogListSkeleton />
+                <CatalogSkeleton />
             ) : (
                 <ul className={styles.list}>
                     {data?.subcategory.map(subcategory => (
