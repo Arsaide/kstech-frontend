@@ -14,6 +14,13 @@ interface ProductCardProps {
 }
 
 const ProductCard: FC<ProductCardProps> = ({ img, name, categoryName, price, discount, link }) => {
+    const discountCalc = priceConvert(discountPriceCalc(price, discount));
+    const priceCalc = priceConvert(price);
+
+    console.log(
+        `Original Price: ${price}, Discount: ${discount}, Calculated Discount Price: ${discountCalc}`,
+    );
+
     return (
         <li className={styles.listItem}>
             <Link href={link} className={styles.link}>
@@ -27,10 +34,14 @@ const ProductCard: FC<ProductCardProps> = ({ img, name, categoryName, price, dis
                 <div className={styles.name}>{name}</div>
                 <div className={styles.divider} />
                 <div className={styles.priceCnt}>
-                    <div className={styles.discount}>
-                        {priceConvert(discountPriceCalc(price, discount))} грн
-                    </div>
-                    <div className={styles.price}>{priceConvert(price)} грн</div>
+                    {discount != '0' ? (
+                        <>
+                            <div className={styles.discount}>{priceCalc} грн</div>
+                            <div className={styles.price}>{discountCalc} грн</div>
+                        </>
+                    ) : (
+                        <div className={styles.price}>{priceCalc} грн</div>
+                    )}
                 </div>
             </Link>
         </li>

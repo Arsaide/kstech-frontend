@@ -175,7 +175,7 @@ const Header = () => {
                         [styles.subcategoriesOpen]: isVisibleSubcategories,
                     })}
                 >
-                    {isOpenCategories && (
+                    {isOpenCategories && !isCategoriesLoading && (
                         <div className={categoriesStyle.categoriesList}>
                             <ul className={categoriesStyle.list}>
                                 {categoriesData?.length &&

@@ -52,6 +52,10 @@
   width: 100%;
 }
 
+.priceCnt > :only-child {
+  margin-left: auto;
+}
+
 .discount {
   color: var(--black-05);
   font-size: 16px;

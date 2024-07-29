@@ -21,6 +21,9 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
     discount,
     link,
 }) => {
+    const discountCalc = priceConvert(discountPriceCalc(price, discount));
+    const priceCalc = priceConvert(price);
+
     return (
         <li className={styles.listItem}>
             <Link href={link} className={styles.link}>
@@ -34,10 +37,14 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
                 <div className={styles.name}>{name}</div>
                 <div className={styles.divider} />
                 <div className={styles.priceCnt}>
-                    <div className={styles.discount}>
-                        {priceConvert(discountPriceCalc(price, discount))} грн
-                    </div>
-                    <div className={styles.price}>{priceConvert(price)} грн</div>
+                    {discount != '0' ? (
+                        <>
+                            <div className={styles.discount}>{priceCalc} грн</div>
+                            <div className={styles.price}>{discountCalc} грн</div>
+                        </>
+                    ) : (
+                        <div className={styles.price}>{priceCalc} грн</div>
+                    )}
                 </div>
             </Link>
         </li>
