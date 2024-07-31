@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .imgCnt {
@@ -139,11 +140,6 @@
     &:after {
       top: 14px;
     }
-  }
-
-  .colorsContent {
-    margin-top: 10px;
-    padding-bottom: 12.5px;
   }
 
   .btnContent {

@@ -15,6 +15,7 @@ import ProductAdaptiveInfoSection from '@/components/pages/catalog/one-product-p
 import ProductInfoSection from '@/components/pages/catalog/one-product-page/components/sections/product-info-section/ProductInfoSection';
 import PriceSection from '@/components/pages/catalog/one-product-page/components/sections/price-section/PriceSection';
 import ColorsSection from '@/components/pages/catalog/one-product-page/components/sections/colors-section/ColorsSection';
+import PopularProductSection from '@/components/pages/catalog/one-product-page/components/sections/popular-products-section/PopularProductSection';
 
 const OneProduct = () => {
     const searchParams = useSearchParams();
@@ -138,6 +139,7 @@ const OneProduct = () => {
                     </div>
                 </div>
             </div>
+            <PopularProductSection />
         </div>
     );
 };
