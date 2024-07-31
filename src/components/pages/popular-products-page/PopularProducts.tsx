@@ -7,6 +7,7 @@ import ProductCard from '@/components/ui/product-card/ProductCard';
 import styles from './PopularProducts.module.scss';
 import Pagination from '@/components/ui/pagination/Pagination';
 import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
+import ProductsSkeleton from '@/components/pages/catalog/components/products-skeleton/ProductsSkeleton';
 
 const PopularProducts = () => {
     const { getPopularProducts } = useProductsStore();
@@ -27,6 +28,9 @@ const PopularProducts = () => {
         params.set('page', newPage.toString());
         window.history.pushState(null, '', `${pathname}?${params.toString()}`);
     };
+
+    if (isLoading) return <ProductsSkeleton />;
+    if (isError) return <ProductsSkeleton />;
 
     const breadcrumbsItems = [{ label: 'Популярні товари' }];
 
