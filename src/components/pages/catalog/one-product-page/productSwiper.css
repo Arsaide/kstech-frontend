@@ -85,3 +85,15 @@
         padding-bottom: 0;
     }
 }
+
+@media(max-width: 500px) {
+    .mySwiper .swiper-slide img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .mySwiper .swiper-slide {
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
