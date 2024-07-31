@@ -20,7 +20,7 @@ const PopularProductSection = () => {
                 <ProductsListByCategory
                     categoryName={'Також можуть зацікавити:'}
                     productsArr={popularProducts}
-                    link={'/popular-products-page'}
+                    link={'/popular-products'}
                 />
             )}
         </>
