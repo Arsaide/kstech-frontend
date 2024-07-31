@@ -11,6 +11,7 @@ interface ProductByCategoryCardProps {
     price: string;
     discount: string;
     link: string;
+    query?: string | null;
 }
 
 const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
@@ -20,13 +21,20 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
     price,
     discount,
     link,
+    query,
 }) => {
     const discountCalc = priceConvert(discountPriceCalc(price, discount));
     const priceCalc = priceConvert(price);
 
     return (
         <li className={styles.listItem}>
-            <Link href={link} className={styles.link}>
+            <Link
+                href={{
+                    pathname: link,
+                    query: { id: query },
+                }}
+                className={styles.link}
+            >
                 <div className={styles.imgCnt}>
                     <img
                         className={styles.img}

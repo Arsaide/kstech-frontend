@@ -1,0 +1,43 @@
+.swiper {
+    width: 600px;
+    height: 470px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+    width: 600px;
+    cursor: move;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.mySwiper2 {
+}
+
+.mySwiper {
+    box-sizing: border-box;
+    padding: 10px 0;
+    height: max-content;
+}
+
+.mySwiper .swiper-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.mySwiper .swiper-slide {
+    width: 90px !important;
+    height: 90px;
+    opacity: 0.4;
+    object-fit: cover;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+}

@@ -43,7 +43,8 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
                                 categoryName={categoryName}
                                 price={product.price}
                                 discount={product.discount}
-                                link={''}
+                                link={'/catalog/subcatalog/product'}
+                                query={product.id}
                             />
                         ))}
             </ul>
