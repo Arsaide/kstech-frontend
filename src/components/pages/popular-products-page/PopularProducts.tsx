@@ -16,7 +16,7 @@ const PopularProducts = () => {
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
     const { isLoading, isError, error, data } = useQuery({
-        queryKey: ['popular-products', currentPage],
+        queryKey: ['popular-products-page', currentPage],
         queryFn: () => getPopularProducts(currentPage),
         select: data => data.data,
         placeholderData: keepPreviousData,

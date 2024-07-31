@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 import ProductService from '@/api/services/ProductService';
-import { AllProductResponseModel } from '@/api/models/ProductsModels';
+import {
+    AllProductResponseModel,
+    OneProductResponseModel,
+    OneProductTypes,
+} from '@/api/models/ProductsModels';
 import { AxiosResponse } from 'axios';
 
 interface ProductStoreTypes {
@@ -15,6 +19,7 @@ interface ProductStoreTypes {
         page: number,
     ) => Promise<AxiosResponse<AllProductResponseModel>>;
     getPopularProducts: (page: number) => Promise<AxiosResponse<AllProductResponseModel>>;
+    getProduct: (id: string | null) => Promise<AxiosResponse<OneProductResponseModel>>;
 }
 
 const useProductsStore = create<ProductStoreTypes>(set => ({
@@ -54,6 +59,14 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
     getPopularProducts: async (page: number) => {
         try {
             return await ProductService.getPopularProducts(page);
+        } catch (error: any) {
+            throw error;
+        }
+    },
+
+    getProduct: async (id: string | null) => {
+        try {
+            return await ProductService.getProduct(id);
         } catch (error: any) {
             throw error;
         }

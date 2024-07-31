@@ -4,7 +4,7 @@ import useProductsStore from '@/api/store/ProductStore';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
-import styles from '@/components/pages/catalog/products/Products.module.scss';
+import styles from '@/components/pages/catalog/products-page/Products.module.scss';
 import ProductCard from '@/components/ui/product-card/ProductCard';
 import Pagination from '@/components/ui/pagination/Pagination';
 import ProductsSkeleton from '@/components/pages/catalog/components/products-skeleton/ProductsSkeleton';
@@ -19,7 +19,7 @@ const CategoryProducts = () => {
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
     const { isLoading, isSuccess, isError, error, data } = useQuery({
-        queryKey: ['get-products-by-category', currentPage, id],
+        queryKey: ['get-products-page-by-category', currentPage, id],
         queryFn: () => getProductByCategory(id, currentPage),
         select: data => data.data,
         placeholderData: keepPreviousData,

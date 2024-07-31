@@ -1,6 +1,10 @@
 import { AxiosResponse } from 'axios';
 import $api from '@/api/request';
-import { AllProductResponseModel } from '@/api/models/ProductsModels';
+import {
+    AllProductResponseModel,
+    OneProductResponseModel,
+    OneProductTypes,
+} from '@/api/models/ProductsModels';
 
 export default class ProductService {
     static async getProductsList(page: number): Promise<AxiosResponse<AllProductResponseModel>> {
@@ -34,5 +38,9 @@ export default class ProductService {
 
     static async getPopularProducts(page: number): Promise<AxiosResponse<AllProductResponseModel>> {
         return $api.get<AllProductResponseModel>(`/products/getforpromotions?page=${page}`);
+    }
+
+    static async getProduct(id: null | string): Promise<AxiosResponse<OneProductResponseModel>> {
+        return $api.get<OneProductResponseModel>(`/products/getone?id=${id}`);
     }
 }

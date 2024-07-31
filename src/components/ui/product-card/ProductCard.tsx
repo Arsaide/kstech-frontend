@@ -11,9 +11,18 @@ interface ProductCardProps {
     price: string;
     discount: string;
     link: string;
+    query?: string | null;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ img, name, categoryName, price, discount, link }) => {
+const ProductCard: FC<ProductCardProps> = ({
+    img,
+    name,
+    categoryName,
+    price,
+    discount,
+    link,
+    query,
+}) => {
     const discountCalc = priceConvert(discountPriceCalc(price, discount));
     const priceCalc = priceConvert(price);
 
@@ -23,7 +32,13 @@ const ProductCard: FC<ProductCardProps> = ({ img, name, categoryName, price, dis
 
     return (
         <li className={styles.listItem}>
-            <Link href={link} className={styles.link}>
+            <Link
+                href={{
+                    pathname: link,
+                    query: { id: query },
+                }}
+                className={styles.link}
+            >
                 <div className={styles.imgCnt}>
                     <img
                         className={styles.img}

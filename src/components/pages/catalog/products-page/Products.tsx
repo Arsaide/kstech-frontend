@@ -19,7 +19,7 @@ const Products = () => {
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
     const { isLoading, isSuccess, isError, error, data } = useQuery({
-        queryKey: ['get-products-by-subcategory', currentPage, id],
+        queryKey: ['get-products-page-by-subcategory', currentPage, id],
         queryFn: () => getProductBySubcategory(id, currentPage),
         select: data => data.data,
         placeholderData: keepPreviousData,
@@ -57,7 +57,8 @@ const Products = () => {
                                     img={product.imgArr[0]}
                                     price={product.price}
                                     discount={product.discount}
-                                    link={''}
+                                    link={'/catalog/subcatalog/product'}
+                                    query={product.id}
                                 />
                             ))}
                         </ul>

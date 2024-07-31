@@ -10,7 +10,7 @@ export const useGetProductsByCategory = ({ categoryId, page }: GetProductsByCate
     const { getProductByCategory } = useProductsStore();
 
     const { isLoading, isError, error, data } = useQuery({
-        queryKey: ['get-products-by-category', categoryId],
+        queryKey: ['get-products-page-by-category', categoryId],
         queryFn: () => getProductByCategory(categoryId, page),
         select: data => data.data,
     });
