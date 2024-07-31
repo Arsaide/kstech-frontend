@@ -33,7 +33,44 @@
 .productHint {
   font-size: 14px;
   font-weight: 500;
+
+  button {
+    cursor: pointer;
+    transition: transform .2s ease-out 0s;
+
+    &:active {
+      transform: scale(0.94);
+    }
+  }
 }
+
+/*NAV PANEL*/
+
+.nav {
+  margin-bottom: 16px;
+}
+
+.navList {
+  display: flex;
+}
+
+.navItem {
+  padding: 12px 10px;
+  cursor: pointer;
+  transition: background-color .2s ease-out 0s;
+
+  &:hover {
+    background-color: var(--black-02);
+  }
+
+  a {
+    color: var(--black);
+    font-size: var(--fz-text16);
+    font-weight: 500;
+  }
+}
+
+/*NAV PANEL*/
 
 /*AVAILABILITY*/
 

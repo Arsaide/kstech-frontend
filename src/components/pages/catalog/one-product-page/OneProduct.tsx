@@ -14,6 +14,7 @@ import { discountPriceCalc } from '@/utils/discountPriceCalc';
 import DeliveryIcon from '@/components/pages/catalog/one-product-page/components/delivery-icon/DeliveryIcon';
 import PaymentIcon from '@/components/pages/catalog/one-product-page/components/payment-icon/PaymentIcon';
 import Accordion from '@/components/ui/accordion/Accordion';
+import Link from 'next/link';
 
 const OneProduct = () => {
     const searchParams = useSearchParams();
@@ -42,6 +43,19 @@ const OneProduct = () => {
     return (
         <div className={styles.cnt}>
             <Breadcrumbs items={breadcrumbsItems} />
+            <nav className={styles.nav}>
+                <ul className={styles.navList}>
+                    <li className={styles.navItem}>
+                        <Link href={'#'}>Все про товар</Link>
+                    </li>
+                    <li className={styles.navItem}>
+                        <Link href={'#desc'}>Опис</Link>
+                    </li>
+                    <li className={styles.navItem}>
+                        <Link href={'#characteristics'}>Характеристики</Link>
+                    </li>
+                </ul>
+            </nav>
             <div className={styles.content}>
                 <div className={styles.textContentAdaptive}>
                     <h2 className={styles.title}>{data?.name}</h2>
@@ -176,7 +190,16 @@ const OneProduct = () => {
                                 <div className={styles.discount}>{priceCalc} грн</div>
                             </div>
                         )}
-                        <div className={styles.productHint}>Код товару: {data?.article}</div>
+                        <div className={styles.productHint}>
+                            Код товару:{' '}
+                            <button
+                                onClick={() =>
+                                    navigator.clipboard.writeText(data?.article as string)
+                                }
+                            >
+                                {data?.article}
+                            </button>
+                        </div>
                     </div>
                     <div className={styles.colorsContent}>
                         <h4 className={styles.colorTitle}>Колір виробу:</h4>
