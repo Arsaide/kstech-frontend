@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import styles from './Accordion.module.scss';
 import { ChevronDown, ChevronUp } from 'lucide-react';
@@ -12,6 +12,23 @@ interface AccordionProps {
 
 const Accordion: FC<AccordionProps> = ({ title, children, img, alt }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const [contentHeight, setContentHeight] = useState<number | null>(null);
+    const [animationDuration, setAnimationDuration] = useState<string>('0s');
+
+    useEffect(() => {
+        if (contentRef.current) {
+            const height = contentRef.current.scrollHeight;
+            setContentHeight(height);
+            setAnimationDuration(`${Math.min(Math.max(height / 200, 0.2), 0.3)}s`); // Длительность анимации от 0.5 до 1.5 секунд
+        }
+    }, [children]);
+
+    useEffect(() => {
+        if (contentHeight !== null) {
+            setAnimationDuration(`${Math.min(Math.max(contentHeight / 200, 0.2), 0.3)}s`);
+        }
+    }, [isOpen, contentHeight]);
 
     return (
         <div className={styles.accordion}>
@@ -21,7 +38,14 @@ const Accordion: FC<AccordionProps> = ({ title, children, img, alt }) => {
                 {isOpen ? <ChevronUp /> : <ChevronDown />}
             </TitleResponsive>
             {!isOpen && <div className={styles.divider} />}
-            <ContentResponsive isOpen={isOpen}>{children}</ContentResponsive>
+            <ContentWrapper
+                ref={contentRef}
+                isOpen={isOpen}
+                contentHeight={contentHeight}
+                animationDuration={animationDuration}
+            >
+                <ContentResponsive>{children}</ContentResponsive>
+            </ContentWrapper>
         </div>
     );
 };
@@ -29,7 +53,7 @@ const Accordion: FC<AccordionProps> = ({ title, children, img, alt }) => {
 const TitleResponsive = styled.h4`
     color: var(--black);
     cursor: pointer;
-    font-size: 22px;
+    font-size: clamp(18px, 2vw, 22px);
     font-weight: 600;
     margin-bottom: 10px;
     display: flex;
@@ -37,13 +61,20 @@ const TitleResponsive = styled.h4`
     gap: 5px;
 `;
 
-const ContentResponsive = styled.div<{ isOpen: boolean }>`
-    max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
+const ContentWrapper = styled.div<{
+    isOpen: boolean;
+    contentHeight: number | null;
+    animationDuration: string;
+}>`
+    max-height: ${({ isOpen, contentHeight }) => (isOpen ? `${contentHeight}px` : '0')};
     overflow: hidden;
-    transition: max-height 0.5s ease-out 0s;
+    transition: max-height ${({ animationDuration }) => animationDuration} ease-out;
     list-style: none;
     padding: 0;
     margin-top: 10px;
+`;
+
+const ContentResponsive = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
