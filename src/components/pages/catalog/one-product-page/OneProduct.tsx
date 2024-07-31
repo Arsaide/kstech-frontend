@@ -7,23 +7,20 @@ import styles from './OneProduct.module.scss';
 import './productSwiper.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import classNames from 'classnames';
-import { Ban, Check, History } from 'lucide-react';
-import { priceConvert } from '@/utils/priceConvert';
-import { discountPriceCalc } from '@/utils/discountPriceCalc';
 import DeliveryIcon from '@/components/pages/catalog/one-product-page/components/delivery-icon/DeliveryIcon';
 import PaymentIcon from '@/components/pages/catalog/one-product-page/components/payment-icon/PaymentIcon';
-import Accordion from '@/components/ui/accordion/Accordion';
 import Link from 'next/link';
+import ServiceSection from '@/components/pages/catalog/one-product-page/components/sections/service-section/ServiceSection';
+import ProductAdaptiveInfoSection from '@/components/pages/catalog/one-product-page/components/sections/product-adaptive-info-section/ProductAdaptiveInfoSection';
+import ProductInfoSection from '@/components/pages/catalog/one-product-page/components/sections/product-info-section/ProductInfoSection';
+import PriceSection from '@/components/pages/catalog/one-product-page/components/sections/price-section/PriceSection';
+import ColorsSection from '@/components/pages/catalog/one-product-page/components/sections/colors-section/ColorsSection';
 
 const OneProduct = () => {
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
     const { data, isLoading } = useGetProduct(id);
     const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-
-    const discountCalc = priceConvert(discountPriceCalc(data?.price, data?.discount));
-    const priceCalc = priceConvert(data?.price);
 
     const breadcrumbsItems = [
         { label: 'Каталог', href: '/catalog' },
@@ -57,45 +54,7 @@ const OneProduct = () => {
                 </ul>
             </nav>
             <div className={styles.content}>
-                <div className={styles.textContentAdaptive}>
-                    <h2 className={styles.title}>{data?.name}</h2>
-                    <div className={styles.availabilityContent}>
-                        <div
-                            className={classNames(styles.availabilityCnt, {
-                                [styles.isAvailability]: data?.inAvailability === 'В наявності',
-                                [styles.isOrder]: data?.inAvailability === 'Під замовлення',
-                                [styles.isNotAvailability]:
-                                    data?.inAvailability === 'Немає в наявності',
-                                [styles.undefinedAvailability]: ![
-                                    'В наявності',
-                                    'Під замовлення',
-                                    'Немає в наявності',
-                                ].includes(data?.inAvailability as string),
-                            })}
-                        >
-                            {data?.inAvailability === 'В наявності' ? (
-                                <>
-                                    <Check size={25} />В наявності
-                                </>
-                            ) : data?.inAvailability === 'Під замовлення' ? (
-                                <>
-                                    <History size={20} /> Під замовлення
-                                </>
-                            ) : data?.inAvailability === 'Немає в наявності' ? (
-                                <>
-                                    <Ban size={20} /> Немає в наявності
-                                </>
-                            ) : (
-                                <>
-                                    <Ban size={20} /> data?.inAvailability
-                                </>
-                            )}
-                        </div>
-                        {data?.inAvailability === 'Під замовлення' && (
-                            <p className={styles.term}>Термін виготовлення: 7-14 днів</p>
-                        )}
-                    </div>
-                </div>
+                <ProductAdaptiveInfoSection data={data} />
                 {data && data.imgArr && (
                     <div className={styles.imgCnt}>
                         <Swiper
@@ -140,79 +99,9 @@ const OneProduct = () => {
                     </div>
                 )}
                 <div className={styles.textContent}>
-                    <h2 className={classNames(styles.title, styles.responsive)}>{data?.name}</h2>
-                    <div className={styles.availabilityContent}>
-                        <div
-                            className={classNames(styles.availabilityCnt, styles.responsive, {
-                                [styles.isAvailability]: data?.inAvailability === 'В наявності',
-                                [styles.isOrder]: data?.inAvailability === 'Під замовлення',
-                                [styles.isNotAvailability]:
-                                    data?.inAvailability === 'Немає в наявності',
-                                [styles.undefinedAvailability]: ![
-                                    'В наявності',
-                                    'Під замовлення',
-                                    'Немає в наявності',
-                                ].includes(data?.inAvailability as string),
-                            })}
-                        >
-                            {data?.inAvailability === 'В наявності' ? (
-                                <>
-                                    <Check size={25} />В наявності
-                                </>
-                            ) : data?.inAvailability === 'Під замовлення' ? (
-                                <>
-                                    <History size={20} /> Під замовлення
-                                </>
-                            ) : data?.inAvailability === 'Немає в наявності' ? (
-                                <>
-                                    <Ban size={20} /> Немає в наявності
-                                </>
-                            ) : (
-                                <>
-                                    <Ban size={20} /> data?.inAvailability
-                                </>
-                            )}
-                        </div>
-                        {data?.inAvailability === 'Під замовлення' && (
-                            <p className={classNames(styles.term, styles.responsive)}>
-                                Термін виготовлення: 7-14 днів
-                            </p>
-                        )}
-                    </div>
-                    <div className={styles.pricesContent}>
-                        {data?.discount == '0' ? (
-                            <>
-                                <div className={styles.price}>{priceCalc} грн</div>
-                            </>
-                        ) : (
-                            <div className={styles.priceCnt}>
-                                <div className={styles.price}>{discountCalc} грн</div>
-                                <div className={styles.discount}>{priceCalc} грн</div>
-                            </div>
-                        )}
-                        <div className={styles.productHint}>
-                            Код товару:{' '}
-                            <button
-                                onClick={() =>
-                                    navigator.clipboard.writeText(data?.article as string)
-                                }
-                            >
-                                {data?.article}
-                            </button>
-                        </div>
-                    </div>
-                    <div className={styles.colorsContent}>
-                        <h4 className={styles.colorTitle}>Колір виробу:</h4>
-                        <ul className={styles.colors}>
-                            {data?.colors.map((item, index) => (
-                                <li
-                                    key={index}
-                                    style={{ backgroundColor: item }}
-                                    className={styles.colorItem}
-                                />
-                            ))}
-                        </ul>
-                    </div>
+                    <ProductInfoSection data={data} />
+                    <PriceSection data={data} />
+                    <ColorsSection data={data} />
                     <div className={styles.btnContent}>
                         <button className={styles.buyBtn}>
                             <div className={styles.cartIconCnt}>
@@ -226,100 +115,26 @@ const OneProduct = () => {
                         </button>
                     </div>
                     <div className={styles.servicesContent}>
-                        <div className={styles.service}>
-                            <h5 className={styles.listTitle}>
-                                <img
-                                    src={'/product/delivery-icon.svg'}
-                                    className={styles.icon}
-                                    alt={'Іконка способів доставки товару'}
-                                />{' '}
-                                Cпособи доставки
-                            </h5>
-                            <ul className={styles.list}>
-                                {data?.deliveryMethod.map((item, index) => (
-                                    <li key={index} className={styles.item}>
-                                        <DeliveryIcon method={item} />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <Accordion
-                            title={'Cпособи доставки'}
-                            img={'/product/delivery-icon.svg'}
-                            alt={'Іконка способів доставки товару'}
-                        >
-                            <ul className={styles.list}>
-                                {data?.deliveryMethod.map((item, index) => (
-                                    <li key={index} className={styles.item}>
-                                        <DeliveryIcon method={item} />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </Accordion>
-                        <div className={styles.service}>
-                            <h5 className={styles.listTitle}>
-                                <img
-                                    src={'/product/payment-icon.svg'}
-                                    className={styles.icon}
-                                    alt={'Іконка умов оплати товару'}
-                                />{' '}
-                                Умови оплати
-                            </h5>
-                            <ul className={styles.list}>
-                                {data?.paymentMethod.map((item, index) => (
-                                    <li key={index} className={styles.item}>
-                                        <PaymentIcon method={item} />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <Accordion
-                            title={'Умови оплати'}
-                            img={'/product/payment-icon.svg'}
-                            alt={'Іконка умов оплати товару'}
-                        >
-                            <ul className={styles.list}>
-                                {data?.paymentMethod.map((item, index) => (
-                                    <li key={index} className={styles.item}>
-                                        <PaymentIcon method={item} />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </Accordion>
-                        <div className={styles.service}>
-                            <h5 className={styles.listTitle}>
-                                <img
-                                    src={'/product/turning-icon.svg'}
-                                    className={styles.icon}
-                                    alt={'Іконка умов повернення товару'}
-                                />{' '}
-                                Умови повернення
-                            </h5>
-                            <ul className={styles.list}>
-                                {data?.turningMethod.map((item, index) => (
-                                    <li key={index} className={styles.item}>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <Accordion
-                            title={' Умови повернення'}
-                            img={'/product/turning-icon.svg'}
-                            alt={'Іконка умов повернення товару'}
-                        >
-                            <ul className={styles.list}>
-                                {data?.turningMethod.map((item, index) => (
-                                    <li key={index} className={styles.item}>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </Accordion>
+                        <ServiceSection
+                            title="Cпособи доставки"
+                            iconSrc="/product/delivery-icon.svg"
+                            iconAlt="Delivery icon"
+                            items={data?.deliveryMethod}
+                            ItemComponent={DeliveryIcon}
+                        />
+                        <ServiceSection
+                            title="Умови оплати"
+                            iconSrc="/product/payment-icon.svg"
+                            iconAlt="Payment icon"
+                            items={data?.paymentMethod}
+                            ItemComponent={PaymentIcon}
+                        />
+                        <ServiceSection
+                            title="Умови повернення"
+                            iconSrc="/product/turning-icon.svg"
+                            iconAlt="Return icon"
+                            items={data?.turningMethod}
+                        />
                     </div>
                 </div>
             </div>

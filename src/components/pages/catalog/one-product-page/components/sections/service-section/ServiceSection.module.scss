@@ -1,0 +1,41 @@
+.servicesContent {
+  padding-top: 20px;
+}
+
+.service {
+  margin-bottom: 20px;
+}
+
+.listTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.icon {
+
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 30px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media(max-width: 832px) {
+  .service {
+    display: none;
+  }
+}

@@ -1,0 +1,81 @@
+.title {
+  font-size: var(--fz-title28);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.term {
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.availabilityContent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 64px);
+}
+
+.availabilityCnt {
+  max-width: max-content;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 15px;
+  padding: 7px 16px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 43px;
+}
+
+.isAvailability {
+  border: 2px solid var(--green);
+  color: var(--green);
+}
+
+.isOrder, .isNotAvailability, .undefinedAvailability {
+  border: 2px solid var(--red);
+  color: var(--red);
+}
+
+.textContentAdaptive {
+  display: none;
+}
+
+@media(max-width: 1080px) {
+  .title {
+    margin-bottom: 10px;
+    font-size: var(--fz-title24);
+  }
+
+  .availabilityCnt {
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 43px;
+  }
+}
+
+@media(max-width: 832px) {
+  .availabilityContent {
+    flex-direction: column;
+    align-items: normal;
+    gap: 10px;
+  }
+}
+
+@media(max-width: 740px) {
+  .textContentAdaptive {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .responsive {
+    display: none;
+  }
+}

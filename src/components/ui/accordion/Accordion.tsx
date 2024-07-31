@@ -38,9 +38,9 @@ const TitleResponsive = styled.h4`
 `;
 
 const ContentResponsive = styled.div<{ isOpen: boolean }>`
-    max-height: ${({ isOpen }) => (isOpen ? '200px' : '0')};
+    max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.5s ease-out 0s;
     list-style: none;
     padding: 0;
     margin-top: 10px;

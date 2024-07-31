@@ -19,10 +19,6 @@ export interface OneProductResponseModel {
     product: OneProductTypes;
 }
 
-export interface OneProductResponseModelForRender {
-    product: OneProductForRenderTypes;
-}
-
 export interface OneProductTypes {
     id: string;
     name: string;
