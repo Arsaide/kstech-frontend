@@ -15,7 +15,7 @@ const PaymentIcon: FC<DeliveryIconProps> = ({ method }) => {
         case 'Безготівковий розрахунок для юр.осіб':
             return <HandCoins size={20} />;
         case 'Оплата на карту через VISA, Private24, Apple Pay, Google Pay, MasterCard':
-            return <Nfc size={20} />;
+            return <Nfc size={24} />;
         default:
             return <HandCoins />;
     }
