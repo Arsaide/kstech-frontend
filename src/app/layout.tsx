@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.scss';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 import { gilroy } from '@/utils/fonts/customFonts';
 import React from 'react';
 import ReactQueryClientProvider from '@/providers/react-query-client-provider/ReactQueryClientProvider';
