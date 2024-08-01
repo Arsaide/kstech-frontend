@@ -29,8 +29,13 @@ const PopularProducts = () => {
         window.history.pushState(null, '', `${pathname}?${params.toString()}`);
     };
 
-    if (isLoading) return <ProductsSkeleton />;
-    if (isError) return <ProductsSkeleton />;
+    if (isLoading || isError) {
+        return (
+            <section className={styles.cnt}>
+                <ProductsSkeleton />
+            </section>
+        );
+    }
 
     const breadcrumbsItems = [{ label: 'Популярні товари' }];
 

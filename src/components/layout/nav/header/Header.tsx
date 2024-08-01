@@ -112,7 +112,7 @@ const Header = () => {
                         ))}
                     </ul>
                     <div className={styles.contacts}>
-                        <Link href={'tel:+380500235030'}>(050) 023-50-30</Link>
+                        <Link href={'tel:+380674754848'}>(067) 475-48-48</Link>
                     </div>
                 </nav>
                 <div className={styles.optionPanel}>
