@@ -11,12 +11,9 @@
 }
 
 .item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 267px;
+  flex: 1 1 calc(267px - 16px);
+  box-sizing: border-box;
   height: 323px;
-  width: 100%;
   position: relative;
   background-color: var(--black-02);
   border-radius: 2px;
@@ -25,8 +22,10 @@
 .skeleton {
   width: 100%;
   height: 100%;
+  position: relative;
 
   &::after {
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
@@ -40,48 +39,64 @@
                     rgba(#fff, 0)
     );
     animation: shimmer 5s infinite;
-    content: '';
-    width: 100%;
-    height: 100%;
-    transform: translateX(-150%);
+    transform: translateX(-100%);
   }
 
   @keyframes shimmer {
     0% {
-      transform: translateX(-450%);
+      transform: translateX(-100%);
     }
     50% {
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(150%);
+      transform: translateX(100%);
     }
   }
 }
 
 @media(max-width: 950px) {
-  .productsList {
+  .list {
     grid-template-columns: repeat(auto-fill, minmax(207px, 1fr));
   }
 }
 
 @media(max-width: 856px) {
-  .productsList {
+  .list {
     grid-template-columns: repeat(auto-fill, minmax(187px, 1fr));
     gap: 8px;
+  }
+
+  .item {
+    flex: 1 1 calc(207px - 16px);
+    height: 220px;
   }
 }
 
 @media(max-width: 469px) {
-  .productsList {
+  .list {
     grid-template-columns: repeat(auto-fill, minmax(187px, 1fr));
     gap: 8px;
   }
 }
 
+
 @media(max-width: 421px) {
-  .productsList {
+  .list {
     grid-template-columns: repeat(auto-fill, minmax(157px, 1fr));
     gap: 8px;
+  }
+}
+
+
+@media(max-width: 856px) {
+  .item {
+    flex: 1 1 calc(207px - 16px);
+  }
+}
+
+@media(max-width: 469px) {
+  .item {
+    flex: 1 1 calc(187px - 16px);
   }
 }

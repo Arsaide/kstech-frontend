@@ -1,23 +1,23 @@
 export const navMenu = [
     {
         name: 'Ремонт',
-        link: '/repair',
+        link: '/',
     },
     {
         name: 'Послуги',
-        link: '/services',
+        link: '/',
     },
     {
         name: 'B2B',
-        link: '/b2b',
+        link: '/',
     },
     {
         name: 'Доставка і оплата',
-        link: '/delivery',
+        link: '/',
     },
     {
         name: 'Контакти',
-        link: '/contacts',
+        link: '/',
     },
 ];
 
@@ -35,34 +35,34 @@ export const workArr = [
 
 export const contactsList = [
     {
-        name: 'arsaidekm@gmail.com',
-        link: 'mailto:arsaidekm@gmail.com',
+        name: 'kstek.ltd24@gmail.com',
+        link: 'mailto:kstek.ltd24@gmail.com',
     },
     {
-        name: '(050) 023-50-30 (з 9:00 до 22:00)',
-        link: 'tel:+380500235030',
+        name: '(067) 475-48-48 (з 9:00 до 22:00)',
+        link: 'tel:+380674754848',
     },
 ];
 
 export const socialNetworksList = [
     {
         name: 'facebook',
-        link: '/',
+        link: 'https://www.facebook.com/profile.php?id=61556809713151',
         icon: '/social-networks/facebook.svg',
     },
     {
         name: 'youtube',
-        link: '/',
+        link: 'https://www.youtube.com/@kstech_ua',
         icon: '/social-networks/youtube.svg',
     },
     {
         name: 'instagram',
-        link: '/',
+        link: 'https://www.instagram.com/kstech.ua?igsh=MTI3MGFyMXptdmxqbw%3D%3D&utm_source=qr',
         icon: '/social-networks/instagram.svg',
     },
     {
         name: 'telegram',
-        link: '/',
+        link: 'https://t.me/ks_tech_ua',
         icon: '/social-networks/telegram.svg',
     },
     {
