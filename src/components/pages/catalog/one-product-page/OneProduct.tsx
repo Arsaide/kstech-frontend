@@ -6,6 +6,7 @@ import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
 import styles from './OneProduct.module.scss';
 import './productSwiper.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperCore } from 'swiper/types';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import DeliveryIcon from '@/components/pages/catalog/one-product-page/components/delivery-icon/DeliveryIcon';
 import PaymentIcon from '@/components/pages/catalog/one-product-page/components/payment-icon/PaymentIcon';
@@ -22,7 +23,19 @@ const OneProduct = () => {
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
     const { data, isLoading } = useGetProduct(id);
-    const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+    const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
+
+    useEffect(() => {
+        if (id) {
+            setThumbsSwiper(null);
+        }
+    }, [id]);
+
+    useEffect(() => {
+        if (thumbsSwiper) {
+            thumbsSwiper.update();
+        }
+    }, [thumbsSwiper]);
 
     const breadcrumbsItems = [
         { label: 'Каталог', href: '/catalog' },
@@ -38,6 +51,10 @@ const OneProduct = () => {
             label: data?.name,
         },
     ];
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className={styles.cnt}>
@@ -70,7 +87,7 @@ const OneProduct = () => {
                             spaceBetween={10}
                             navigation={true}
                             thumbs={{
-                                swiper: thumbsSwiper || undefined,
+                                swiper: thumbsSwiper ? thumbsSwiper : undefined,
                             }}
                             modules={[FreeMode, Navigation, Thumbs]}
                             className={'mySwiper2'}
@@ -82,9 +99,7 @@ const OneProduct = () => {
                             ))}
                         </Swiper>
                         <Swiper
-                            onSwiper={(swiper: any) => {
-                                setThumbsSwiper(swiper);
-                            }}
+                            onSwiper={(swiper: SwiperCore) => setThumbsSwiper(swiper)}
                             spaceBetween={10}
                             slidesPerView={4}
                             freeMode={true}

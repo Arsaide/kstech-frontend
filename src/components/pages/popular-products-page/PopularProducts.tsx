@@ -51,7 +51,8 @@ const PopularProducts = () => {
                             img={product.imgArr[0]}
                             price={product.price}
                             discount={product.discount}
-                            link={''}
+                            link={'/catalog/subcatalog/product'}
+                            query={product.id}
                         />
                     ))}
                 </ul>

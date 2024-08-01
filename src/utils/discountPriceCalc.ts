@@ -9,9 +9,5 @@ export const discountPriceCalc = (
         return '0.00';
     }
 
-    const calc = (parsedPrice - (parsedPrice * parsedDiscount) / 100).toFixed(2);
-
-    console.log(`Price: ${parsedPrice}, Discount: ${parsedDiscount}, Calculated Price: ${calc}`);
-
-    return calc;
+    return (parsedPrice - (parsedPrice * parsedDiscount) / 100).toFixed(2);
 };
