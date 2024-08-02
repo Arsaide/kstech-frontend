@@ -9,7 +9,10 @@ import { AxiosResponse } from 'axios';
 
 interface ProductStoreTypes {
     getProducts: (page: number) => Promise<AxiosResponse<AllProductResponseModel>>;
-    searchProducts: (query: string) => Promise<AxiosResponse<AllProductResponseModel>>;
+    searchProducts: (
+        query: string,
+        page: number,
+    ) => Promise<AxiosResponse<AllProductResponseModel>>;
     getProductByCategory: (
         categoryId: string | null,
         page: number,
@@ -31,9 +34,8 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
         }
     },
 
-    searchProducts: async (query: string) => {
+    searchProducts: async (query: string, page: number) => {
         try {
-            const page = parseInt(<string>localStorage.getItem('page')) || 1;
             return await ProductService.searchProducts(page, query);
         } catch (error: any) {
             throw error;
