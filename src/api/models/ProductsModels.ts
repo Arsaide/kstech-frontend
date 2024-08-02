@@ -37,6 +37,7 @@ export interface OneProductTypes {
     height: string;
     width: string;
     long: string;
+    country: string;
     deliveryMethod: string[];
     turningMethod: string[];
     paymentMethod: string[];
