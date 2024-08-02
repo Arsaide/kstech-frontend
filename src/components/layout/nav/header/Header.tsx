@@ -22,50 +22,30 @@ import { ColorsEnum } from '@/utils/enums/ColorEnums';
 import { Controller, useForm } from 'react-hook-form';
 import useProductsStore from '@/api/store/ProductStore';
 import { navMenu } from '@/components/layout/nav';
+import { useRouter } from 'next/navigation';
+import { useGetCategories } from '@/hooks/queries/use-get-categories/useGetCategories';
+import { useGetSubcategories } from '@/hooks/queries/use-get-subcategories/useGetSubcategories';
+import { useMutateSearch } from '@/hooks/mutations/use-mutate-search/useMutateSearch';
 
 interface FieldValue {
     search: string;
 }
 
 const Header = () => {
+    const router = useRouter();
     const queryClient = useQueryClient();
-    const {
-        getCategories,
-        categoryId,
-        getOneCategory,
-        isOpenCategories,
-        setIsOpenCategories,
-        setCategoryId,
-    } = useCategoryStore();
-    const { searchProducts } = useProductsStore();
+    const { categoryId, isOpenCategories, setIsOpenCategories, setCategoryId } = useCategoryStore();
     const [loadingCategoryId, setLoadingCategoryId] = useState<string | null>(null);
     const [isVisibleSearchInput, setIsVisibleSearchInput] = useState<boolean>(false);
     const [isVisibleSubcategories, setIsVisibleSubcategories] = useState<boolean>(false);
     const [searchProductInput, setSearchProductInput] = useState<string>('');
     const { handleSubmit, control } = useForm<FieldValue>();
 
-    const { data: categoriesData, isLoading: isCategoriesLoading } = useQuery({
-        queryKey: ['categories'],
-        queryFn: () => getCategories(),
-        select: data => data.data,
-        enabled: isOpenCategories,
-    });
+    const { data: categoriesData, isLoading: isCategoriesLoading } = useGetCategories();
 
-    const {
-        data: subcategoriesData,
-        isLoading: isSubcategoriesLoading,
-        isSuccess,
-    } = useQuery({
-        queryKey: ['subcategories', categoryId],
-        queryFn: () => getOneCategory(categoryId),
-        select: data => data.data.subcategory,
-        enabled: categoryId != null,
-    });
+    const { data: subcategoriesData, isSuccess } = useGetSubcategories(categoryId);
 
-    const { mutate, isPending } = useMutation({
-        mutationKey: ['search', searchProductInput],
-        mutationFn: (query: string) => searchProducts(query),
-    });
+    const { mutate, isPending } = useMutateSearch(searchProductInput);
 
     useEffect(() => {
         if (isSuccess) setLoadingCategoryId(null);
@@ -93,6 +73,7 @@ const Header = () => {
 
     const onSubmit = () => {
         mutate(searchProductInput);
+        router.push(`/search?req=${encodeURIComponent(searchProductInput)}`);
     };
 
     return (
