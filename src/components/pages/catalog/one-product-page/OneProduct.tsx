@@ -24,7 +24,7 @@ import ProductSkeletonPage from '@/components/pages/catalog/one-product-page/pro
 const OneProduct = () => {
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
-    const { data, isLoading } = useGetProduct(id);
+    const { data, isLoading, isError } = useGetProduct(id);
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
 
     useEffect(() => {
@@ -54,16 +54,8 @@ const OneProduct = () => {
         },
     ];
 
-    if (isLoading) {
-        return (
-            <ProductSkeletonPage
-                name={data?.name}
-                category={data?.category}
-                categoryName={data?.categoryName}
-                subcategory={data?.subcategory}
-                subcategoryName={data?.subcategoryName}
-            />
-        );
+    if (isLoading || isError) {
+        return <ProductSkeletonPage />;
     }
 
     return (

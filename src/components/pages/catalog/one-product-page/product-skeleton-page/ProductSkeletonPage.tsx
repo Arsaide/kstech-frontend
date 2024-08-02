@@ -1,34 +1,18 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styles from './ProductSkeletonPage.module.scss';
 import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
 
-interface ProductSkeletonPageProps {
-    name: string | undefined;
-    category: string | undefined;
-    categoryName: string | undefined;
-    subcategory: string | undefined;
-    subcategoryName: string | undefined;
-}
-
-const ProductSkeletonPage: FC<ProductSkeletonPageProps> = ({
-    name,
-    category,
-    categoryName,
-    subcategory,
-    subcategoryName,
-}) => {
+const ProductSkeletonPage = () => {
     const breadcrumbsItems = [
         { label: 'Каталог', href: '/catalog' },
         {
-            label: categoryName,
-            href: `/catalog/subcatalog?category=${subcategory}`,
+            label: 'Категорія...',
         },
         {
-            label: subcategoryName,
-            href: `/catalog/subcatalog/products?id=${category}`,
+            label: '...',
         },
         {
-            label: name,
+            label: '...',
         },
     ];
 
