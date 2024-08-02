@@ -1,15 +1,15 @@
 .listItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+  flex: 1 1 calc(267px - 16px);
+  box-sizing: border-box;
   border: 1px solid var(--black-02);
-  max-width: 267px;
-  width: 100%;
-  transition: background-color .2s ease-out 0s;
+  cursor: pointer;
+  transition: background-color .1s ease-out 0s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 
   &:hover {
-    background-color: var(--black-02);
+    background-color: var(--black-005);
   }
 }
 
@@ -20,17 +20,19 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 16px;
+  padding: clamp(10px, 1.5vw, 15px);
 }
 
 .imgCnt {
-
+  width: 100%;
+  max-height: 205px;
+  height: 100%;
 }
 
 .img {
   object-fit: contain;
-  width: 235px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
 }
 
 .name {
@@ -51,6 +53,10 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.priceCnt > :only-child {
+  margin-left: auto;
 }
 
 .discount {
@@ -75,6 +81,55 @@
   font-size: 18px;
   font-weight: 700;
 }
+
+.buy {
+  display: none;
+  position: relative;
+  cursor: default;
+  padding: 0 12px;
+}
+
+.listItem:hover .buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -65px;
+  left: -1px;
+  width: calc(100% + 2px);
+  background-color: var(--black-005);
+  border-bottom: 1px solid var(--black-02);
+  border-right: 1px solid var(--black-02);
+  border-left: 1px solid var(--black-02);
+  z-index: 10;
+}
+
+.buyBtn {
+  width: 100%;
+  padding: 14px 0;
+  background-color: var(--black);
+  border-radius: 4px;
+  color: var(--white);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background-color .2s ease-out 0s, transform .1s ease-out 0s;
+
+  &:hover {
+    background-color: var(--black-08);
+  }
+
+  &:active {
+    transform: scale(.98);
+  }
+}
+
+@media(max-width: 900px) {
+  .listItem:hover .buy {
+    display: none;
+  }
+}
+
 
 @media(max-width: 873px) {
   .listItem {

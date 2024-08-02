@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Link from 'next/link';
 import { priceConvert } from '@/utils/priceConvert';
 import { discountPriceCalc } from '@/utils/discountPriceCalc';
 import styles from './ProductByCategoryCard.module.scss';
+import classNames from 'classnames';
 
 interface ProductByCategoryCardProps {
     img: string;
@@ -23,11 +24,16 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
     link,
     query,
 }) => {
+    const [isHovered, setIsHovered] = useState<boolean>(false);
     const discountCalc = priceConvert(discountPriceCalc(price, discount));
     const priceCalc = priceConvert(price);
 
     return (
-        <li className={styles.listItem}>
+        <li
+            className={styles.listItem}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <Link
                 href={{
                     pathname: link,
@@ -55,6 +61,11 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
                     )}
                 </div>
             </Link>
+            {isHovered && (
+                <div className={styles.buy}>
+                    <button className={classNames(styles.buyBtn)}>Купити</button>
+                </div>
+            )}
         </li>
     );
 };
