@@ -19,6 +19,7 @@ import ColorsSection from '@/components/pages/catalog/one-product-page/component
 import PopularProductSection from '@/components/pages/catalog/one-product-page/components/sections/popular-products-section/PopularProductSection';
 import CharacteristicsSection from '@/components/pages/catalog/one-product-page/components/sections/characteristics-section/CharacteristicsSection';
 import DescriptionSection from '@/components/pages/catalog/one-product-page/components/sections/description-section/DescriptionSection';
+import ProductSkeletonPage from '@/components/pages/catalog/one-product-page/product-skeleton-page/ProductSkeletonPage';
 
 const OneProduct = () => {
     const searchParams = useSearchParams();
@@ -54,7 +55,15 @@ const OneProduct = () => {
     ];
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <ProductSkeletonPage
+                name={data?.name}
+                category={data?.category}
+                categoryName={data?.categoryName}
+                subcategory={data?.subcategory}
+                subcategoryName={data?.subcategoryName}
+            />
+        );
     }
 
     return (
