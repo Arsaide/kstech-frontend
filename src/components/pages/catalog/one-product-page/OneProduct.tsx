@@ -18,6 +18,7 @@ import PriceSection from '@/components/pages/catalog/one-product-page/components
 import ColorsSection from '@/components/pages/catalog/one-product-page/components/sections/colors-section/ColorsSection';
 import PopularProductSection from '@/components/pages/catalog/one-product-page/components/sections/popular-products-section/PopularProductSection';
 import CharacteristicsSection from '@/components/pages/catalog/one-product-page/components/sections/characteristics-section/CharacteristicsSection';
+import DescriptionSection from '@/components/pages/catalog/one-product-page/components/sections/description-section/DescriptionSection';
 
 const OneProduct = () => {
     const searchParams = useSearchParams();
@@ -158,6 +159,7 @@ const OneProduct = () => {
             <PopularProductSection />
             <div className={styles.characteristics} id={'characteristics'}>
                 <CharacteristicsSection data={data} />
+                <DescriptionSection data={data} />
             </div>
         </div>
     );

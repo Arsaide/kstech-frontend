@@ -1,0 +1,11 @@
+.title {
+  font-size: var(--fz-title28);
+  font-weight: 700;
+  margin-bottom: clamp(20px, 1vw, 40px);
+}
+
+.content {
+  h1:empty, h2:empty, h3:empty, h4:empty, h5:empty, h6:empty ,p:empty {
+    height: 20px;
+  }
+}
