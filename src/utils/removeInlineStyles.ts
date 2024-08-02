@@ -1,4 +1,4 @@
-import parse, { domToReact, Element } from 'html-react-parser';
+import parse from 'html-react-parser';
 
 export const removeInlineStyles = (htmlString: string) => {
     const options = {

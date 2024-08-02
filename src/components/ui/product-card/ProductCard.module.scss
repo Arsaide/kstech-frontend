@@ -3,7 +3,10 @@
   box-sizing: border-box;
   border: 1px solid var(--black-02);
   cursor: pointer;
-  transition: background-color .2s ease-out 0s;
+  transition: background-color .1s ease-out 0s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 
   &:hover {
     background-color: var(--black-005);
@@ -77,6 +80,55 @@
   color: var(--black);
   font-size: 18px;
   font-weight: 700;
+}
+
+.buy {
+  display: none;
+  position: relative;
+  cursor: default;
+  padding: 0 12px;
+}
+
+.listItem:hover .buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -65px;
+  left: -1px;
+  width: calc(100% + 2px);
+  background-color: var(--black-005);
+  border-bottom: 1px solid var(--black-02);
+  border-right: 1px solid var(--black-02);
+  border-left: 1px solid var(--black-02);
+  z-index: 10;
+}
+
+@media(max-width: 900px) {
+  .listItem:hover .buy {
+    display: none;
+  }
+}
+
+
+.buyBtn {
+  width: 100%;
+  padding: 14px 0;
+  background-color: var(--black);
+  border-radius: 4px;
+  color: var(--white);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background-color .2s ease-out 0s, transform .1s ease-out 0s;
+
+  &:hover {
+    background-color: var(--black-08);
+  }
+
+  &:active {
+    transform: scale(.98);
+  }
 }
 
 @media(max-width: 950px) {
