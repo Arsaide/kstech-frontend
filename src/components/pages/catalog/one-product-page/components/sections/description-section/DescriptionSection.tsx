@@ -3,7 +3,7 @@ import { OneProductTypes } from '@/api/models/ProductsModels';
 import styles from './DescriptionSection.module.scss';
 import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
-import parse from 'html-react-parser';
+import { removeInlineStyles } from '@/utils/removeInlineStyles';
 
 interface DescriptionSectionProps {
     data: OneProductTypes | undefined;
@@ -19,12 +19,16 @@ const DescriptionSection: FC<DescriptionSectionProps> = ({ data }) => {
         }
     }, [data]);
 
+    const getParsedContent = () => {
+        const rawContentState = convertToRaw(editorState.getCurrentContent());
+        const html = draftToHtml(rawContentState);
+        return removeInlineStyles(html);
+    };
+
     return (
         <div className={styles.cnt} id={'desc'}>
             <h4 className={styles.title}>Опис товару</h4>
-            <div className={styles.content}>
-                {parse(draftToHtml(convertToRaw(editorState.getCurrentContent())))}
-            </div>
+            <div className={styles.content}>{getParsedContent()}</div>
         </div>
     );
 };

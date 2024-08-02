@@ -1,3 +1,7 @@
+.cnt {
+  margin-bottom: 80px;
+}
+
 .title {
   font-size: var(--fz-title28);
   font-weight: 700;
@@ -5,6 +9,8 @@
 }
 
 .content {
+  font-family: '__gilroy_804c9e', '__gilroy_Fallback_804c9e' !important;
+
   h1:empty, h2:empty, h3:empty, h4:empty, h5:empty, h6:empty ,p:empty {
     height: 20px;
   }
