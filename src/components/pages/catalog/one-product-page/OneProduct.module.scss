@@ -86,9 +86,8 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  max-width: 160px;
-  height: 50px;
-  width: 100%;
+  padding: 14px 40px;
+  width: max-content;
   background-color: var(--black);
   border-radius: 4px;
   color: var(--white);
@@ -102,6 +101,10 @@
   &:active {
     transform: scale(0.98);
   }
+}
+
+.quantity {
+  font-size: var(--fz-text14);
 }
 
 .cartIconCnt {

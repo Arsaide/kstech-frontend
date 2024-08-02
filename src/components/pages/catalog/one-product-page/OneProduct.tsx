@@ -20,12 +20,21 @@ import PopularProductSection from '@/components/pages/catalog/one-product-page/c
 import CharacteristicsSection from '@/components/pages/catalog/one-product-page/components/sections/characteristics-section/CharacteristicsSection';
 import DescriptionSection from '@/components/pages/catalog/one-product-page/components/sections/description-section/DescriptionSection';
 import ProductSkeletonPage from '@/components/pages/catalog/one-product-page/product-skeleton-page/ProductSkeletonPage';
+import useCartStore from '@/api/store/CartStore';
+import { OneProductTypes } from '@/api/models/ProductsModels';
+import AddToCartBtn from '@/components/pages/catalog/one-product-page/components/add-to-cart-btn/AddToCartBtn';
 
 const OneProduct = () => {
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
     const { data, isLoading, isError } = useGetProduct(id);
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
+
+    const cart = useCartStore(state => state.cart);
+
+    useEffect(() => {
+        console.log('Cart:', cart);
+    }, [cart]);
 
     useEffect(() => {
         if (id) {
@@ -122,16 +131,7 @@ const OneProduct = () => {
                     <PriceSection data={data} />
                     <ColorsSection data={data} />
                     <div className={styles.btnContent}>
-                        <button className={styles.buyBtn}>
-                            <div className={styles.cartIconCnt}>
-                                <img
-                                    className={styles.cartIcon}
-                                    src={'/icons/cart-icon.svg'}
-                                    alt={'Іконка кошику'}
-                                />
-                            </div>
-                            Купити
-                        </button>
+                        {data && <AddToCartBtn product={data} />}
                     </div>
                     <div className={styles.servicesContent}>
                         <ServiceSection
