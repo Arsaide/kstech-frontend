@@ -1,0 +1,37 @@
+.cnt {
+}
+
+.content {
+}
+
+.title {
+  font-size: var(--fz-title28);
+  font-weight: 700;
+  margin-bottom: clamp(20px, 1vw, 40px);
+}
+
+.list {
+  max-width: 600px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  height: 1px;
+  border: 1px dashed var(--black-05);
+  width: 100%;
+}
