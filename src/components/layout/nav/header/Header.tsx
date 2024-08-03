@@ -69,7 +69,7 @@ const Header = () => {
     };
 
     useEffect(() => {
-        if (isOpenCategories) {
+        if (isOpenCategories || isOpenCart) {
             document.body.classList.add('no-scroll');
         } else {
             document.body.classList.remove('no-scroll');
@@ -77,7 +77,7 @@ const Header = () => {
         return () => {
             document.body.classList.remove('no-scroll');
         };
-    }, [isOpenCategories]);
+    }, [isOpenCategories, isOpenCart]);
 
     const onSubmit = () => {
         mutate(searchProductInput);
@@ -150,9 +150,7 @@ const Header = () => {
                         <button
                             className={styles.cartBtn}
                             onClick={() => {
-                                setIsVisibleCart(!isVisibleCart);
                                 setIsOpenCart(!isOpenCart);
-                                console.log(isOpenCart);
                                 setIsOpenCategories(false);
                                 setIsVisibleSubcategories(false);
                             }}
@@ -337,7 +335,7 @@ const Header = () => {
             </div>
             <div className={styles.cartMenu}>
                 <div className={styles.cartMenuCnt}>
-                    {isVisibleCart && !isOpenCategories && <Cart />}
+                    {isOpenCart && !isOpenCategories && <Cart />}
                 </div>
             </div>
             <div

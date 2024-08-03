@@ -14,13 +14,14 @@ const LayoutWindow: FC<LayoutWindowProps> = ({ children }) => {
 
     return (
         <div
-            className={classNames('wrapper', { ['open']: isOpenCart })}
+            className={classNames('wrapper', { ['open']: isOpenCategories || isOpenCart })}
             onClick={() => {
-                if (isOpenCategories) setIsOpenCategories(false);
-                if (isOpenCart) setIsOpenCart(false);
+                setIsOpenCategories(false);
+                setIsOpenCart(false);
             }}
         >
             {isOpenCategories && <div className={'overlay'} />}
+            {isOpenCart && <div className={'overlay'} />}
             <Header />
             {children}
             <Footer />

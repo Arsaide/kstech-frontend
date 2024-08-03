@@ -6,8 +6,6 @@
   z-index: 10;
   background-color: var(--white);
   margin-right: 20px;
-  border: 1px solid var(--black-02);
-  box-shadow: 0 0 9.8px 0 var(--black-02);
 }
 
 .cnt {
@@ -17,10 +15,19 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  max-height: 50vh;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 3px;
+    background: transparent;
+  }
 }
 
 .item {
   padding-bottom: 24px;
+  padding-right: 5px;
   border-bottom: 1px solid var(--black-02);
 }
 
