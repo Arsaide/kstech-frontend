@@ -162,7 +162,9 @@ const Header = () => {
                                     src={'/icons/cart-icon.svg'}
                                     alt={'Іконка кошику'}
                                 />
-                                <span className={styles.cartQuantity}>{cart.length}</span>
+                                {cart.length > 0 && (
+                                    <span className={styles.cartQuantity}>{cart.length}</span>
+                                )}
                             </div>
                             Кошик
                         </button>
