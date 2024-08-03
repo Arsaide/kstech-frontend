@@ -144,6 +144,12 @@
   .list {
     display: flex;
     overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 4px;
+      background-color: transparent;
+    }
   }
 
   .listItem {

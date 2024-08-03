@@ -50,6 +50,12 @@
     transform: translateX(0);
     z-index: 20;
   }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 3px;
+    background-color: transparent;
+  }
 }
 
 .menuList, .list {

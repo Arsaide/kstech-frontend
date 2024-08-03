@@ -11,6 +11,12 @@
 .cnt {
 }
 
+@media(max-width: 900px) {
+  .content {
+    display: none;
+  }
+}
+
 .list {
   display: flex;
   flex-direction: column;
