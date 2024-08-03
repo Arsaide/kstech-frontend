@@ -30,11 +30,11 @@ const useCategoryStore = create<CategoryStoreTypes>(set => ({
                     : isOpenCategories,
         })),
 
-    isOpenCart: true,
+    isOpenCart: false,
     setIsOpenCart: isOpenCart =>
         set(state => ({
-            isOpenCategories:
-                typeof isOpenCart === 'function' ? isOpenCart(state.isOpenCategories) : isOpenCart,
+            isOpenCart:
+                typeof isOpenCart === 'function' ? isOpenCart(state.isOpenCart) : isOpenCart,
         })),
 
     getCategories: async () => {
