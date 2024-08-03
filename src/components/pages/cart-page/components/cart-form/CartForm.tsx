@@ -3,10 +3,13 @@ import styles from './CartForm.module.scss';
 import { Controller, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import useProductsStore from '@/api/store/ProductStore';
-import useCartStore from '@/api/store/CartStore';
+import useCartStore, { CartProduct } from '@/api/store/CartStore';
 import TextFieldInput from '@/components/ui/inputs/text-field-input/TextFieldInput';
 import ToggleSwitchInput from '@/components/ui/inputs/toggle-switch-input/ToggleSwitchInput';
 import TextAreaInput from '@/components/ui/inputs/text-area-input/TextAreaInput';
+import SelectInput from '@/components/ui/inputs/select-input/SelectInput';
+import { OneProductResponseModel } from '@/api/models/ProductsModels';
+import NumberFieldInput from '@/components/ui/inputs/number-field-input/NumberFieldInput';
 
 interface FormValues {
     name: string;
@@ -17,6 +20,7 @@ interface FormValues {
     country: string;
     town: string;
     street: string;
+    deliveryMethod: string;
     office?: string;
     comment?: string;
 }
@@ -25,13 +29,35 @@ interface CartFormProps {
     order: number;
 }
 
+const getCommonDeliveryMethods = (cart: CartProduct[]): { value: string; label: string }[] => {
+    if (cart.length === 0) return [];
+
+    const deliveryMethods = cart.map(product => product.deliveryMethod).flat();
+    const methodCounts = deliveryMethods.reduce(
+        (acc, method) => {
+            acc[method] = (acc[method] || 0) + 1;
+            return acc;
+        },
+        {} as { [key: string]: number },
+    );
+
+    const commonMethods = Object.keys(methodCounts).filter(
+        method => methodCounts[method] === cart.length,
+    );
+
+    return commonMethods.map(method => ({ value: method, label: method }));
+};
+
 const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
     const { buy } = useProductsStore();
     const cart = useCartStore(state => state.cart);
 
+    const deliveryOptions = getCommonDeliveryMethods(cart);
+
     const {
         handleSubmit,
         control,
+        reset,
         formState: { errors, isValid },
     } = useForm<FormValues>({
         mode: 'onChange',
@@ -44,6 +70,7 @@ const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
             country: '',
             town: '',
             street: '',
+            deliveryMethod: '',
             office: '',
             comment: '',
         },
@@ -63,9 +90,13 @@ const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
                 product.country,
                 product.town,
                 product.street,
+                product.deliveryMethod,
                 product.office,
                 product.comment,
             ),
+        onSuccess: () => {
+            reset();
+        },
     });
 
     const onSubmit = (data: FormValues) => {
@@ -113,10 +144,13 @@ const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
                     control={control}
                     rules={{
                         required: "Обов'язкова поле!",
-                        pattern: { value: /^[0-9]+$/, message: 'Неправильно введений номер' },
+                        pattern: {
+                            value: /^\+\d{1,3}\s?\(?\d{1,4}\)?[\s\d-]{7,}$/,
+                            message: 'Неправильно введений номер',
+                        },
                     }}
                     render={({ field }) => (
-                        <TextFieldInput
+                        <NumberFieldInput
                             label="Номер телефону"
                             value={field.value}
                             onChange={field.onChange}
@@ -227,11 +261,27 @@ const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
                     )}
                 />
                 <Controller
+                    name="deliveryMethod"
+                    control={control}
+                    rules={{ required: 'Оберіть спосіб доставки!' }}
+                    render={({ field }) => (
+                        <SelectInput
+                            label="Спосіб доставки"
+                            value={field.value}
+                            onChange={field.onChange}
+                            options={deliveryOptions}
+                            isPending={isPending}
+                            isError={!!errors.deliveryMethod}
+                            error={errors.deliveryMethod?.message}
+                        />
+                    )}
+                />
+                <Controller
                     name="comment"
                     control={control}
                     render={({ field }) => (
                         <TextAreaInput
-                            label="Додати коментар"
+                            label="Додати коментар (опціонально)"
                             value={field.value || ''}
                             onChange={field.onChange}
                             placeholder="Ваш коментар, уточнення, прохання тощо."
@@ -239,8 +289,14 @@ const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
                     )}
                 />
                 <button className={styles.submit} type="submit" disabled={isPending || !isValid}>
-                    Оформити замовлення
+                    {isPending ? 'Замовлення оформлюється...' : 'Оформити замовлення'}
                 </button>
+                {isSuccess && (
+                    <p className={styles.success}>
+                        Ваше замовлення вже потрапило до нас, ми вам передзвонимо!
+                    </p>
+                )}
+                {isError && <p className={styles.error}>{error.message}</p>}
             </div>
         </form>
     );

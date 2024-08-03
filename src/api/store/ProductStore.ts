@@ -35,6 +35,7 @@ interface ProductStoreTypes {
         country: string,
         town: string,
         street: string,
+        deliveryMethod: string,
         office?: string,
         comment?: string,
     ) => Promise<AxiosResponse<OrderTypes>>;
@@ -100,6 +101,7 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
         country: string,
         town: string,
         street: string,
+        deliveryMethod: string,
         office?: string,
         comment?: string,
     ) => {
@@ -115,6 +117,7 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
                 country,
                 town,
                 street,
+                deliveryMethod,
                 office,
                 comment,
             );

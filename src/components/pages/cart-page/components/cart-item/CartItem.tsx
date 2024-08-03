@@ -43,7 +43,7 @@ const CartItem: FC<CartItemProps> = ({
                     <div className={styles.price}>
                         {priceConvert(
                             (parseFloat(discountPriceCalc(price, discount)) * quantity).toFixed(2),
-                        )}
+                        )}{' '}
                         грн
                     </div>
                 </div>

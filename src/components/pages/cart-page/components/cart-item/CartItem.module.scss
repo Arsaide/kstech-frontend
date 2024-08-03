@@ -16,6 +16,7 @@
 .info {
   display: flex;
   justify-content: space-between;
+  gap: 15px;
   width: 100%;
 }
 
@@ -102,6 +103,46 @@
 }
 
 .price {
+  display: flex;
+  flex: 0 0 auto;
   font-size: 28px;
   font-weight: 700;
+}
+
+@media (max-width: 1140px) {
+  .name {
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 960px) {
+  .name {
+    font-size: 15px;
+  }
+
+  .price {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+@media(max-width: 600px) {
+  .info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 16px;
+    font-weight: 600;
+  }
 }

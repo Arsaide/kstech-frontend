@@ -2,7 +2,7 @@ import { create, StateCreator } from 'zustand';
 import { OneProductTypes } from '@/api/models/ProductsModels';
 import { persist, PersistOptions } from 'zustand/middleware';
 
-type CartProduct = OneProductTypes & {
+export type CartProduct = OneProductTypes & {
     quantity: number;
 };
 

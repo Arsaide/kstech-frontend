@@ -56,6 +56,7 @@ export default class ProductService {
         country: string,
         town: string,
         street: string,
+        deliveryMethod: string,
         office?: string,
         comment?: string,
     ): Promise<AxiosResponse<OrderTypes>> {
@@ -75,6 +76,7 @@ export default class ProductService {
                 country,
                 town,
                 street,
+                deliveryMethod,
                 office,
                 comment,
             },

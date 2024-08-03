@@ -60,4 +60,5 @@ export interface OrderTypes {
     street: string;
     office?: string;
     comment?: string;
+    deliveryMethod: string;
 }

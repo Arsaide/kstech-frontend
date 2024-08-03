@@ -43,3 +43,21 @@
     }
   }
 }
+
+.success {
+  color: var(--green);
+}
+
+.error {
+  color: var(--red);
+}
+
+@media (max-width: 850px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .contact, .pay {
+    padding: 12px;
+  }
+}
