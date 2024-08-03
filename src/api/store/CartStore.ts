@@ -69,7 +69,7 @@ const useCartStore = create<CartState>(
             },
         }),
         {
-            name: 'cart-storage',
+            name: 'cart-menu-page-storage',
         },
     ),
 );

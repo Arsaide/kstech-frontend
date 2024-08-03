@@ -25,7 +25,7 @@ import { useRouter } from 'next/navigation';
 import { useGetCategories } from '@/hooks/queries/use-get-categories/useGetCategories';
 import { useGetSubcategories } from '@/hooks/queries/use-get-subcategories/useGetSubcategories';
 import { useMutateSearch } from '@/hooks/mutations/use-mutate-search/useMutateSearch';
-import Cart from '@/components/layout/nav/header/components/cart/Cart';
+import CartMenu from '@/components/layout/nav/header/components/cart-menu/CartMenu';
 import useCartStore from '@/api/store/CartStore';
 
 interface FieldValue {
@@ -330,7 +330,7 @@ const Header = () => {
                             <Link className={adaptiveStyles.phoneIcon} href={'tel:+380500235030'}>
                                 <PhoneCall color={ColorsEnum.WHITE} size={24} />
                             </Link>
-                            <Link className={adaptiveStyles.cartIcon} href={'/cart'}>
+                            <Link className={adaptiveStyles.cartIcon} href={'/cart-menu-page'}>
                                 <ShoppingCart color={ColorsEnum.WHITE} size={24} />
                             </Link>
                         </div>
@@ -339,7 +339,7 @@ const Header = () => {
             </div>
             <div className={styles.cartMenu}>
                 <div className={styles.cartMenuCnt}>
-                    {isOpenCart && !isOpenCategories && <Cart />}
+                    {isOpenCart && !isOpenCategories && <CartMenu />}
                 </div>
             </div>
             <div

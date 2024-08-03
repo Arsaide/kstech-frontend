@@ -1,12 +1,16 @@
 import React from 'react';
-import styles from './Cart.module.scss';
+import styles from './CartMenu.module.scss';
 import useCartStore from '@/api/store/CartStore';
-import CartProduct from '@/components/layout/nav/header/components/cart/components/cart-product/CartProduct';
-import { calculateTotalPrice } from '@/components/layout/nav/header/components/cart/calculateTotalPrice';
+import CartProduct from '@/components/layout/nav/header/components/cart-menu/components/cart-product/CartProduct';
+import { calculateTotalPrice } from '@/utils/calculateTotalPrice';
 import { priceConvert } from '@/utils/priceConvert';
+import { useRouter } from 'next/navigation';
+import useCategoryStore from '@/api/store/CategoriesStore';
 
-const Cart = () => {
+const CartMenu = () => {
+    const router = useRouter();
     const cart = useCartStore(state => state.cart);
+    const { setIsOpenCart } = useCategoryStore();
     const removeProduct = useCartStore(state => state.removeProduct);
     const increaseQuantity = useCartStore(state => state.increaseQuantity);
     const decreaseQuantity = useCartStore(state => state.decreaseQuantity);
@@ -37,7 +41,14 @@ const Cart = () => {
                     <span>{priceConvert(totalPrice.toFixed(2))} грн</span>
                 </div>
                 <div className={styles.btnCnt}>
-                    <button disabled={cart.length <= 0} className={styles.btn}>
+                    <button
+                        disabled={cart.length <= 0}
+                        className={styles.btn}
+                        onClick={() => {
+                            router.push('/cart');
+                            setIsOpenCart(false);
+                        }}
+                    >
                         {cart.length > 0 ? 'Оформити замовлення' : 'Немає товарів'}
                     </button>
                 </div>
@@ -46,4 +57,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default CartMenu;

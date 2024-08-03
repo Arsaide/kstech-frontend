@@ -60,7 +60,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, link, query }) => {
                         onClick={() => addProduct(product)}
                         className={classNames(styles.buyBtn)}
                     >
-                        {quantity > 0 ? 'Додати ще' : 'Додати в корзину'}
+                        {quantity > 0 ? 'Додати ще' : 'Додати в кошик'}
                     </button>
                 </div>
             )}

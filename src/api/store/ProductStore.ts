@@ -4,6 +4,7 @@ import {
     AllProductResponseModel,
     OneProductResponseModel,
     OneProductTypes,
+    OrderTypes,
 } from '@/api/models/ProductsModels';
 import { AxiosResponse } from 'axios';
 
@@ -23,6 +24,20 @@ interface ProductStoreTypes {
     ) => Promise<AxiosResponse<AllProductResponseModel>>;
     getPopularProducts: (page: number) => Promise<AxiosResponse<AllProductResponseModel>>;
     getProduct: (id: string | null) => Promise<AxiosResponse<OneProductResponseModel>>;
+    buy: (
+        product: OneProductTypes[],
+        order: number,
+        clientName: string,
+        surname: string,
+        number: string,
+        email: string,
+        feedback: boolean,
+        country: string,
+        town: string,
+        street: string,
+        office?: string,
+        comment?: string,
+    ) => Promise<AxiosResponse<OrderTypes>>;
 }
 
 const useProductsStore = create<ProductStoreTypes>(set => ({
@@ -69,6 +84,40 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
     getProduct: async (id: string | null) => {
         try {
             return await ProductService.getProduct(id);
+        } catch (error: any) {
+            throw error;
+        }
+    },
+
+    buy: async (
+        product: OneProductTypes[],
+        order: number,
+        clientName: string,
+        surname: string,
+        number: string,
+        email: string,
+        feedback: boolean,
+        country: string,
+        town: string,
+        street: string,
+        office?: string,
+        comment?: string,
+    ) => {
+        try {
+            return await ProductService.buy(
+                product,
+                order,
+                clientName,
+                surname,
+                number,
+                email,
+                feedback,
+                country,
+                town,
+                street,
+                office,
+                comment,
+            );
         } catch (error: any) {
             throw error;
         }

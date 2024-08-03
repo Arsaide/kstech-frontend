@@ -4,6 +4,7 @@ import {
     AllProductResponseModel,
     OneProductResponseModel,
     OneProductTypes,
+    OrderTypes,
 } from '@/api/models/ProductsModels';
 
 export default class ProductService {
@@ -42,5 +43,43 @@ export default class ProductService {
 
     static async getProduct(id: null | string): Promise<AxiosResponse<OneProductResponseModel>> {
         return $api.get<OneProductResponseModel>(`/products/getone?id=${id}`);
+    }
+
+    static async buy(
+        products: OneProductTypes[],
+        order: number,
+        clientName: string,
+        surname: string,
+        number: string,
+        email: string,
+        feedback: boolean,
+        country: string,
+        town: string,
+        street: string,
+        office?: string,
+        comment?: string,
+    ): Promise<AxiosResponse<OrderTypes>> {
+        const data = {
+            products: products.map(item => ({
+                id: item.id,
+                name: item.name,
+                article: item.article,
+            })),
+            client: {
+                order,
+                clientName,
+                surname,
+                number,
+                email,
+                feedback,
+                country,
+                town,
+                street,
+                office,
+                comment,
+            },
+        };
+
+        return $api.post('/products/buy', data);
     }
 }

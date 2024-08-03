@@ -14,14 +14,14 @@ const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
                 <div className={styles.cartIconCnt}>
                     <img
                         className={styles.cartIcon}
-                        src={'/icons/cart-icon.svg'}
+                        src={'/icons/cart-menu-page-icon.svg'}
                         alt={'Іконка кошику'}
                     />
                 </div>
-                {quantity > 0 ? 'Додати ще' : 'Додати в корзину'}
+                {quantity > 0 ? 'Додати ще' : 'Додати в коршик'}
             </button>
             {quantity > 0 && (
-                <span className={styles.quantity}>В корзині {quantity} шт. товару</span>
+                <span className={styles.quantity}>В кошику {quantity} шт. товару</span>
             )}
         </>
     );

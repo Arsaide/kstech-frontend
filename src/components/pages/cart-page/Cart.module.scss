@@ -1,0 +1,50 @@
+.cnt {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  z-index: 1;
+  width: 100%;
+}
+
+@media(max-width: 860px) {
+  .cnt {
+    padding: 0 10px;
+  }
+}
+
+.content {
+  display: flex;
+  gap: 16px;
+}
+
+.formContent {
+  flex: 1 1 35%;
+  max-width: 515px;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cartContent {
+  flex: 1 1 65%;
+  border: 1px solid var(--black-02);
+  padding: 24px;
+  height: max-content;
+}
+
+.prices {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.sumName {
+  font-size: 28px;
+  font-weight: 700;
+}

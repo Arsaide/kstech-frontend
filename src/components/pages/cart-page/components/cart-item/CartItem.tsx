@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import styles from '@/components/layout/nav/header/components/cart/Cart.module.scss';
+import styles from './CartItem.module.scss';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { priceConvert } from '@/utils/priceConvert';
 import { discountPriceCalc } from '@/utils/discountPriceCalc';
 
-interface CartProductProps {
+interface CartItemProps {
     id: string;
     name: string;
     imgArr: string[];
@@ -16,7 +16,7 @@ interface CartProductProps {
     decreaseQuantity: (id: string) => void;
 }
 
-const CartProduct: FC<CartProductProps> = ({
+const CartItem: FC<CartItemProps> = ({
     id,
     name,
     imgArr,
@@ -34,11 +34,19 @@ const CartProduct: FC<CartProductProps> = ({
                 <div className={styles.imgCnt}>
                     <img
                         src={imgArr[0]}
-                        alt={`Зображення товару ${name} в корзині`}
+                        alt={`Зображення товару ${name} в кошик`}
                         className={styles.img}
                     />
                 </div>
-                <div className={styles.name}>{name}</div>
+                <div className={styles.info}>
+                    <div className={styles.name}>{name}</div>
+                    <div className={styles.price}>
+                        {priceConvert(
+                            (parseFloat(discountPriceCalc(price, discount)) * quantity).toFixed(2),
+                        )}
+                        грн
+                    </div>
+                </div>
             </div>
             <div className={styles.bot}>
                 <div className={styles.tools}>
@@ -59,16 +67,10 @@ const CartProduct: FC<CartProductProps> = ({
                             <Plus size={12} />
                         </button>
                     </div>
-                    <div className={styles.price}>
-                        {priceConvert(
-                            (parseFloat(discountPriceCalc(price, discount)) * quantity).toFixed(2),
-                        )}
-                        грн
-                    </div>
                 </div>
             </div>
         </li>
     );
 };
 
-export default CartProduct;
+export default CartItem;
