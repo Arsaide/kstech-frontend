@@ -4,29 +4,22 @@ import { priceConvert } from '@/utils/priceConvert';
 import { discountPriceCalc } from '@/utils/discountPriceCalc';
 import styles from './ProductCard.module.scss';
 import classNames from 'classnames';
+import useCartStore from '@/api/store/CartStore';
+import { OneProductTypes } from '@/api/models/ProductsModels';
 
 interface ProductCardProps {
-    img: string;
-    name: string;
-    categoryName?: string;
-    price: string;
-    discount: string;
+    product: OneProductTypes;
     link: string;
     query?: string | null;
 }
 
-const ProductCard: FC<ProductCardProps> = ({
-    img,
-    name,
-    categoryName,
-    price,
-    discount,
-    link,
-    query,
-}) => {
+const ProductCard: FC<ProductCardProps> = ({ product, link, query }) => {
+    const addProduct = useCartStore(state => state.addProduct);
+    const getQuantityById = useCartStore(state => state.getQuantityById);
+    const quantity = getQuantityById(product.id);
     const [isHovered, setIsHovered] = useState<boolean>(false);
-    const discountCalc = priceConvert(discountPriceCalc(price, discount));
-    const priceCalc = priceConvert(price);
+    const discountCalc = priceConvert(discountPriceCalc(product.price, product.discount));
+    const priceCalc = priceConvert(product.price);
 
     return (
         <li
@@ -44,14 +37,14 @@ const ProductCard: FC<ProductCardProps> = ({
                 <div className={styles.imgCnt}>
                     <img
                         className={styles.img}
-                        src={img}
-                        alt={`Зображення товару ${name} ${categoryName ? `категорії ${categoryName}` : null}`}
+                        src={product.imgArr[0]}
+                        alt={`Зображення товару ${product.name} ${product.categoryName ? `категорії ${product.categoryName}` : null}`}
                     />
                 </div>
-                <div className={styles.name}>{name}</div>
+                <div className={styles.name}>{product.name}</div>
                 <div className={styles.divider} />
                 <div className={styles.priceCnt}>
-                    {discount != '0' ? (
+                    {product.discount != '0' ? (
                         <>
                             <div className={styles.discount}>{priceCalc} грн</div>
                             <div className={styles.price}>{discountCalc} грн</div>
@@ -63,7 +56,12 @@ const ProductCard: FC<ProductCardProps> = ({
             </Link>
             {isHovered && (
                 <div className={styles.buy}>
-                    <button className={classNames(styles.buyBtn)}>Купити</button>
+                    <button
+                        onClick={() => addProduct(product)}
+                        className={classNames(styles.buyBtn)}
+                    >
+                        {quantity > 0 ? 'Додати ще' : 'Додати в корзину'}
+                    </button>
                 </div>
             )}
         </li>

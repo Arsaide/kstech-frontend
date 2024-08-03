@@ -47,10 +47,7 @@ const PopularProducts = () => {
                     {data?.products.map(product => (
                         <ProductCard
                             key={product.id}
-                            name={product.name}
-                            img={product.imgArr[0]}
-                            price={product.price}
-                            discount={product.discount}
+                            product={product}
                             link={'/catalog/subcatalog/product'}
                             query={product.id}
                         />

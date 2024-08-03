@@ -38,11 +38,7 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
                         .map(product => (
                             <ProductByCategoryCard
                                 key={product.id}
-                                name={product.name}
-                                img={product.imgArr[0]}
-                                categoryName={categoryName}
-                                price={product.price}
-                                discount={product.discount}
+                                product={product}
                                 link={'/catalog/subcatalog/product'}
                                 query={product.id}
                             />
