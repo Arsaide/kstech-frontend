@@ -1,5 +1,7 @@
 .wrapper {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .disabled {
@@ -12,11 +14,13 @@
   font-weight: bold;
 }
 
-.input {
+.textarea {
   width: 100%;
   padding: 10px;
+  min-height: 125px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  resize: vertical; // Добавлено для возможности изменения размера по вертикали
 }
 
 .pending {

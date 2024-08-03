@@ -12,7 +12,6 @@ interface TextFieldInputProps {
     error?: string;
     disabled?: boolean;
     placeholder?: string;
-    hint?: string;
 }
 
 const TextFieldInput: FC<TextFieldInputProps> = ({
@@ -25,7 +24,6 @@ const TextFieldInput: FC<TextFieldInputProps> = ({
     error = '',
     disabled = false,
     placeholder = '',
-    hint = '',
 }) => {
     const inputClass = classNames(styles.input, {
         [styles.pending]: isPending,
@@ -45,7 +43,6 @@ const TextFieldInput: FC<TextFieldInputProps> = ({
                 placeholder={placeholder}
             />
             {isError && error && <span className={styles.errMsh}>{error}</span>}
-            {hint && <span className={styles.hint}>{hint}</span>}
         </div>
     );
 };

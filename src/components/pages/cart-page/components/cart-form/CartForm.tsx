@@ -6,6 +6,7 @@ import useProductsStore from '@/api/store/ProductStore';
 import useCartStore from '@/api/store/CartStore';
 import TextFieldInput from '@/components/ui/inputs/text-field-input/TextFieldInput';
 import ToggleSwitchInput from '@/components/ui/inputs/toggle-switch-input/ToggleSwitchInput';
+import TextAreaInput from '@/components/ui/inputs/text-area-input/TextAreaInput';
 
 interface FormValues {
     name: string;
@@ -229,13 +230,10 @@ const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
                     name="comment"
                     control={control}
                     render={({ field }) => (
-                        <TextFieldInput
+                        <TextAreaInput
                             label="Додати коментар"
                             value={field.value || ''}
                             onChange={field.onChange}
-                            isPending={isPending}
-                            isError={!!errors.comment}
-                            error={errors.comment?.message}
                             placeholder="Ваш коментар, уточнення, прохання тощо."
                         />
                     )}
