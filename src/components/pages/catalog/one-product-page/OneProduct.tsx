@@ -21,7 +21,6 @@ import CharacteristicsSection from '@/components/pages/catalog/one-product-page/
 import DescriptionSection from '@/components/pages/catalog/one-product-page/components/sections/description-section/DescriptionSection';
 import ProductSkeletonPage from '@/components/pages/catalog/one-product-page/product-skeleton-page/ProductSkeletonPage';
 import useCartStore from '@/api/store/CartStore';
-import { OneProductTypes } from '@/api/models/ProductsModels';
 import AddToCartBtn from '@/components/pages/catalog/one-product-page/components/add-to-cart-btn/AddToCartBtn';
 
 const OneProduct = () => {

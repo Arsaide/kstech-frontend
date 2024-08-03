@@ -1,0 +1,161 @@
+.content {
+  width: 460px;
+  padding: 24px;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  background-color: var(--white);
+  margin-right: 20px;
+  border: 1px solid var(--black-02);
+  box-shadow: 0 0 9.8px 0 var(--black-02);
+}
+
+.cnt {
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.item {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--black-02);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.name {
+  font-size: var(--fz-text14);
+  font-weight: 600;
+}
+
+.imgCnt {
+  min-width: 74px;
+  cursor: pointer;
+}
+
+.img {
+  width: 100%;
+  max-height: 56px;
+  height: 100%;
+  object-fit: contain;
+}
+
+.icon {
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  transition: background-color .2s ease-out 0s;
+  border-radius: 100vmax;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--white);
+  }
+}
+
+.bot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tools {
+  display: flex;
+  justify-content: space-between;
+  max-width: 250px;
+  width: 100%;
+}
+
+.counter {
+  display: flex;
+}
+
+.countBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 26px;
+  min-height: 26px;
+  border: 1px solid var(--black-02);
+  cursor: pointer;
+  transition: background-color .2s ease-out 0s;
+
+  &:hover {
+    background-color: var(--black-005);
+  }
+
+
+  &:disabled {
+    cursor: default;
+
+    &:hover {
+      background-color: var(--white);
+    }
+  }
+}
+
+.quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--black-02);
+  border-bottom: 1px solid var(--black-02);
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 40px;
+  min-height: 26px;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 24px 0;
+}
+
+.btnCnt {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  background-color: var(--black);
+  border-radius: 4px;
+  padding: 14px 40px;
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color .2s ease-out 0s, transform .1s ease-in-out;
+
+  &:hover {
+    background-color: var(--black-08);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: .6;
+    cursor: default;
+
+    &:hover {
+      background-color: var(--black);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
+}

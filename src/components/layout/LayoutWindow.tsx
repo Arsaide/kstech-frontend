@@ -10,12 +10,15 @@ interface LayoutWindowProps {
 }
 
 const LayoutWindow: FC<LayoutWindowProps> = ({ children }) => {
-    const { isOpenCategories, setIsOpenCategories } = useCategoryStore();
+    const { isOpenCategories, setIsOpenCategories, setIsOpenCart, isOpenCart } = useCategoryStore();
 
     return (
         <div
-            className={classNames('wrapper', { ['open']: isOpenCategories })}
-            onClick={() => setIsOpenCategories(false)}
+            className={classNames('wrapper', { ['open']: isOpenCart })}
+            onClick={() => {
+                if (isOpenCategories) setIsOpenCategories(false);
+                if (isOpenCart) setIsOpenCart(false);
+            }}
         >
             {isOpenCategories && <div className={'overlay'} />}
             <Header />

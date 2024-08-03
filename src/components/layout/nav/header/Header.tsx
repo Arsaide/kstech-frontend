@@ -5,7 +5,7 @@ import Categories from '@/components/layout/nav/header/components/categories/Cat
 import useCategoryStore from '@/api/store/CategoriesStore';
 import styles from './Header.module.scss';
 import adaptiveStyles from './AdaptiveHeader.module.scss';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import categoriesStyle from '@/components/layout/nav/header/components/categories/Categories.module.scss';
 import classNames from 'classnames';
 import {
@@ -20,12 +20,12 @@ import {
 } from 'lucide-react';
 import { ColorsEnum } from '@/utils/enums/ColorEnums';
 import { Controller, useForm } from 'react-hook-form';
-import useProductsStore from '@/api/store/ProductStore';
 import { navMenu } from '@/components/layout/nav';
 import { useRouter } from 'next/navigation';
 import { useGetCategories } from '@/hooks/queries/use-get-categories/useGetCategories';
 import { useGetSubcategories } from '@/hooks/queries/use-get-subcategories/useGetSubcategories';
 import { useMutateSearch } from '@/hooks/mutations/use-mutate-search/useMutateSearch';
+import Cart from '@/components/layout/nav/header/components/cart/Cart';
 
 interface FieldValue {
     search: string;
@@ -34,10 +34,18 @@ interface FieldValue {
 const Header = () => {
     const router = useRouter();
     const queryClient = useQueryClient();
-    const { categoryId, isOpenCategories, setIsOpenCategories, setCategoryId } = useCategoryStore();
+    const {
+        categoryId,
+        isOpenCategories,
+        setIsOpenCategories,
+        setCategoryId,
+        setIsOpenCart,
+        isOpenCart,
+    } = useCategoryStore();
     const [loadingCategoryId, setLoadingCategoryId] = useState<string | null>(null);
     const [isVisibleSearchInput, setIsVisibleSearchInput] = useState<boolean>(false);
     const [isVisibleSubcategories, setIsVisibleSubcategories] = useState<boolean>(false);
+    const [isVisibleCart, setIsVisibleCart] = useState<boolean>(false);
     const [searchProductInput, setSearchProductInput] = useState<string>('');
     const { handleSubmit, control } = useForm<FieldValue>();
 
@@ -45,7 +53,7 @@ const Header = () => {
 
     const { data: subcategoriesData, isSuccess } = useGetSubcategories(categoryId);
 
-    const { mutate, isPending } = useMutateSearch(searchProductInput);
+    const { mutate, isPending } = useMutateSearch(searchProductInput, 1);
 
     useEffect(() => {
         if (isSuccess) setLoadingCategoryId(null);
@@ -139,7 +147,16 @@ const Header = () => {
                         </button>
                     </form>
                     <div className={styles.cart}>
-                        <button className={styles.cartBtn}>
+                        <button
+                            className={styles.cartBtn}
+                            onClick={() => {
+                                setIsVisibleCart(!isVisibleCart);
+                                setIsOpenCart(!isOpenCart);
+                                console.log(isOpenCart);
+                                setIsOpenCategories(false);
+                                setIsVisibleSubcategories(false);
+                            }}
+                        >
                             <div className={styles.cartIconCnt}>
                                 <img
                                     className={styles.cartIcon}
@@ -194,6 +211,7 @@ const Header = () => {
                     )}
                     {categoryId &&
                     isOpenCategories &&
+                    isVisibleSubcategories &&
                     subcategoriesData &&
                     subcategoriesData?.length > 0 ? (
                         <div className={styles.subcategories}>
@@ -316,6 +334,11 @@ const Header = () => {
                         </div>
                     </>
                 )}
+            </div>
+            <div className={styles.cartMenu}>
+                <div className={styles.cartMenuCnt}>
+                    {isVisibleCart && !isOpenCategories && <Cart />}
+                </div>
             </div>
             <div
                 className={classNames(adaptiveStyles.menu, {

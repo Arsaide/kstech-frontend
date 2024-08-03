@@ -8,7 +8,9 @@ interface CategoryStoreTypes {
     categoryId: string | null;
     setCategoryId: (categoryId: string | null) => void;
     isOpenCategories: boolean;
+    isOpenCart: boolean;
     setIsOpenCategories: (isOpenCategories: SetStateAction<boolean>) => void;
+    setIsOpenCart: (isOpenCart: SetStateAction<boolean>) => void;
     categories: CategoryResponseModel[] | null;
     getCategories: () => Promise<AxiosResponse<CategoryResponseModel[]>>;
     getOneCategory: (id: string | null) => Promise<AxiosResponse<GetOneCategoryResponseModel>>;
@@ -26,6 +28,13 @@ const useCategoryStore = create<CategoryStoreTypes>(set => ({
                 typeof isOpenCategories === 'function'
                     ? isOpenCategories(state.isOpenCategories)
                     : isOpenCategories,
+        })),
+
+    isOpenCart: true,
+    setIsOpenCart: isOpenCart =>
+        set(state => ({
+            isOpenCategories:
+                typeof isOpenCart === 'function' ? isOpenCart(state.isOpenCategories) : isOpenCart,
         })),
 
     getCategories: async () => {
