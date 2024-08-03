@@ -26,6 +26,7 @@ import { useGetCategories } from '@/hooks/queries/use-get-categories/useGetCateg
 import { useGetSubcategories } from '@/hooks/queries/use-get-subcategories/useGetSubcategories';
 import { useMutateSearch } from '@/hooks/mutations/use-mutate-search/useMutateSearch';
 import Cart from '@/components/layout/nav/header/components/cart/Cart';
+import useCartStore from '@/api/store/CartStore';
 
 interface FieldValue {
     search: string;
@@ -42,10 +43,10 @@ const Header = () => {
         setIsOpenCart,
         isOpenCart,
     } = useCategoryStore();
+    const cart = useCartStore(state => state.cart);
     const [loadingCategoryId, setLoadingCategoryId] = useState<string | null>(null);
     const [isVisibleSearchInput, setIsVisibleSearchInput] = useState<boolean>(false);
     const [isVisibleSubcategories, setIsVisibleSubcategories] = useState<boolean>(false);
-    const [isVisibleCart, setIsVisibleCart] = useState<boolean>(false);
     const [searchProductInput, setSearchProductInput] = useState<string>('');
     const { handleSubmit, control } = useForm<FieldValue>();
 
@@ -161,6 +162,7 @@ const Header = () => {
                                     src={'/icons/cart-icon.svg'}
                                     alt={'Іконка кошику'}
                                 />
+                                <span className={styles.cartQuantity}>{cart.length}</span>
                             </div>
                             Кошик
                         </button>
