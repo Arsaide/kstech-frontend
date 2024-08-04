@@ -10,6 +10,7 @@ import TextAreaInput from '@/components/ui/inputs/text-area-input/TextAreaInput'
 import SelectInput from '@/components/ui/inputs/select-input/SelectInput';
 import { OneProductResponseModel } from '@/api/models/ProductsModels';
 import NumberFieldInput from '@/components/ui/inputs/number-field-input/NumberFieldInput';
+import { getDeliveryMethods } from '@/utils/getDeliveryMethods';
 
 interface FormValues {
     name: string;
@@ -29,30 +30,11 @@ interface CartFormProps {
     order: number;
 }
 
-const getCommonDeliveryMethods = (cart: CartProduct[]): { value: string; label: string }[] => {
-    if (cart.length === 0) return [];
-
-    const deliveryMethods = cart.map(product => product.deliveryMethod).flat();
-    const methodCounts = deliveryMethods.reduce(
-        (acc, method) => {
-            acc[method] = (acc[method] || 0) + 1;
-            return acc;
-        },
-        {} as { [key: string]: number },
-    );
-
-    const commonMethods = Object.keys(methodCounts).filter(
-        method => methodCounts[method] === cart.length,
-    );
-
-    return commonMethods.map(method => ({ value: method, label: method }));
-};
-
 const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
     const { buy } = useProductsStore();
     const cart = useCartStore(state => state.cart);
 
-    const deliveryOptions = getCommonDeliveryMethods(cart);
+    const deliveryOptions = getDeliveryMethods(cart);
 
     const {
         handleSubmit,
