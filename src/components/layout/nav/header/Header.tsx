@@ -1,5 +1,5 @@
 'use client';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Categories from '@/components/layout/nav/header/components/categories/Categories';
 import useCategoryStore from '@/api/store/CategoriesStore';
@@ -49,6 +49,7 @@ const Header = () => {
     const [isVisibleSubcategories, setIsVisibleSubcategories] = useState<boolean>(false);
     const [searchProductInput, setSearchProductInput] = useState<string>('');
     const { handleSubmit, control } = useForm<FieldValue>();
+    const headerRef = useRef<HTMLElement | null>(null);
 
     const { data: categoriesData, isLoading: isCategoriesLoading } = useGetCategories();
 
@@ -72,11 +73,14 @@ const Header = () => {
     useEffect(() => {
         if (isOpenCategories || isOpenCart) {
             document.body.classList.add('no-scroll');
+            headerRef.current?.classList.add('openMenu');
         } else {
             document.body.classList.remove('no-scroll');
+            headerRef.current?.classList.remove('openMenu');
         }
         return () => {
             document.body.classList.remove('no-scroll');
+            headerRef.current?.classList.remove('openMenu');
         };
     }, [isOpenCategories, isOpenCart]);
 
@@ -86,7 +90,7 @@ const Header = () => {
     };
 
     return (
-        <header className={styles.header} onClick={e => e.stopPropagation()}>
+        <header ref={headerRef} className={styles.header} onClick={e => e.stopPropagation()}>
             <div className={styles.headerCnt}>
                 <nav className={styles.nav}>
                     <div className={styles.logoCnt}>

@@ -139,8 +139,8 @@ select {
   opacity: 1;
 }
 
-.main {
-  flex: 1 1 auto;
+.openMenu {
+  padding-right: 10px;
 }
 
 .no-scroll {
@@ -154,6 +154,10 @@ select {
   }
   .no-scroll {
     margin: 0;
+  }
+
+  .openMenu {
+    padding-right: 0;
   }
 }
 //
