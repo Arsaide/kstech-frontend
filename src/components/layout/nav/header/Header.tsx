@@ -84,6 +84,10 @@ const Header = () => {
         };
     }, [isOpenCategories, isOpenCart]);
 
+    useEffect(() => {
+        if (isOpenCategories) setIsVisibleSubcategories(false);
+    }, [isOpenCategories]);
+
     const onSubmit = () => {
         mutate(searchProductInput);
         router.push(`/search?req=${encodeURIComponent(searchProductInput)}`);
@@ -396,10 +400,14 @@ const Header = () => {
                             <li key={item.id} className={adaptiveStyles.listItem}>
                                 <Link
                                     href={{
-                                        pathname: `/catalog/subcatalog/products`,
-                                        query: { id: item.id },
+                                        pathname: `/catalog/subcatalog`,
+                                        query: { category: item.id },
                                     }}
                                     className={adaptiveStyles.listCnt}
+                                    onClick={() => {
+                                        setIsOpenCategories(false);
+                                        setIsVisibleSubcategories(false);
+                                    }}
                                 >
                                     <div className={adaptiveStyles.imgIcon}>
                                         <img

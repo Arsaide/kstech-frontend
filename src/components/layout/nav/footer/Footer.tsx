@@ -53,11 +53,13 @@ const Footer = () => {
                     <ul className={styles.socNetworksList}>
                         {socialNetworksList.map((item, index) => (
                             <li key={index} className={styles.socNetworksItem}>
-                                <img
-                                    className={styles.icon}
-                                    src={item.icon}
-                                    alt={`Логотип соціальної мережі - ${item.name}`}
-                                />
+                                <a href={item.link} target={'_blank'}>
+                                    <img
+                                        className={styles.icon}
+                                        src={item.icon}
+                                        alt={`Логотип соціальної мережі - ${item.name}`}
+                                    />
+                                </a>
                             </li>
                         ))}
                     </ul>

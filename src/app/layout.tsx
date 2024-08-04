@@ -24,20 +24,20 @@ export const metadata: Metadata = {
         'автоматизоване виробництво, буржуйки, котли, пічки, мангал, обладнання для сільського господарства, ' +
         'генератори, вироби з металу.',
     openGraph: {
-        title: 'KS Tech - головна',
+        title: 'KS TECH - Високоякісні модульні будинки, каркаси та вироби з металу ',
         description:
-            'KS TECH пропонує металеві каркаси, модульні будинки, офіси, ' +
-            "кав'ярні, приміщення для охорони, буржуйки, котли, пічки, " +
-            'обладнання для сільського господарства, генератори та інші ' +
-            'вироби з металу. Забезпечуємо швидке та надійне будівництво ' +
-            'з використанням новітніх технологій.',
+            'KS TECH пропонує модульні будинки, ' +
+            "металеві каркаси, офіси, кав'ярні, охоронні " +
+            'приміщення, буржуйки, котли, обладнання для сільського ' +
+            'господарства та вироби з металу. Забезпечуємо швидке ' +
+            'та надійне будівництво з новітніми технологіями.',
         url: 'https://kstech-frontend.vercel.app',
         siteName: 'KS Tech',
         images: [
             {
-                url: 'https://www.google.com.ua/url?sa=i&url=https%3A%2F%2Fkartinki.pics%2F72613-kartinki-na-fon.html&psig=AOvVaw3Vm9BxS_y5ZbJJR5fZNEnL&ust=1722865829171000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCjxr-924cDFQAAAAAdAAAAABAE',
-                width: 800,
-                height: 600,
+                url: 'https://kstech-frontend.vercel.app/preview.jpg',
+                width: 640,
+                height: 336,
                 alt: 'KS Tech Image',
             },
         ],
@@ -79,7 +79,6 @@ export default function RootLayout({
                     src="https://www.facebook.com/tr?id=426341290433714&ev=PageView&noscript=1"
                 />
             </noscript>
-            <head></head>
             <body className={gilroy.className}>
                 <ReactQueryClientProvider>
                     <LayoutWindow>{children}</LayoutWindow>
