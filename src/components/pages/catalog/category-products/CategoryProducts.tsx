@@ -52,8 +52,7 @@ const CategoryProducts = () => {
                                 <ProductCard
                                     key={product.id}
                                     product={product}
-                                    link={'/catalog/subcatalog/product'}
-                                    query={product.id}
+                                    link={`/catalog/subcatalog/${product.id}`}
                                 />
                             ))}
                         </ul>

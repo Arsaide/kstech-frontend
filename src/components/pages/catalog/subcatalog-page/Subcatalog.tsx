@@ -1,10 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useGetOneCategory } from '@/hooks/queries/use-get-one-category/useGetOneCategory';
 import styles from '@/components/pages/catalog/Catalog.module.scss';
 import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
-import CatalogListSkeleton from '@/components/pages/main-page/components/sections/catalog-list/catalog-list-skeleton/CatalogListSkeleton';
 import Link from 'next/link';
 import CatalogSkeleton from '@/components/pages/catalog/components/catalog-skeleton/CatalogSkeleton';
 

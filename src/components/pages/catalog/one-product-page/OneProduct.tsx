@@ -1,7 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useGetProduct } from '@/hooks/queries/use-get-product/useGetProduct';
-import { useSearchParams } from 'next/navigation';
 import Breadcrumbs from '@/components/layout/nav/breadcrubms/Breadcrumbs';
 import styles from './OneProduct.module.scss';
 import './productSwiper.css';
@@ -20,26 +19,15 @@ import PopularProductSection from '@/components/pages/catalog/one-product-page/c
 import CharacteristicsSection from '@/components/pages/catalog/one-product-page/components/sections/characteristics-section/CharacteristicsSection';
 import DescriptionSection from '@/components/pages/catalog/one-product-page/components/sections/description-section/DescriptionSection';
 import ProductSkeletonPage from '@/components/pages/catalog/one-product-page/product-skeleton-page/ProductSkeletonPage';
-import useCartStore from '@/api/store/CartStore';
 import AddToCartBtn from '@/components/pages/catalog/one-product-page/components/add-to-cart-btn/AddToCartBtn';
 
-const OneProduct = () => {
-    const searchParams = useSearchParams();
-    const id = searchParams.get('id');
+interface OneProductProps {
+    id: string;
+}
+
+const OneProduct: FC<OneProductProps> = ({ id }) => {
     const { data, isLoading, isError } = useGetProduct(id);
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
-
-    const cart = useCartStore(state => state.cart);
-
-    useEffect(() => {
-        console.log('Cart:', cart);
-    }, [cart]);
-
-    useEffect(() => {
-        if (id) {
-            setThumbsSwiper(null);
-        }
-    }, [id]);
 
     useEffect(() => {
         if (thumbsSwiper) {

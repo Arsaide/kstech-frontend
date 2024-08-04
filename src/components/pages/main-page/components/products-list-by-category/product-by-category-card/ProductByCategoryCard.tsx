@@ -10,10 +10,9 @@ import { OneProductTypes } from '@/api/models/ProductsModels';
 interface ProductByCategoryCardProps {
     product: OneProductTypes;
     link: string;
-    query?: string | null;
 }
 
-const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({ product, link, query }) => {
+const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({ product, link }) => {
     const addProduct = useCartStore(state => state.addProduct);
     const getQuantityById = useCartStore(state => state.getQuantityById);
     const quantity = getQuantityById(product.id);
@@ -27,13 +26,7 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({ product, link, 
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <Link
-                href={{
-                    pathname: link,
-                    query: { id: query },
-                }}
-                className={styles.link}
-            >
+            <Link href={link} className={styles.link}>
                 <div className={styles.imgCnt}>
                     <img
                         className={styles.img}

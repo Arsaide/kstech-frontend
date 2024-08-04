@@ -1,24 +1,28 @@
 import React from 'react';
-import Subcatalog from '@/components/pages/catalog/subcatalog-page/Subcatalog';
-import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
+import OneProduct from '@/components/pages/catalog/one-product-page/OneProduct';
+import ProductService from '@/api/services/ProductService';
 
-interface GenerateMetadataProps {
-    searchParams: { category?: string };
-}
+type Props = {
+    params: { id: string };
+};
 
-export async function generateMetadata({ searchParams }: GenerateMetadataProps): Promise<Metadata> {
-    const categoryId = searchParams?.category;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { id } = params;
+
+    const product = await ProductService.getProduct(id);
 
     return {
-        title: `KS Tech - Категорії`,
+        title: product.data.product.name,
         description:
-            'Перегляньте категорії каталогу в магазині KS TECH. Ми пропонуємо різноманітні товари: металеві каркаси, ' +
+            `Перегляньте наш товар ${product.data.product.name}, каталогу ${product.data.product.categoryName} та 
+             категорії ${product.data.product.subcategoryName} в магазині KS TECH. Ми пропонуємо вам різноманітні товари: металеві каркаси, ` +
             "модульні будинки, офіси, кав'ярні, приміщення для охорони, буржуйки, котли, пічки, обладнання для сільського господарства, " +
             'генератори та інші вироби з металу.',
         keywords: [
-            'категорії каталогу',
-            'категорії товарів',
+            `${product.data.product.name}`,
+            `${product.data.product.categoryName}`,
+            `${product.data.product.subcategoryName}`,
             'KS TECH',
             'металеві каркаси',
             'модульні будинки',
@@ -33,19 +37,20 @@ export async function generateMetadata({ searchParams }: GenerateMetadataProps):
             'вироби з металу',
         ],
         openGraph: {
-            title: 'KS Tech - Категорії каталогу',
+            title: `KS Tech товар - ${product.data.product.name}`,
             description:
-                'Перегляньте категорії каталогу в магазині KS TECH. Ми пропонуємо різноманітні товари: металеві каркаси, ' +
+                `Перегляньте наш товар ${product.data.product.name}, каталогу ${product.data.product.categoryName} та 
+             категорії ${product.data.product.subcategoryName} в магазині KS TECH. Ми пропонуємо вам різноманітні товари: металеві каркаси, ` +
                 "модульні будинки, офіси, кав'ярні, приміщення для охорони, буржуйки, котли, пічки, обладнання для сільського господарства, " +
                 'генератори та інші вироби з металу.',
-            url: `https://kstech-frontend.vercel.app/catalog/subcatalog?category=${categoryId}`,
+            url: `https://kstech-frontend.vercel.app/catalog/subcatalog/${id}`,
             siteName: 'KS Tech',
             images: [
                 {
                     url: 'https://kstech-frontend.vercel.app/preview.jpg',
                     width: 640,
                     height: 336,
-                    alt: 'Категорії каталогу KS Tech',
+                    alt: `Товар ${product.data.product.name}. KS Tech`,
                 },
             ],
             locale: 'uk-UA',
@@ -54,16 +59,12 @@ export async function generateMetadata({ searchParams }: GenerateMetadataProps):
     };
 }
 
-const DynamicSubcatalog = dynamic(() => Promise.resolve(Subcatalog), {
-    ssr: false,
-});
-
-const SubcatalogPage = () => {
+const ProductPage = ({ params: { id } }: Props) => {
     return (
         <>
-            <DynamicSubcatalog />
+            <OneProduct id={id} />
         </>
     );
 };
 
-export default SubcatalogPage;
+export default ProductPage;

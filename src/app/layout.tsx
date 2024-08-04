@@ -11,7 +11,7 @@ import ReactQueryClientProvider from '@/providers/react-query-client-provider/Re
 import LayoutWindow from '@/components/layout/LayoutWindow';
 
 export const metadata: Metadata = {
-    title: 'KS Tech - головна',
+    title: 'KS Tech - Головна',
     description:
         "KS TECH пропонує металеві каркаси, модульні будинки, офіси, кав'ярні, приміщення для " +
         'охорони, буржуйки, котли, пічки, обладнання для сільського господарства, генератори ' +
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'KS TECH - Високоякісні модульні будинки, каркаси та вироби з металу ',
         description:
-            'KS TECH пропонує модульні будинки, ' +
+            'Ми пропонуємо модульні будинки, ' +
             "металеві каркаси, офіси, кав'ярні, охоронні " +
             'приміщення, буржуйки, котли, обладнання для сільського ' +
             'господарства та вироби з металу. Забезпечуємо швидке ' +
