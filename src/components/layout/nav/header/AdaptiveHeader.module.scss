@@ -188,6 +188,29 @@
   }
 }
 
+.cartIcon {
+  position: relative;
+}
+
+.cartQuantity {
+  position: absolute;
+  left: 2px;
+  bottom: 0;
+  background-color: var(--green);
+  color: var(--white);
+  max-width: 18px;
+  min-width: 18px;
+  width: 100%;
+  max-height: 18px;
+  min-height: 18px;
+  height: 100%;
+  border-radius: 100vmax;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 @keyframes spin {
   from {

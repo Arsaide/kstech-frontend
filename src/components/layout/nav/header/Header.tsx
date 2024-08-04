@@ -336,6 +336,11 @@ const Header = () => {
                             </Link>
                             <Link className={adaptiveStyles.cartIcon} href={'/cart'}>
                                 <ShoppingCart color={ColorsEnum.WHITE} size={24} />
+                                {cart.length > 0 && (
+                                    <span className={adaptiveStyles.cartQuantity}>
+                                        {cart.length}
+                                    </span>
+                                )}
                             </Link>
                         </div>
                     </>
