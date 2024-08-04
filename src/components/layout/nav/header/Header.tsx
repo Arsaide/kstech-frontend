@@ -406,7 +406,6 @@ const Header = () => {
                                     className={adaptiveStyles.listCnt}
                                     onClick={() => {
                                         setIsOpenCategories(false);
-                                        setIsVisibleSubcategories(false);
                                     }}
                                 >
                                     <div className={adaptiveStyles.imgIcon}>
