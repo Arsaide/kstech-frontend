@@ -58,18 +58,10 @@
   }
 }
 
-.menuList {
+.menuList, .list {
   display: flex;
   flex-direction: column;
-  padding: 5px 0 5px 10px;
-  max-height: max-content;
-  margin-bottom: 5px;
-}
-
-.list {
-  margin-top: 10px;
-  padding-left: 10px;
-  padding-bottom: 56px;
+  padding: 5px 0 5px 20px;
 }
 
 .listItem {
