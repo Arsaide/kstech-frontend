@@ -26,6 +26,7 @@ const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
                 onClick={() => {
                     addProduct(product);
                 }}
+                disabled={quantity >= 50}
             >
                 <div className={styles.cartIconCnt}>
                     <img

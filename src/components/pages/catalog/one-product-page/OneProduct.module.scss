@@ -101,6 +101,20 @@
   &:active {
     transform: scale(0.98);
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: var(--black);
+
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
 }
 
 .quantity {
