@@ -230,6 +230,10 @@ const Header = () => {
                                                 query: { id: item.id },
                                             }}
                                             className={styles.subcategoryItem}
+                                            onClick={() => {
+                                                setIsOpenCategories(false);
+                                                setIsVisibleSubcategories(false);
+                                            }}
                                         >
                                             <img src={item.iconImg} alt={item.subcategory} />
                                             {item.subcategory}
