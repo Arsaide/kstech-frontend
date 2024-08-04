@@ -3,6 +3,7 @@ import styles from './CartItem.module.scss';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { priceConvert } from '@/utils/priceConvert';
 import { discountPriceCalc } from '@/utils/discountPriceCalc';
+import { useRouter } from 'next/navigation';
 
 interface CartItemProps {
     id: string;
@@ -27,11 +28,16 @@ const CartItem: FC<CartItemProps> = ({
     increaseQuantity,
     decreaseQuantity,
 }) => {
+    const router = useRouter();
+
     return (
         <li className={styles.item}>
             <div className={styles.top}>
                 <Trash2 className={styles.icon} onClick={() => removeProduct(id)} />
-                <div className={styles.imgCnt}>
+                <div
+                    className={styles.imgCnt}
+                    onClick={() => router.push(`/catalog/subcatalog/product?id=${id}`)}
+                >
                     <img
                         src={imgArr[0]}
                         alt={`Зображення товару ${name} в кошик`}
