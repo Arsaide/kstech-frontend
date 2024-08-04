@@ -134,6 +134,17 @@ select {
   transition: opacity .1s ease-out;
 }
 
+main {
+  flex: 1 1 auto;
+  margin-top: 130px;
+}
+
+@media (max-width: 900px) {
+  main {
+    margin-top: auto;
+  }
+}
+
 .wrapper.open .overlay {
   pointer-events: auto;
   opacity: 1;
