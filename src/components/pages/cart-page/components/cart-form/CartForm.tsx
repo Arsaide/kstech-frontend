@@ -245,7 +245,7 @@ const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
                 <Controller
                     name="deliveryMethod"
                     control={control}
-                    rules={{ required: 'Оберіть спосіб доставки!' }}
+                    rules={{ required: "Обов'язкова поле!" }}
                     render={({ field }) => (
                         <SelectInput
                             label="Спосіб доставки"
@@ -255,6 +255,7 @@ const CartForm: FC<CartFormProps> = ({ order = 0 }) => {
                             isPending={isPending}
                             isError={!!errors.deliveryMethod}
                             error={errors.deliveryMethod?.message}
+                            placeholder={'Оберіть спосіб доставки'}
                         />
                     )}
                 />
