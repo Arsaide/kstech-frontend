@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { OneProductTypes } from '@/api/models/ProductsModels';
 import useCartStore from '@/api/store/CartStore';
 import styles from '@/components/pages/catalog/one-product-page/OneProduct.module.scss';
@@ -6,11 +6,27 @@ import styles from '@/components/pages/catalog/one-product-page/OneProduct.modul
 const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
     const addProduct = useCartStore(state => state.addProduct);
     const getQuantityById = useCartStore(state => state.getQuantityById);
-    const quantity = getQuantityById(product.id);
+
+    const [quantity, setQuantity] = useState(getQuantityById(product.id));
+
+    useEffect(() => {
+        const unsubscribe = useCartStore.subscribe(() => {
+            setQuantity(getQuantityById(product.id));
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, [getQuantityById, product.id]);
 
     return (
         <>
-            <button className={styles.buyBtn} onClick={() => addProduct(product)}>
+            <button
+                className={styles.buyBtn}
+                onClick={() => {
+                    addProduct(product);
+                }}
+            >
                 <div className={styles.cartIconCnt}>
                     <img
                         className={styles.cartIcon}
