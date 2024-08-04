@@ -14,7 +14,7 @@ const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
                 <div className={styles.cartIconCnt}>
                     <img
                         className={styles.cartIcon}
-                        src={'/icons/cart-menu-page-icon.svg'}
+                        src={'/icons/cart-icon.svg'}
                         alt={'Іконка кошику'}
                     />
                 </div>

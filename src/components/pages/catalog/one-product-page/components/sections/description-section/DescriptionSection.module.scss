@@ -9,9 +9,28 @@
 }
 
 .content {
-  font-family: '__gilroy_804c9e', '__gilroy_Fallback_804c9e' !important;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 
   h1:empty, h2:empty, h3:empty, h4:empty, h5:empty, h6:empty ,p:empty {
     height: 20px;
+  }
+}
+
+.content iframe {
+  max-width: 100%;
+  display: block;
+}
+
+@media(max-width: 600px) {
+  .content iframe {
+    height: 300px;
+  }
+}
+
+@media(max-width: 429px) {
+  .content iframe {
+    height: 250px;
   }
 }
