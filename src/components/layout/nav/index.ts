@@ -67,7 +67,7 @@ export const socialNetworksList = [
     },
     {
         name: 'viber',
-        link: '/',
+        link: 'https://invite.viber.com/?g2=AQBK2%2BX%2FNsFMLVNHIrtjqRydIjPBexo7WIDE8sXhofMmzHkjB0JG6su7JSNQbgJq',
         icon: '/social-networks/viber.svg',
     },
 ];

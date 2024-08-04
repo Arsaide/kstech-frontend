@@ -38,6 +38,23 @@
   }
 }
 
+.link {
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media(max-width: 700px) {
+  .socNetworksItem {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 .accordion {
   position: relative;
   display: none;

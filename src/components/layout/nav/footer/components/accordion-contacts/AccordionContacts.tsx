@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import styles from './AccordionContacts.module.scss';
 import { contactsList, socialNetworksList } from '@/components/layout/nav';
+import Link from 'next/link';
 
 const AccordionContacts = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -27,11 +28,13 @@ const AccordionContacts = () => {
                 <ul className={styles.socNetworksList}>
                     {socialNetworksList.map((item, index) => (
                         <li key={index} className={styles.socNetworksItem}>
-                            <img
-                                className={styles.icon}
-                                src={item.icon}
-                                alt={`Логотип соціальної мережі - ${item.name}`}
-                            />
+                            <Link href={item.link} target={'_blank'} className={styles.link}>
+                                <img
+                                    className={styles.icon}
+                                    src={item.icon}
+                                    alt={`Логотип соціальної мережі - ${item.name}`}
+                                />
+                            </Link>
                         </li>
                     ))}
                 </ul>
