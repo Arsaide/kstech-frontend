@@ -36,7 +36,7 @@ const CartItem: FC<CartItemProps> = ({
                 <Trash2 className={styles.icon} onClick={() => removeProduct(id)} />
                 <div
                     className={styles.imgCnt}
-                    onClick={() => router.push(`/catalog/subcatalog/product?id=${id}`)}
+                    onClick={() => router.push(`/catalog/subcatalog/${id}`)}
                 >
                     <img
                         src={imgArr[0]}
