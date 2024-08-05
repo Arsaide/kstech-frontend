@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { OneProductTypes } from '@/api/models/ProductsModels';
 import useCartStore from '@/api/store/CartStore';
 import styles from '@/components/pages/catalog/one-product-page/OneProduct.module.scss';
+import { trackAddToCart } from '@/utils/facebookPixel';
 
 const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
     const addProduct = useCartStore(state => state.addProduct);
@@ -21,6 +22,8 @@ const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
 
     const handleAddToCart = () => {
         addProduct(product);
+
+        trackAddToCart(product.id, product.name, product.price);
     };
 
     return (
