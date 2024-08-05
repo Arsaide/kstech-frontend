@@ -39,7 +39,7 @@ export const contactsList = [
         link: 'mailto:kstek.ltd24@gmail.com',
     },
     {
-        name: '(067) 475-48-48 (з 9:00 до 22:00)',
+        name: '(067) 475-48-48 (з 9:00 до 18:00)',
         link: 'tel:+380674754848',
     },
 ];
@@ -47,7 +47,7 @@ export const contactsList = [
 export const socialNetworksList = [
     {
         name: 'facebook',
-        link: 'https://www.facebook.com/profile.php?id=61556809713151',
+        link: 'https://www.facebook.com/profile.php?id=61563335646660',
         icon: '/social-networks/facebook.svg',
     },
     {

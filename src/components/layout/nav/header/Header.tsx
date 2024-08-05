@@ -339,7 +339,7 @@ const Header = () => {
                             </Link>
                         </div>
                         <div className={adaptiveStyles.optionRight}>
-                            <Link className={adaptiveStyles.phoneIcon} href={'tel:+380500235030'}>
+                            <Link className={adaptiveStyles.phoneIcon} href={'tel:+380674754848'}>
                                 <PhoneCall color={ColorsEnum.WHITE} size={24} />
                             </Link>
                             <Link className={adaptiveStyles.cartIcon} href={'/cart'}>
