@@ -19,15 +19,13 @@ const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
         };
     }, [getQuantityById, product.id]);
 
+    const handleAddToCart = () => {
+        addProduct(product);
+    };
+
     return (
         <>
-            <button
-                className={styles.buyBtn}
-                onClick={() => {
-                    addProduct(product);
-                }}
-                disabled={quantity >= 50}
-            >
+            <button className={styles.buyBtn} onClick={handleAddToCart} disabled={quantity >= 50}>
                 <div className={styles.cartIconCnt}>
                     <img
                         className={styles.cartIcon}
