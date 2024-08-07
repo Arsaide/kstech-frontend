@@ -364,20 +364,6 @@ const Header = () => {
                     [adaptiveStyles.openMenu]: isOpenCategories,
                 })}
             >
-                <h3 className={adaptiveStyles.listTitle}>Меню</h3>
-                <ul className={adaptiveStyles.menuList}>
-                    {navMenu.map((item, index) => (
-                        <li key={index} className={adaptiveStyles.listItem}>
-                            <Link
-                                className={adaptiveStyles.listName}
-                                href={item.link}
-                                prefetch={true}
-                            >
-                                {item.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
                 <h3 className={adaptiveStyles.listTitle}>
                     <FileStack size={18} />
                     Каталог товарів
@@ -418,6 +404,20 @@ const Header = () => {
                                 </Link>
                             </li>
                         ))}
+                </ul>
+                <h3 className={adaptiveStyles.listTitle}>Меню</h3>
+                <ul className={adaptiveStyles.menuList}>
+                    {navMenu.map((item, index) => (
+                        <li key={index} className={adaptiveStyles.listItem}>
+                            <Link
+                                className={adaptiveStyles.listName}
+                                href={item.link}
+                                prefetch={true}
+                            >
+                                {item.name}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </header>

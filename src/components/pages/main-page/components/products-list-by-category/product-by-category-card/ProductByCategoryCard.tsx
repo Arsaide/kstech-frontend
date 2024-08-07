@@ -6,7 +6,6 @@ import styles from './ProductByCategoryCard.module.scss';
 import classNames from 'classnames';
 import useCartStore from '@/api/store/CartStore';
 import { OneProductTypes } from '@/api/models/ProductsModels';
-import { trackAddToCart } from '@/utils/facebookPixel';
 
 interface ProductByCategoryCardProps {
     product: OneProductTypes;
@@ -20,12 +19,6 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({ product, link }
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const discountCalc = priceConvert(discountPriceCalc(product.price, product.discount));
     const priceCalc = priceConvert(product.price);
-
-    const handleAddToCart = () => {
-        addProduct(product);
-
-        trackAddToCart(product.id, product.name, product.price);
-    };
 
     return (
         <li
@@ -56,7 +49,10 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({ product, link }
             </Link>
             {isHovered && (
                 <div className={styles.buy}>
-                    <button onClick={handleAddToCart} className={classNames(styles.buyBtn)}>
+                    <button
+                        onClick={() => addProduct(product)}
+                        className={classNames(styles.buyBtn)}
+                    >
                         {quantity > 0 ? 'Додати ще' : 'Додати в кошик'}
                     </button>
                 </div>
