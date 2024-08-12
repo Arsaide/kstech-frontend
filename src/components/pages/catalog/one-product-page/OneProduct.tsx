@@ -144,7 +144,7 @@ const OneProduct: FC<OneProductProps> = ({ id }) => {
                     </div>
                 </div>
             </div>
-            <PopularProductSection />
+            <PopularProductSection productId={data?.id as string} />
             <div className={styles.characteristics} id={'characteristics'}>
                 <CharacteristicsSection data={data} />
                 <DescriptionSection data={data} />

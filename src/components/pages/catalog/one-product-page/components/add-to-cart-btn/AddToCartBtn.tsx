@@ -3,6 +3,7 @@ import { OneProductTypes } from '@/api/models/ProductsModels';
 import useCartStore from '@/api/store/CartStore';
 import styles from '@/components/pages/catalog/one-product-page/OneProduct.module.scss';
 import { trackAddToCart } from '@/utils/facebookPixel';
+import classNames from 'classnames';
 
 const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
     const addProduct = useCartStore(state => state.addProduct);
@@ -28,7 +29,11 @@ const AddToCartBtn: React.FC<{ product: OneProductTypes }> = ({ product }) => {
 
     return (
         <>
-            <button className={styles.buyBtn} onClick={handleAddToCart} disabled={quantity >= 50}>
+            <button
+                className={classNames(styles.buyBtn, { [styles.anim]: quantity == 0 })}
+                onClick={handleAddToCart}
+                disabled={quantity >= 50}
+            >
                 <div className={styles.cartIconCnt}>
                     <img
                         className={styles.cartIcon}

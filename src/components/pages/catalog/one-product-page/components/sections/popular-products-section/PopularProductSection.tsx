@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import ProductsListByCategory from '@/components/pages/main-page/components/products-list-by-category/ProductsListByCategory';
 import ProductsListByCategorySkeleton from '@/components/pages/main-page/components/products-list-by-category-skeleton/ProductsListByCategorySkeleton';
 import { useGetPopularProducts } from '@/hooks/queries/use-get-popular-products/useGetPopularProducts';
 
-const PopularProductSection = () => {
+interface PopularProductSectionProps {
+    productId?: string;
+}
+
+const PopularProductSection: FC<PopularProductSectionProps> = ({ productId }) => {
     const {
         data: popularProducts,
         isLoading: popularProductsLoading,
@@ -21,6 +25,7 @@ const PopularProductSection = () => {
                     categoryName={'Також можуть зацікавити:'}
                     productsArr={popularProducts}
                     link={'/popular-products'}
+                    productId={productId as string}
                 />
             )}
         </>

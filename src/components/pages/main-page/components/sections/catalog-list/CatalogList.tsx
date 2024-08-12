@@ -21,7 +21,7 @@ const CatalogList = () => {
                     <CatalogListSkeleton />
                 ) : (
                     <ul className={styles.produtcsList}>
-                        {data?.slice(0, 24).map(category => (
+                        {data?.slice(0, 17).map(category => (
                             <li className={styles.listItem} key={category.id}>
                                 <Link
                                     className={styles.link}
@@ -41,6 +41,16 @@ const CatalogList = () => {
                                 </Link>
                             </li>
                         ))}
+                        <li className={styles.listItem}>
+                            <Link
+                                className={styles.linkAll}
+                                href={{
+                                    pathname: `/catalog`,
+                                }}
+                            >
+                                <h5 className={styles.nameAll}>Показати всі</h5>
+                            </Link>
+                        </li>
                     </ul>
                 )}
             </div>

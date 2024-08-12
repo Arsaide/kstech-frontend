@@ -10,9 +10,16 @@ interface ProductsListProps {
     link: string;
     id?: string;
     query?: string;
+    productId?: string;
 }
 
-const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsArr, link, id }) => {
+const ProductsListByCategory: FC<ProductsListProps> = ({
+    categoryName,
+    productsArr,
+    link,
+    id,
+    productId,
+}) => {
     if (productsArr?.products.length == 0) {
         return null;
     }
@@ -40,6 +47,8 @@ const ProductsListByCategory: FC<ProductsListProps> = ({ categoryName, productsA
                                 key={product.id}
                                 product={product}
                                 link={`/catalog/subcatalog/${product.id}`}
+                                productId={productId as string}
+                                id={product.id as string}
                             />
                         ))}
             </ul>

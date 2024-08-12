@@ -48,7 +48,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, link }) => {
                 </div>
             </Link>
             {isHovered && (
-                <div className={styles.buy}>
+                <div className={classNames(styles.buy, { [styles.anim]: quantity == 0 })}>
                     <button
                         onClick={() => addProduct(product)}
                         className={classNames(styles.buyBtn)}

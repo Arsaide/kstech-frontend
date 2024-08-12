@@ -14,7 +14,13 @@ const ColorsSection: FC<ColorsSectionProps> = ({ data }) => {
                 {data?.colors.map((item, index) => (
                     <li
                         key={index}
-                        style={{ backgroundColor: item }}
+                        style={{
+                            backgroundColor: item,
+                            border:
+                                item === '#ffffff' || 'rgb(255,255,255)'
+                                    ? '2px solid #333'
+                                    : undefined,
+                        }}
                         className={styles.colorItem}
                     />
                 ))}

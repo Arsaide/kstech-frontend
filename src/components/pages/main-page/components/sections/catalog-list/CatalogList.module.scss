@@ -66,7 +66,7 @@
   }
 }
 
-.link {
+.link, .linkAll {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,6 +91,21 @@
   font-size: 16px;
   font-weight: 600;
   color: var(--black);
+}
+
+.nameAll {
+  color: var(--blue);
+  font-size: clamp(15px, 2vw, 18px);
+  font-weight: 500;
+  transition: opacity .2s ease-out 0s, transform .2s ease-out 0s;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 @media(max-width: 968px) {

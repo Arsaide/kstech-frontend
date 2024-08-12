@@ -15,22 +15,22 @@ const CharacteristicsSection: FC<CharacteristicsSectionProps> = ({ data }) => {
                     <li className={styles.item}>
                         <div className={styles.cell}>Ширина</div>
                         <div className={styles.line} />
-                        <div className={styles.cell}>{data?.width} м.</div>
+                        <div className={styles.cell}>{data?.width}</div>
                     </li>
                     <li className={styles.item}>
                         <div className={styles.cell}>Висота</div>
                         <div className={styles.line} />
-                        <div className={styles.cell}>{data?.height} м.</div>
+                        <div className={styles.cell}>{data?.height}</div>
                     </li>
                     <li className={styles.item}>
                         <div className={styles.cell}>Довжина</div>
                         <div className={styles.line} />
-                        <div className={styles.cell}>{data?.long} м.</div>
+                        <div className={styles.cell}>{data?.long}</div>
                     </li>
                     <li className={styles.item}>
                         <div className={styles.cell}>Вага</div>
                         <div className={styles.line} />
-                        <div className={styles.cell}>{data?.weight} кг.</div>
+                        <div className={styles.cell}>{data?.weight}</div>
                     </li>
                     <li className={styles.item}>
                         <div className={styles.cell}>Країна виробник</div>

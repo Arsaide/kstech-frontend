@@ -10,9 +10,16 @@ import { OneProductTypes } from '@/api/models/ProductsModels';
 interface ProductByCategoryCardProps {
     product: OneProductTypes;
     link: string;
+    productId?: string;
+    id?: string;
 }
 
-const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({ product, link }) => {
+const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
+    product,
+    link,
+    productId,
+    id,
+}) => {
     const addProduct = useCartStore(state => state.addProduct);
     const getQuantityById = useCartStore(state => state.getQuantityById);
     const quantity = getQuantityById(product.id);
@@ -47,8 +54,14 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({ product, link }
                     )}
                 </div>
             </Link>
-            {isHovered && (
-                <div className={styles.buy}>
+            {(isHovered || (productId as string) === (id as string)) && (
+                <div
+                    className={classNames({
+                        [styles.buy]: (productId as string) !== (id as string),
+                        [styles.anim]: quantity == 0,
+                        [styles.productId]: (productId as string) === (id as string),
+                    })}
+                >
                     <button
                         onClick={() => addProduct(product)}
                         className={classNames(styles.buyBtn)}
