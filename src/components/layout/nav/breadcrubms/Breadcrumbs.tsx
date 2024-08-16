@@ -49,7 +49,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ items }) => {
         };
     }, [items]);
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 740;
+    const isMobile = window.innerWidth < 740;
 
     return (
         <nav aria-label={'breadcrumbs'}>

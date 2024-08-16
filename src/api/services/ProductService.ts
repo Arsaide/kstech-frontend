@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import {AxiosResponse} from 'axios';
 import $api from '@/api/request';
 import {
     AllProductResponseModel,
@@ -41,8 +41,8 @@ export default class ProductService {
         return $api.get<AllProductResponseModel>(`/products/getforpromotions?page=${page}`);
     }
 
-    static async getProduct(id: null | string): Promise<AxiosResponse<OneProductResponseModel>> {
-        return $api.get<OneProductResponseModel>(`/products/getone?id=${id}`);
+    static async getProduct(id: string | null): Promise<AxiosResponse<OneProductResponseModel>> {
+        return await $api.get<OneProductResponseModel>(`/products/getone?id=${id}`);
     }
 
     static async buy(

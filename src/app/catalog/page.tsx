@@ -1,5 +1,9 @@
 import React from 'react';
-import Catalog from '@/components/pages/catalog/Catalog';
+import dynamic from "next/dynamic";
+
+const Catalog = dynamic(() => import('@/components/pages/catalog/Catalog'), {
+    ssr: false,
+});
 
 const CatalogPage = () => {
     return (

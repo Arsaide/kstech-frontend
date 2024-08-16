@@ -58,13 +58,12 @@ const ProductByCategoryCard: FC<ProductByCategoryCardProps> = ({
                 <div
                     className={classNames({
                         [styles.buy]: (productId as string) !== (id as string),
-                        [styles.anim]: quantity == 0,
                         [styles.productId]: (productId as string) === (id as string),
                     })}
                 >
                     <button
                         onClick={() => addProduct(product)}
-                        className={classNames(styles.buyBtn)}
+                        className={classNames(styles.buyBtn, {[styles.anim]: quantity == 0,})}
                     >
                         {quantity > 0 ? 'Додати ще' : 'Додати в кошик'}
                     </button>

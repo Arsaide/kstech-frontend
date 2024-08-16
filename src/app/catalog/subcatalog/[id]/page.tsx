@@ -1,62 +1,79 @@
+'use server';
 import React from 'react';
-import { Metadata } from 'next';
-import OneProduct from '@/components/pages/catalog/one-product-page/OneProduct';
-import ProductService from '@/api/services/ProductService';
+import {Metadata, ResolvingMetadata} from 'next';
+import dynamic from "next/dynamic";
+
+const OneProduct = dynamic(() => import('@/components/pages/catalog/one-product-page/OneProduct'), {
+    ssr: false,
+});
+
 
 type Props = {
     params: { id: string };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { id } = params;
+export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+    try {
+        const id = params.id;
+        const product = await fetch(`${process.env.NGINX_API_URL}/products/getone?id=${id}`).then((res) => res.json());
+        if (!product.product) {
+            throw new Error('Product data isnt available');
+        }
+        const productData = product.product;
+        const parentMetadata = await parent;
 
-    const product = await ProductService.getProduct(id);
-
-    return {
-        title: product.data.product.name,
-        description:
-            `Перегляньте наш товар ${product.data.product.name}, каталогу ${product.data.product.categoryName} та 
-             категорії ${product.data.product.subcategoryName} в магазині KS TECH. Ми пропонуємо вам різноманітні товари: металеві каркаси, ` +
-            "модульні будинки, офіси, кав'ярні, приміщення для охорони, буржуйки, котли, пічки, обладнання для сільського господарства, " +
-            'генератори та інші вироби з металу.',
-        keywords: [
-            `${product.data.product.name}`,
-            `${product.data.product.categoryName}`,
-            `${product.data.product.subcategoryName}`,
-            'KS TECH',
-            'металеві каркаси',
-            'модульні будинки',
-            'офіси',
-            'кафе',
-            'приміщення для охорони',
-            'буржуйки',
-            'котли',
-            'пічки',
-            'обладнання для сільського господарства',
-            'генератори',
-            'вироби з металу',
-        ],
-        openGraph: {
-            title: `KS Tech товар - ${product.data.product.name}`,
+        return {
+            title: productData.name || parentMetadata?.title,
             description:
-                `Перегляньте наш товар ${product.data.product.name}, каталогу ${product.data.product.categoryName} та 
-             категорії ${product.data.product.subcategoryName} в магазині KS TECH. Ми пропонуємо вам різноманітні товари: металеві каркаси, ` +
+                `Перегляньте наш товар ${productData.name}, каталогу ${productData.categoryName} та 
+             категорії ${productData.subcategoryName} в магазині KS TECH. Ми пропонуємо вам різноманітні товари: металеві каркаси, ` +
                 "модульні будинки, офіси, кав'ярні, приміщення для охорони, буржуйки, котли, пічки, обладнання для сільського господарства, " +
                 'генератори та інші вироби з металу.',
-            url: `https://kstech-frontend.vercel.app/catalog/subcatalog/${id}`,
-            siteName: 'KS Tech',
-            images: [
-                {
-                    url: 'https://kstech-frontend.vercel.app/preview.jpg',
-                    width: 640,
-                    height: 336,
-                    alt: `Товар ${product.data.product.name}. KS Tech`,
-                },
+            keywords: [
+                `${productData.name}`,
+                `${productData.categoryName}`,
+                `${productData.subcategoryName}`,
+                'KS TECH',
+                'металеві каркаси',
+                'модульні будинки',
+                'офіси',
+                'кафе',
+                'приміщення для охорони',
+                'буржуйки',
+                'котли',
+                'пічки',
+                'обладнання для сільського господарства',
+                'генератори',
+                'вироби з металу',
             ],
-            locale: 'uk-UA',
-            type: 'website',
-        },
-    };
+            openGraph: {
+                ...parentMetadata?.openGraph,
+                title: `KS Tech товар - ${productData.name}`,
+                description:
+                    `Перегляньте наш товар ${productData.name}, каталогу ${productData.categoryName} та 
+             категорії ${productData.subcategoryName} в магазині KS TECH. Ми пропонуємо вам різноманітні товари: металеві каркаси, ` +
+                    "модульні будинки, офіси, кав'ярні, приміщення для охорони, буржуйки, котли, пічки, обладнання для сільського господарства, " +
+                    'генератори та інші вироби з металу.',
+                url: `https://kstech-frontend.vercel.app/catalog/subcatalog/${id}`,
+                siteName: 'KS Tech',
+                images: [
+                    {
+                        url: productData.imgArr[0] || 'https://kstech-frontend.vercel.app/preview.jpg',
+                        width: 640,
+                        height: 336,
+                        alt: `Товар ${productData.name}. KS Tech`,
+                    },
+                ],
+                locale: 'uk-UA',
+                type: 'website',
+            },
+        };
+    } catch (error) {
+        return {
+            title: 'Товара немає',
+            description: 'Інформація недоступна',
+        };
+    }
 }
 
 const ProductPage = ({ params: { id } }: Props) => {

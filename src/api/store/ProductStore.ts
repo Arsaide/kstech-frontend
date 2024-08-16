@@ -45,48 +45,48 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
     getProducts: async (page: number) => {
         try {
             return await ProductService.getProductsList(page);
-        } catch (error: any) {
-            throw error;
+        } catch (error) {
+            throw error instanceof Error;
         }
     },
 
     searchProducts: async (query: string, page: number) => {
         try {
             return await ProductService.searchProducts(page, query);
-        } catch (error: any) {
-            throw error;
+        } catch (error) {
+            throw error instanceof Error;
         }
     },
 
     getProductByCategory: async (categoryId: string | null, page: number) => {
         try {
             return await ProductService.getProductByCategory(categoryId, page);
-        } catch (error: any) {
-            throw error;
+        } catch (error) {
+            throw error instanceof Error;
         }
     },
 
     getProductBySubcategory: async (categoryId: string | null, page: number) => {
         try {
             return await ProductService.getProductBySubcategory(categoryId, page);
-        } catch (error: any) {
-            throw error;
+        } catch (error) {
+            throw error instanceof Error;
         }
     },
 
     getPopularProducts: async (page: number) => {
         try {
             return await ProductService.getPopularProducts(page);
-        } catch (error: any) {
-            throw error;
+        } catch (error) {
+            throw error instanceof Error;
         }
     },
 
     getProduct: async (id: string | null) => {
         try {
             return await ProductService.getProduct(id);
-        } catch (error: any) {
-            throw error;
+        } catch (error) {
+            throw error instanceof Error;
         }
     },
 
@@ -121,8 +121,8 @@ const useProductsStore = create<ProductStoreTypes>(set => ({
                 office,
                 comment,
             );
-        } catch (error: any) {
-            throw error;
+        } catch (error) {
+            throw error instanceof Error;
         }
     },
 }));

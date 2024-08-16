@@ -1,7 +1,11 @@
 import React from 'react';
-import Cart from '@/components/pages/cart-page/Cart';
 import styles from './page.module.scss';
 import type { Metadata } from 'next';
+import dynamic from "next/dynamic";
+
+const Cart = dynamic(() => import('@/components/pages/cart-page/Cart'), {
+    ssr: false,
+});
 
 export const metadata: Metadata = {
     title: 'KS Tech - Кошик',

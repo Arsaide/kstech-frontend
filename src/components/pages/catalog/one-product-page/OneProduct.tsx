@@ -25,6 +25,7 @@ interface OneProductProps {
     id: string;
 }
 
+
 const OneProduct: FC<OneProductProps> = ({ id }) => {
     const { data, isLoading, isError } = useGetProduct(id);
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);

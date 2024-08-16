@@ -48,10 +48,10 @@ const ProductCard: FC<ProductCardProps> = ({ product, link }) => {
                 </div>
             </Link>
             {isHovered && (
-                <div className={classNames(styles.buy, { [styles.anim]: quantity == 0 })}>
+                <div className={classNames(styles.buy)}>
                     <button
                         onClick={() => addProduct(product)}
-                        className={classNames(styles.buyBtn)}
+                        className={classNames(styles.buyBtn , { [styles.anim]: quantity == 0 })}
                     >
                         {quantity > 0 ? 'Додати ще' : 'Додати в кошик'}
                     </button>

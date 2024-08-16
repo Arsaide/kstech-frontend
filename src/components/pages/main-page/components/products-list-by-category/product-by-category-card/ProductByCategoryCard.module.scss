@@ -103,22 +103,7 @@
   border-left: 1px solid var(--black-02);
   z-index: 10;
   padding: 0 12px;
-}
-
-.anim {
-  &:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: pulse 2.5s infinite;
-
-  }
+  overflow: hidden;
 }
 
 @keyframes pulse {
@@ -161,6 +146,8 @@
   margin-bottom: 12px;
   cursor: pointer;
   transition: background-color .2s ease-out 0s, transform .1s ease-out 0s;
+  position: relative;
+  z-index: 2;
 
   &:hover {
     background-color: var(--black-08);
@@ -168,6 +155,22 @@
 
   &:active {
     transform: scale(.98);
+  }
+}
+
+.anim {
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: pulse 2.5s infinite;
+    z-index: 1;
   }
 }
 
