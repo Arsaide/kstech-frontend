@@ -15,7 +15,8 @@ type Props = {
 export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
     try {
         const id = params.id;
-        const product = await fetch(`${process.env.NGINX_API_URL}/products/getone?id=${id}`).then((res) => res.json());
+        // const product = await fetch(`${process.env.NGINX_API_URL}/products/getone?id=${id}`).then((res) => res.json());
+        const product = await fetch(`${process.env.API_URL}/products/getone?id=${id}`).then((res) => res.json());
         if (!product.product) {
             throw new Error('Product data isnt available');
         }
